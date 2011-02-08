@@ -1,0 +1,51 @@
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\Interop.TCaptureXLib.dll
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\Interop.TSelectionLib.dll
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\Interop.UIElementLib.dll
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.vbproj.ResolveComReference.cache
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\bin\Debug\FindText.exe
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\bin\Debug\FindText.pdb
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\bin\Debug\FindText.xml
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\bin\Debug\Interop.TCaptureXLib.dll
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\bin\Debug\Interop.TSelectionLib.dll
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\bin\Debug\Interop.UIElementLib.dll
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.Form1.resources
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.Resources.resources
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.vbproj.GenerateResource.Cache
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.exe
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.xml
+C:\Users\alex2\Documents\Visual Studio 2008\Projects\SSSExampleVBnet\FindText\obj\Debug\FindText.pdb
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\FindText.exe
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\FindText.pdb
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\FindText.xml
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\Interop.TCaptureXLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\Interop.TSelectionLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\Interop.UIElementLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\Interop.TCaptureXLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\Interop.TSelectionLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\Interop.UIElementLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.vbproj.ResolveComReference.cache
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.Form1.resources
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.Resources.resources
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.vbproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.exe
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.xml
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.pdb
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\FindText.exe
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\FindText.pdb
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\FindText.xml
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\Interop.TCaptureXLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\Interop.TSelectionLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\bin\Debug\Interop.UIElementLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\Interop.TCaptureXLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\Interop.TSelectionLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\Interop.UIElementLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.vbproj.ResolveComReference.cache
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.Form1.resources
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.Resources.resources
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.vbproj.GenerateResource.Cache
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.exe
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.xml
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\FindText\obj\Debug\FindText.pdb

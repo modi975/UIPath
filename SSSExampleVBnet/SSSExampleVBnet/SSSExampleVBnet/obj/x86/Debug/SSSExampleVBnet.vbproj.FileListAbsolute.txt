@@ -1,0 +1,40 @@
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\Interop.TCaptureXLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\Interop.TSelectionLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\Interop.UIElementLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.vbproj.ResolveComReference.cache
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\SSSExampleVBnet.exe
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\SSSExampleVBnet.pdb
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\SSSExampleVBnet.xml
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\Interop.TCaptureXLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\Interop.TSelectionLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\Interop.UIElementLib.dll
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.Form1.resources
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.Resources.resources
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.vbproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.exe
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.xml
+C:\Users\Alex\Desktop\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.pdb
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\SSSExampleVBnet.exe
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\SSSExampleVBnet.pdb
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\SSSExampleVBnet.xml
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\Interop.TCaptureXLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\Interop.TSelectionLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\x86\Debug\Interop.UIElementLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\Interop.TCaptureXLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\Interop.TSelectionLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\Interop.UIElementLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.vbproj.ResolveComReference.cache
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\Debug\SSSExampleVBnet.exe
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\Debug\SSSExampleVBnet.pdb
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\Debug\SSSExampleVBnet.xml
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\Debug\Interop.TCaptureXLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\Debug\Interop.TSelectionLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\bin\Debug\Interop.UIElementLib.dll
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.Form1.resources
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.Resources.resources
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.vbproj.GenerateResource.Cache
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.exe
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.xml
+D:\Projects\SSS samples\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\SSSExampleVBnet\obj\x86\Debug\SSSExampleVBnet.pdb
