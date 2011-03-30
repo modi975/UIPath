@@ -7,9 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using TCaptureXLib;
-using TSelectionLib;
-using UIElementLib;
+using ScreenScraper;
 
 namespace FindTextProject
 {
@@ -25,9 +23,9 @@ namespace FindTextProject
 
             try
             {
-                m_tCapture = new TextCaptureXClass();
-                m_tSelection = new TSelectionClass();
-                m_tOCRCapture = new GetOCRTextClass();
+                m_tCapture = ComFactory.Instance.NewTextCaptureX();
+                m_tSelection = ComFactory.Instance.NewTSelection();
+                m_tOCRCapture = ComFactory.Instance.NewGetOCRText();
             }
             catch (Exception ex)
             {
@@ -127,7 +125,7 @@ namespace FindTextProject
 
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
                 uiElem.hwnd = hwnd;
                 strID = uiElem.GetID(true);
                 uiElem.GetRectangle(out x1, out y1, out x2, out y2);
@@ -166,7 +164,7 @@ namespace FindTextProject
             {
                 // create the rectangle of the of the
                 // clicked region
-                rect rectangle = new rectClass();
+                rect rectangle = ComFactory.Instance.NewRect();
                 rectangle.RLeft = x;
                 rectangle.RRight = x + w;
                 rectangle.RTop = y;
@@ -194,7 +192,7 @@ namespace FindTextProject
 
                 if (bClickText)
                 {
-                    UIElem uiElem = new UIElemClass();
+                    UIElem uiElem = ComFactory.Instance.NewUIElem();
                     uiElem.InitializeFromID(txtID.Text, false);
                     
                     uiElem.Click(foundRect.RLeft, foundRect.RTop, GetClickFlags());
@@ -234,7 +232,7 @@ namespace FindTextProject
             UIElem uiElem = null;
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
             }
             catch (Exception ex)
             {

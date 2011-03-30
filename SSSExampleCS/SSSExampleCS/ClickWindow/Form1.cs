@@ -7,9 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using TCaptureXLib;
-using TSelectionLib;
-using UIElementLib;
+using ScreenScraper;
 
 namespace ClickWindow
 {
@@ -27,8 +25,8 @@ namespace ClickWindow
 
             try
             {
-                m_tCapture = new TextCaptureXClass();
-                m_tSelection = new TSelectionClass();
+                m_tCapture = ComFactory.Instance.NewTextCaptureX();
+                m_tSelection = ComFactory.Instance.NewTSelection();
             }
             catch (Exception ex)
             {
@@ -93,7 +91,7 @@ namespace ClickWindow
             UIElem uiElem = null;
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
                 uiElem.UseClientCoordinates = true;
                 uiElem.InitializeFromID(txtID.Text, true);
 

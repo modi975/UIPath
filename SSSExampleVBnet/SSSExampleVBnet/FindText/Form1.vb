@@ -1,6 +1,4 @@
-﻿Imports TCaptureXLib
-Imports TSelectionLib
-Imports UIElementLib
+﻿Imports ScreenScraper
 Public Class Form1
     Private m_tCapture As TextCaptureX
     Private m_tSelection As TSelection
@@ -10,9 +8,9 @@ Public Class Form1
         comboMouseBtn.SelectedIndex = 0
         radioNative.Checked = True
         Try
-            m_tCapture = New TextCaptureX
-            m_tSelection = New TSelection
-            m_tOCRCapture = New GetOCRText
+            m_tCapture = ComFactory.Instance.NewTextCaptureX
+            m_tSelection = ComFactory.Instance.NewTSelection
+            m_tOCRCapture = ComFactory.Instance.NewGetOCRText
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -98,7 +96,7 @@ Public Class Form1
 
         Dim uiElement As UIElem
         Try
-            uiElement = New UIElem
+            uiElement = ComFactory.Instance.NewUIElem
             uiElement.hwnd = hwnd
 
             'set the UI element ID
@@ -135,7 +133,7 @@ Public Class Form1
 
         Dim uiElement As UIElem
         Try
-            uiElement = New UIElem
+            uiElement = ComFactory.Instance.NewUIElem
             uiElement.hwnd = tSelInfo.WindowHandle
             strID = uiElement.GetID(False)
             uiElement.GetRectangle(x1, y1, x2, y2)
@@ -167,7 +165,7 @@ Public Class Form1
         occurrence = Integer.Parse(txtOccurence.Text)
         Try
             Dim rectangle As rect
-            rectangle = New rect
+            rectangle = ComFactory.Instance.NewRect
 
             rectangle.RLeft = x
             rectangle.RRight = x + w
@@ -192,7 +190,7 @@ Public Class Form1
 
             If (bClickText = True) Then
                 Dim uiElement As UIElem
-                uiElement = New UIElem
+                uiElement = ComFactory.Instance.NewUIElem
 
                 uiElement.InitializeFromID(txtID.Text, True)
 

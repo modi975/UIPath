@@ -7,9 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using TCaptureXLib;
-using TSelectionLib;
-using UIElementLib;
+using ScreenScraper;
 
 namespace WriteText
 {
@@ -26,8 +24,8 @@ namespace WriteText
 
             try
             {
-                m_tCapture = new TextCaptureXClass();
-                m_tSelection = new TSelectionClass();
+                m_tCapture = ComFactory.Instance.NewTextCaptureX();
+                m_tSelection = ComFactory.Instance.NewTSelection();
             }
             catch (Exception ex)
             {
@@ -54,7 +52,7 @@ namespace WriteText
             UIElem uiElem = null;
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
                 uiElem.InitializeFromID(tSelInfo.UIElementID, false);
                 strID = tSelInfo.UIElementID;
             }
@@ -73,7 +71,7 @@ namespace WriteText
             UIElem uiElem = null;
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
                 uiElem.UseClientCoordinates = false;
                 uiElem.InitializeFromID(txtID.Text, false);
 

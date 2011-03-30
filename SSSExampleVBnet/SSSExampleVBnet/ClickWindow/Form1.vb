@@ -1,6 +1,4 @@
-﻿Imports TCaptureXLib
-Imports TSelectionLib
-Imports UIElementLib
+﻿Imports ScreenScraper
 
 Public Class Form1
     Private m_tCapture As TextCaptureX
@@ -10,8 +8,8 @@ Public Class Form1
         comboMouseBtn.SelectedIndex = 0
 
         Try
-            m_tCapture = New TextCaptureX
-            m_tSelection = New TSelection
+            m_tCapture = ComFactory.Instance.NewTextCaptureX
+            m_tSelection = ComFactory.Instance.NewTSelection
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -29,7 +27,7 @@ Public Class Form1
         Dim strID As String
         Dim uiElement As UIElem
         Try
-            uiElement = New UIElem
+            uiElement = ComFactory.Instance.NewUIElem
             uiElement.hwnd = tSelInfo.WindowHandle
             strID = uiElement.GetID(True)
         Catch ex As Exception
@@ -44,7 +42,7 @@ Public Class Form1
     Private Sub button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles button2.Click
         Dim uiElement As UIElem
         Try
-            uiElement = New UIElem
+            uiElement = ComFactory.Instance.NewUIElem
             uiElement.UseClientCoordinates = True
             uiElement.InitializeFromID(txtID.Text, True)
 

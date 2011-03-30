@@ -1,6 +1,4 @@
-﻿Imports TCaptureXLib
-Imports TSelectionLib
-Imports UIElementLib
+﻿Imports ScreenScraper
 
 Enum CaptureMethod
     NATIVE
@@ -49,7 +47,7 @@ Public Class Form1
         txtHandle.Text = hwnd.ToString("X")
 
         Dim uiElement As UIElem
-        uiElement = New UIElem
+        uiElement = ComFactory.Instance.NewUIElem
         uiElement.hwnd = hwnd
 
         'set the UI element ID
@@ -91,10 +89,10 @@ Public Class Form1
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            m_tCapture = New TextCaptureX
-            m_tFulltextCapt = New GetAAText
-            m_tOCRCapture = New GetOCRText
-            m_tSelection = New TSelection
+            m_tCapture = ComFactory.Instance.NewTextCaptureX
+            m_tFulltextCapt = ComFactory.Instance.NewGetAAText
+            m_tOCRCapture = ComFactory.Instance.NewGetOCRText
+            m_tSelection = ComFactory.Instance.NewTSelection
 
             m_tCapture.UseClientCoordinates = True
             m_tOCRCapture.UseClientCoordinates = True
@@ -143,7 +141,7 @@ Public Class Form1
 
         'set the UI elemend ID
         Dim uiElement As UIElem
-        uiElement = New UIElem
+        uiElement = ComFactory.Instance.NewUIElem
 
         If (tSelInfo.UIElementID = "") Then
             textBox1.Text = "A valid ID could not be generated!"
@@ -250,7 +248,7 @@ Public Class Form1
 
         Dim uiElement As UIElem
         Try
-            uiElement = New UIElem
+            uiElement = ComFactory.Instance.NewUIElem
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -279,7 +277,7 @@ Public Class Form1
     Private Sub button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles button2.Click
         Dim uiElement As UIElem
         Try
-            uiElement = New UIElem
+            uiElement = ComFactory.Instance.NewUIElem
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try

@@ -7,9 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using TCaptureXLib;
-using TSelectionLib;
-using UIElementLib;
+using ScreenScraper;
 
 namespace SSSExampleCS
 {
@@ -35,10 +33,10 @@ namespace SSSExampleCS
 
             try
             {
-                m_tCapture = new TextCaptureXClass();
-                m_tSelection = new TSelectionClass();
-                m_tFullTextCapt = new GetAATextClass();
-                m_tOCRCapture = new GetOCRTextClass();
+                m_tCapture = ComFactory.Instance.NewTextCaptureX();
+                m_tSelection = ComFactory.Instance.NewTSelection();
+                m_tFullTextCapt = ComFactory.Instance.NewGetAAText();
+                m_tOCRCapture = ComFactory.Instance.NewGetOCRText();
 
                 m_tCapture.UseClientCoordinates = true;
                 m_tFullTextCapt.UseClientCoordinates = true;
@@ -337,7 +335,7 @@ namespace SSSExampleCS
             int hwnd = tSelInfo.WindowHandle;
             txtHandle.Text = hwnd.ToString("X");
 
-            UIElem uiElem = new UIElemClass();
+            UIElem uiElem = ComFactory.Instance.NewUIElem();
             uiElem.hwnd = hwnd;
 
             // set the UI element ID
@@ -406,7 +404,7 @@ namespace SSSExampleCS
             txtHandle.Text = hwnd.ToString("X");
 
             // set the UI element ID
-            UIElem uiElem = new UIElemClass();
+            UIElem uiElem = ComFactory.Instance.NewUIElem();
 
             if (tSelInfo.UIElementID == "")
             {
@@ -439,7 +437,7 @@ namespace SSSExampleCS
             UIElem uiElem = null;
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
             }
             catch (Exception ex)
             {
@@ -477,7 +475,7 @@ namespace SSSExampleCS
             UIElem uiElem = null;
             try
             {
-                uiElem = new UIElemClass();
+                uiElem = ComFactory.Instance.NewUIElem();
             }
             catch (Exception ex)
             {
