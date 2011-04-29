@@ -15,14 +15,6 @@ Public Class Form1
             MessageBox.Show(ex.Message)
         End Try
     End Sub
-    Private Function GetX(ByVal n As Integer) As Integer
-        GetX = n And &HFFFF
-    End Function
-    Private Function GetY(ByVal n As Integer) As Integer
-        'right shift n
-        n = n / (2 ^ 16)
-        GetY = n And &HFFFF
-    End Function
     Private Function GetClickFlags() As Integer
         Dim nRes As Integer
         nRes = UIE_ClickFlags.UIE_CF_MOVE_CURSOR
@@ -63,36 +55,7 @@ Public Class Form1
         hwnd = tSelInfo.WindowHandle
         txtHandle.Text = hwnd.ToString("X")
 
-        'get the selection points
-        Dim points As Object
-        points = tSelInfo.Points
-
-        'get the points
-        Dim x1, y1, x2, y2, width, height As Integer
-        x1 = GetX(points(0))
-        y1 = GetY(points(0))
-        x2 = GetX(points(1))
-        y2 = GetY(points(1))
-
-        Dim top, bottom, left, right As Integer
-        If (x1 < x2) Then
-            left = x1
-            right = x2
-        Else
-            left = x2
-            right = x1
-        End If
-
-        If (y1 < y2) Then
-            top = y1
-            bottom = y2
-        Else
-            top = y2
-            bottom = y1
-        End If
-
-        width = right - left
-        height = bottom - top
+        tSelInfo.GetClientCoordinates()
 
         Dim uiElement As UIElem
         Try
@@ -101,21 +64,16 @@ Public Class Form1
 
             'set the UI element ID
             txtID.Text = uiElement.GetID(True)
-            uiElement.GetRectangle(x1, y1, x2, y2)
         Catch ex As Exception
             MessageBox.Show(ex.Message)
             Return
         End Try
 
-        'translate to client coordinates
-        top = top - y1
-        left = left - x1
-
         'set the points
-        txtX.Text = left.ToString
-        txtY.Text = top.ToString
-        txtWidth.Text = width.ToString
-        txtHeight.Text = height.ToString
+        txtX.Text = tSelInfo.RCLeft.ToString
+        txtY.Text = tSelInfo.RCTop.ToString
+        txtWidth.Text = tSelInfo.RCWidth.ToString
+        txtHeight.Text = tSelInfo.RCHeight.ToString
     End Sub
 
     Private Sub button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles button1.Click
@@ -194,7 +152,7 @@ Public Class Form1
 
                 uiElement.InitializeFromID(txtID.Text, True)
 
-                uiElement.Click(foundRect.RLeft, foundRect.RTop, GetClickFlags())
+                uiElement.Click(foundRect.RLeft + 2, foundRect.RTop + 2, GetClickFlags())
             End If
 
         Catch ex As Exception

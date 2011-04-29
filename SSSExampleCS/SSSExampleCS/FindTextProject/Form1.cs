@@ -59,16 +59,6 @@ namespace FindTextProject
             radioNative.Checked = true;
         }
 
-        private int GetX(int number)
-        {
-            return number & 0xffff;
-        }
-
-        private int GetY(int number)
-        {
-            return (number >> 16) & 0xffff;
-        }
-
         private void btnCollect_Click(object sender, EventArgs e)
         {
             TSelectionInfo tSelInfo = null;
@@ -83,41 +73,7 @@ namespace FindTextProject
                 return;
             }
 
-            object[] points;
-            points = (object[])tSelInfo.Points;
-
-            // get the points
-            int x1, y1, x2, y2, width, height;
-            x1 = GetX((int)points[0]);
-            y1 = GetY((int)points[0]);
-            x2 = GetX((int)points[1]);
-            y2 = GetY((int)points[1]);
-
-            int top, bottom, left, right;
-            if (x1 < x2)
-            {
-                left = x1;
-                right = x2;
-            }
-            else
-            {
-                left = x2;
-                right = x1;
-            }
-
-            if (y1 < y2)
-            {
-                top = y1;
-                bottom = y2;
-            }
-            else
-            {
-                top = y2;
-                bottom = y1;
-            }
-
-            width = right - left;
-            height = bottom - top;
+            tSelInfo.GetClientCoordinates();
 
             int hwnd = tSelInfo.WindowHandle;
             string strID = null;
@@ -128,7 +84,6 @@ namespace FindTextProject
                 uiElem = ComFactory.Instance.NewUIElem();
                 uiElem.hwnd = hwnd;
                 strID = uiElem.GetID(true);
-                uiElem.GetRectangle(out x1, out y1, out x2, out y2);
             }
             catch (Exception ex)
             {
@@ -136,14 +91,11 @@ namespace FindTextProject
                 return;
             }
 
-            top = top - y1;
-            left = left - x1;
-
             txtHandle.Text = hwnd.ToString("X");
-            txtX.Text = left.ToString();
-            txtY.Text = top.ToString();
-            txtWidth.Text = width.ToString();
-            txtHeight.Text = height.ToString();
+            txtX.Text = tSelInfo.RCLeft.ToString();
+            txtY.Text = tSelInfo.RCTop.ToString();
+            txtWidth.Text = tSelInfo.RCWidth.ToString();
+            txtHeight.Text = tSelInfo.RCHeight.ToString();
             txtID.Text = strID;
         }
 
@@ -195,7 +147,7 @@ namespace FindTextProject
                     UIElem uiElem = ComFactory.Instance.NewUIElem();
                     uiElem.InitializeFromID(txtID.Text, false);
                     
-                    uiElem.Click(foundRect.RLeft, foundRect.RTop, GetClickFlags());
+                    uiElem.Click(foundRect.RLeft+2, foundRect.RTop+2, GetClickFlags());
                 }
 
             }

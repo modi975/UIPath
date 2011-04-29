@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 using ScreenScraper;
 
 namespace SSSExampleCS
@@ -66,16 +65,6 @@ namespace SSSExampleCS
             comboLang.SelectedIndex = 0;
         }
 
-        private int GetX(int number)
-        {
-            return number & 0xffff;
-        }
-
-        private int GetY(int number)
-        {
-            return (number >> 16) & 0xffff;
-        }
-
         private CaptureMethod GetCaptureMethod()
         {
             if (radioNative.Checked)
@@ -110,7 +99,6 @@ namespace SSSExampleCS
                     {
                         m_tCapture.FormattedText = true;
                     }
-
                     strText = m_tCapture.GetTextFromRect(hwnd, x, y, width, height);
                     //txtFont.Text = font.Name;
                     //txtFontSize.Text = font.Size.ToString();
@@ -167,9 +155,7 @@ namespace SSSExampleCS
             else if (currentMethod == CaptureMethod.OCR)
             {
                 try
-                {
-                    
-                  
+                {                 
                     string strLang = (string)comboLang.Items[comboLang.SelectedIndex];
                     strText = m_tOCRCapture.GetTextFromRect(hwnd, x, y, width, height, strLang, false);
                     txtFont.Text = "";
@@ -315,6 +301,8 @@ namespace SSSExampleCS
         private void btnCollect_Click(object sender, EventArgs e)
         {
             m_bRegOrWnd = true;
+            this.WindowState = FormWindowState.Minimized;
+            System.Threading.Thread.Sleep(100);
 
             TSelectionInfo tSelInfo = null;
 
@@ -342,39 +330,17 @@ namespace SSSExampleCS
             textBox1.Text = uiElem.GetID(true);
 
             // get the selection points
-            object[] points;
-            points = (object[])tSelInfo.Points;
+            tSelInfo.GetClientCoordinates();
 
-            // get the points
-            int x1, y1, x2, y2, width, height;
-            x1 = GetX((int)points[0]);
-            y1 = GetY((int)points[0]);
-            x2 = GetX((int)points[1]);
-            y2 = GetY((int)points[1]);
-            width = x2 - x1;
-            height = y2 - y1;
-            if (width < 0)
-            {
-                width = -1 * width;
-            }
-            if (height < 0)
-            {
-                height = -1 * height;
-            }
-
-            //translate to client coordinates
-            int left, top, right, bottom;
-            uiElem.GetRectangle(out left, out top, out right, out bottom);
-            x1 = x1 - left;
-            y1 = y1 - top;
 
             // set the points
-            txtX.Text = x1.ToString();
-            txtY.Text = y1.ToString();
-            txtWidth.Text = width.ToString();
-            txtHeight.Text = height.ToString();
+            txtX.Text = tSelInfo.RCLeft.ToString();
+            txtY.Text = tSelInfo.RCTop.ToString();
+            txtWidth.Text = tSelInfo.RCWidth.ToString();
+            txtHeight.Text = tSelInfo.RCHeight.ToString();
 
             //PerformRegionCapture(hwnd, x1, y1, width, height);
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -468,6 +434,7 @@ namespace SSSExampleCS
                 m_bCanTryAgain = true;
                 PerformRegionCapture(hwnd, x, y, width, height);
             }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

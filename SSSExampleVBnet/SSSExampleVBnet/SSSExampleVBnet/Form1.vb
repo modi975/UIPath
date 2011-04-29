@@ -13,14 +13,6 @@ Public Class Form1
     Private m_tSelection As TSelection
     Private m_bRegOrWnd As Boolean
     Private m_bCanTryAgain As Boolean
-    Private Function GetX(ByVal n As Integer) As Integer
-        GetX = n And &HFFFF
-    End Function
-    Private Function GetY(ByVal n As Integer) As Integer
-        'right shift n
-        n = n / (2 ^ 16)
-        GetY = n And &HFFFF
-    End Function
     Private Function GetCaptureMethod() As CaptureMethod
         If (radioNative.Checked = True) Then
             GetCaptureMethod = CaptureMethod.NATIVE
@@ -54,37 +46,13 @@ Public Class Form1
         textBox1.Text = uiElement.GetID(True)
 
         'get the selection points
-        Dim points As Object
-        points = tSelInfo.Points
-
-        'get the points
-        Dim x1, y1, x2, y2, width, height As Integer
-        x1 = GetX(points(0))
-        y1 = GetY(points(0))
-        x2 = GetX(points(1))
-        y2 = GetY(points(1))
-        width = x2 - x1
-        height = y2 - y1
-
-        If (width < 0) Then
-            width = -1 * width
-        End If
-        If (height < 0) Then
-            height = -1 * height
-        End If
-
-        'translate the points to client coordinates
-        Dim left As Integer, top As Integer, right As Integer, bottom As Integer
-        uiElement.GetRectangle(left, top, right, bottom)
-
-        x1 = x1 - left
-        y1 = y1 - top
+        tSelInfo.GetClientCoordinates()
 
         'set the points
-        txtX.Text = x1.ToString
-        txtY.Text = y1.ToString
-        txtWidth.Text = width.ToString
-        txtHeight.Text = height.ToString
+        txtX.Text = tSelInfo.RCLeft.ToString
+        txtY.Text = tSelInfo.RCTop.ToString
+        txtWidth.Text = tSelInfo.RCWidth.ToString
+        txtHeight.Text = tSelInfo.RCHeight.ToString
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
