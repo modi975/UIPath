@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,7 +62,7 @@ namespace FindTextProject
         private void btnCollect_Click(object sender, EventArgs e)
         {
             TSelectionInfo tSelInfo = null;
-
+            this.WindowState = FormWindowState.Minimized;
             try
             {
                 tSelInfo = (TSelectionInfo)m_tSelection.Start((int)TS_SELECTION.tsSelectionRectangle, (int)TS_SELECTION_OPTIONS.tsSelFlagDefaultText); 
@@ -97,6 +97,7 @@ namespace FindTextProject
             txtWidth.Text = tSelInfo.RCWidth.ToString();
             txtHeight.Text = tSelInfo.RCHeight.ToString();
             txtID.Text = strID;
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void SearchText(bool bClickText)
@@ -170,7 +171,7 @@ namespace FindTextProject
         private void button1_Click(object sender, EventArgs e)
         {
             TSelectionInfo tSelInfo = null;
-
+            this.WindowState = FormWindowState.Minimized;
             try
             {
                 tSelInfo = (TSelectionInfo)m_tSelection.Start((int)TS_SELECTION.tsSelectionWindow, (int)TS_SELECTION_OPTIONS.tsSelFlagDefaultText);
@@ -216,6 +217,7 @@ namespace FindTextProject
             txtY.Text = "0";
             txtWidth.Text = (x2 - x1).ToString();
             txtHeight.Text = (y2 - y1).ToString();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void checkLayout_CheckedChanged(object sender, EventArgs e)
