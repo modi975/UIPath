@@ -11,11 +11,11 @@ unit TCaptureXLib_TLB;
 // manual modifications will be lost.                                         
 // ************************************************************************ //
 
-// $Rev: 8291 $
-// File generated on 3/7/2008 11:04:14 from Type Library described below.
+// PASTLWTR : 1.2
+// File generated on 11/3/2011 9:34:14 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: d:\Florin\Projects\Pozitiv\ScreenScraping\Output\bin\Release\TCaptureX.dll (1)
+// Type Lib: C:\PROGRA~1\DESKPE~1\SCREEN~1\TCAPTU~1.DLL (1)
 // LIBID: {92657C70-D31B-4930-9014-379E3F6FB91A}
 // LCID: 0
 // Helpfile: 
@@ -23,13 +23,11 @@ unit TCaptureXLib_TLB;
 // DepndLst: 
 //   (1) v2.0 stdole, (C:\WINDOWS\system32\stdole2.tlb)
 // Errors:
-//   Hint: Symbol 'Type' renamed to 'type_'
-//   Hint: Symbol 'Type' renamed to 'type_'
-//   Error creating palette bitmap of (TTextCaptureX) : Server d:\Florin\Projects\Pozitiv\ScreenScraping\Output\bin\Release\TCaptureX.dll contains no icons
-//   Error creating palette bitmap of (TGetAAText) : Server d:\Florin\Projects\Pozitiv\ScreenScraping\Output\bin\Release\TCaptureX.dll contains no icons
-//   Error creating palette bitmap of (TTSelection) : Server d:\Florin\Projects\Pozitiv\ScreenScraping\Output\bin\Release\TCaptureX.dll contains no icons
-//   Error creating palette bitmap of (TTSelectionInfo) : Server d:\Florin\Projects\Pozitiv\ScreenScraping\Output\bin\Release\TCaptureX.dll contains no icons
-//   Error creating palette bitmap of (TTHighlightInfo) : Server d:\Florin\Projects\Pozitiv\ScreenScraping\Output\bin\Release\TCaptureX.dll contains no icons
+//   Error creating palette bitmap of (TTextCaptureX) : Server C:\Program Files\Deskperience\ScreenScraper Studio\TCaptureX.dll contains no icons
+//   Error creating palette bitmap of (TGetAAText) : Server C:\Program Files\Deskperience\ScreenScraper Studio\TCaptureX.dll contains no icons
+//   Error creating palette bitmap of (TGetOCRText) : Server C:\Program Files\Deskperience\ScreenScraper Studio\TCaptureX.dll contains no icons
+//   Error creating palette bitmap of (TTHighlightInfo) : Server C:\Program Files\Deskperience\ScreenScraper Studio\TCaptureX.dll contains no icons
+//   Error creating palette bitmap of (Trect) : Server C:\Program Files\Deskperience\ScreenScraper Studio\TCaptureX.dll contains no icons
 // ************************************************************************ //
 // *************************************************************************//
 // NOTE:                                                                      
@@ -60,7 +58,7 @@ uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
 const
   // TypeLibrary Major and minor versions
   TCaptureXLibMajorVersion = 1;
-  TCaptureXLibMinorVersion = 1;
+  TCaptureXLibMinorVersion = 0;
 
   LIBID_TCaptureXLib: TGUID = '{92657C70-D31B-4930-9014-379E3F6FB91A}';
 
@@ -71,70 +69,34 @@ const
   IID_ITextCaptureX5: TGUID = '{D460C8E0-B0EA-4F9B-8E2E-5042A191FA79}';
   IID_ITextCaptureX6: TGUID = '{419BE681-BCA8-49D0-9BAD-8A088B1C043B}';
   IID_ITextCaptureX7: TGUID = '{88CCC373-72B2-4AFD-AD2A-8C39956ECBFE}';
+  IID_ITextCaptureX8: TGUID = '{181482EE-078A-420E-9B70-605029542C92}';
+  IID_ITextCaptureX9: TGUID = '{55826D98-97B3-4614-88E1-8F6C66C90C60}';
+  IID_IRect: TGUID = '{0E4BE2A0-AD3A-4237-9406-CEB504EFE361}';
+  IID_ITextCaptureX10: TGUID = '{2F31D2C1-884C-4A65-BF7E-C0F362795C25}';
+  IID_ITextCaptureX11: TGUID = '{80F2E9CE-A674-4831-8FE8-BF17270B6A7C}';
+  IID_ITextCaptureX12: TGUID = '{9647861E-6BC5-4906-9B22-807CA2A7302B}';
+  IID_ITextCaptureX13: TGUID = '{010EF7AF-96F2-4F5A-9DFB-D81FB259CF12}';
+  IID_ITextCaptureX14: TGUID = '{F7ACFE99-3CC9-40DA-85D1-42D882CAE986}';
+  IID_ITHighlightInfo: TGUID = '{FF7B48D0-4615-49FA-970B-56A95EDA143A}';
+  IID_ITHighlightInfo2: TGUID = '{6B558D32-93F8-41E6-AD6E-79E64D58AC45}';
+  IID_ITextCaptureX15: TGUID = '{F087CCAF-0108-455B-A8F0-CCC05C0CE457}';
   CLASS_TextCaptureX: TGUID = '{13FE2FA1-EE8B-45B9-BBB4-08E5F2F43AC3}';
   IID_IGetAAText: TGUID = '{4652E117-CDF0-4B10-B3C9-4FE74FD0FA5B}';
   IID_IGetAAText2: TGUID = '{71EA4E83-A80C-435B-8B77-76D2E45D02A6}';
+  IID_IGetAAText3: TGUID = '{39B4B3E6-4C2B-4574-B9C7-088AF5FAF8A3}';
+  IID_IGetAAText4: TGUID = '{1FA317DF-A401-490A-A35E-160521FF62B1}';
+  IID_IGetAAText5: TGUID = '{2B5BB8EC-4219-42AE-A486-79D517753198}';
   CLASS_GetAAText: TGUID = '{924699E8-66EF-4EB9-AB6E-3CA9660B31EC}';
-  IID_ITHighlightInfo: TGUID = '{FF7B48D0-4615-49FA-970B-56A95EDA143A}';
-  IID_ITSelection: TGUID = '{24455CC7-C5E2-4D5B-A37C-47C76CFE1905}';
-  CLASS_TSelection: TGUID = '{BF616448-1D65-4559-9293-0F6B607BA892}';
-  IID_ITSelectionInfo: TGUID = '{12E679EC-86BF-4AA2-AA94-1B8D16E30EAF}';
-  CLASS_TSelectionInfo: TGUID = '{AD58B105-E00C-4F3F-81A5-54F741853E5C}';
+  IID_IGetOCRText: TGUID = '{0A293C91-E546-4025-86D0-57A7875EA634}';
+  IID_IGetOCRText2: TGUID = '{E5E40C21-EFE8-45AC-AC04-A415924B36CD}';
+  IID_IGetOCRText3: TGUID = '{1C943625-61D2-4258-8632-9C65EBB0B9EC}';
+  IID_IGetOCRText4: TGUID = '{C3F9D942-688D-40FD-BA4C-F69D077A03AF}';
+  IID_IGetOCRText5: TGUID = '{0E32FA09-68CA-430B-B444-B0589C5EBF5D}';
+  IID_IGetOCRText6: TGUID = '{C0AD18D0-676F-44DD-9728-6822CE39AB6F}';
+  IID_IGetOCRText7: TGUID = '{09C4FAF6-B846-4185-850D-27B8501EE752}';
+  CLASS_GetOCRText: TGUID = '{F827ADF4-AC12-4FAA-8073-4558C0489283}';
   CLASS_THighlightInfo: TGUID = '{B13501DF-12B3-4A6A-9A5B-8FA1EBCF8699}';
-
-// *********************************************************************//
-// Declaration of Enumerations defined in Type Library                    
-// *********************************************************************//
-// Constants for enum TS_MOUSE
-type
-  TS_MOUSE = TOleEnum;
-const
-  tsMouseNone = $00000000;
-  tsMouseLeft = $00000001;
-  tsMouseRight = $00000002;
-  tsMouseLeftRight = $00000003;
-  tsMouseMiddle = $00000004;
-
-// Constants for enum TS_SELECTION_OPTIONS
-type
-  TS_SELECTION_OPTIONS = TOleEnum;
-const
-  tsSelFlagNone = $00000000;
-  tsSelFlagShowPreview = $00000001;
-  tsSelFlagLockScreen = $00000002;
-  tsSelFlagHighlight = $00000004;
-  tsSelSchemeBlue = $00000008;
-  tsSelSchemeRed = $00000010;
-  tsSelFlagDefaultText = $0000000C;
-  tsSelFlagDefaultGraphic = $00000013;
-  tsSelFlagDefault = $0000000C;
-
-// Constants for enum TS_SELECTION_RESULT
-type
-  TS_SELECTION_RESULT = TOleEnum;
-const
-  tsSelResultSuccess = $00000000;
-  tsSelResultCancelled = $00000001;
-  tsSelResultError = $00000002;
-
-// Constants for enum TS_SELECTION
-type
-  TS_SELECTION = TOleEnum;
-const
-  tsSelectionNone = $00000000;
-  tsSelectionPoint = $00000001;
-  tsSelectionRectangle = $00000002;
-  tsSelectionPointRectangle = $00000003;
-  tsSelectionFreeFrom = $00000004;
-  tsSelectionPointFreeFrom = $00000005;
-  tsSelectionWindow = $00000008;
-  tsSelectionObject = $00000010;
-  tsSelectionScrollingWindow = $00000020;
-  tsSelectionRoundRectangle = $00000040;
-  tsSelectionEllipse = $00000080;
-  tsSelectionColorPick = $00000100;
-  tsSelectionFixedRegion = $00000200;
-
+  CLASS_rect: TGUID = '{FB9DE2D6-DDAF-47B3-BCF0-31D17E8D34C5}';
 type
 
 // *********************************************************************//
@@ -154,26 +116,68 @@ type
   ITextCaptureX6Disp = dispinterface;
   ITextCaptureX7 = interface;
   ITextCaptureX7Disp = dispinterface;
+  ITextCaptureX8 = interface;
+  ITextCaptureX8Disp = dispinterface;
+  ITextCaptureX9 = interface;
+  ITextCaptureX9Disp = dispinterface;
+  IRect = interface;
+  IRectDisp = dispinterface;
+  ITextCaptureX10 = interface;
+  ITextCaptureX10Disp = dispinterface;
+  ITextCaptureX11 = interface;
+  ITextCaptureX11Disp = dispinterface;
+  ITextCaptureX12 = interface;
+  ITextCaptureX12Disp = dispinterface;
+  ITextCaptureX13 = interface;
+  ITextCaptureX13Disp = dispinterface;
+  ITextCaptureX14 = interface;
+  ITextCaptureX14Disp = dispinterface;
+  ITHighlightInfo = interface;
+  ITHighlightInfoDisp = dispinterface;
+  ITHighlightInfo2 = interface;
+  ITHighlightInfo2Disp = dispinterface;
+  ITextCaptureX15 = interface;
+  ITextCaptureX15Disp = dispinterface;
   IGetAAText = interface;
   IGetAATextDisp = dispinterface;
   IGetAAText2 = interface;
   IGetAAText2Disp = dispinterface;
-  ITHighlightInfo = interface;
-  ITHighlightInfoDisp = dispinterface;
-  ITSelection = interface;
-  ITSelectionDisp = dispinterface;
-  ITSelectionInfo = interface;
-  ITSelectionInfoDisp = dispinterface;
+  IGetAAText3 = interface;
+  IGetAAText3Disp = dispinterface;
+  IGetAAText4 = interface;
+  IGetAAText4Disp = dispinterface;
+  IGetAAText5 = interface;
+  IGetAAText5Disp = dispinterface;
+  IGetOCRText = interface;
+  IGetOCRTextDisp = dispinterface;
+  IGetOCRText2 = interface;
+  IGetOCRText2Disp = dispinterface;
+  IGetOCRText3 = interface;
+  IGetOCRText3Disp = dispinterface;
+  IGetOCRText4 = interface;
+  IGetOCRText4Disp = dispinterface;
+  IGetOCRText5 = interface;
+  IGetOCRText5Disp = dispinterface;
+  IGetOCRText6 = interface;
+  IGetOCRText6Disp = dispinterface;
+  IGetOCRText7 = interface;
+  IGetOCRText7Disp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library                       
 // (NOTE: Here we map each CoClass to its Default Interface)              
 // *********************************************************************//
-  TextCaptureX = ITextCaptureX;
-  GetAAText = IGetAAText;
-  TSelection = ITSelection;
-  TSelectionInfo = ITSelectionInfo;
-  THighlightInfo = ITHighlightInfo;
+  TextCaptureX = ITextCaptureX15;
+  GetAAText = IGetAAText5;
+  GetOCRText = IGetOCRText7;
+  THighlightInfo = ITHighlightInfo2;
+  rect = IRect;
+
+
+// *********************************************************************//
+// Declaration of structures, unions and aliases.                         
+// *********************************************************************//
+  PInteger1 = ^Integer; {*}
 
 
 // *********************************************************************//
@@ -461,6 +465,617 @@ type
   end;
 
 // *********************************************************************//
+// Interface: ITextCaptureX8
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {181482EE-078A-420E-9B70-605029542C92}
+// *********************************************************************//
+  ITextCaptureX8 = interface(ITextCaptureX7)
+    ['{181482EE-078A-420E-9B70-605029542C92}']
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX8Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {181482EE-078A-420E-9B70-605029542C92}
+// *********************************************************************//
+  ITextCaptureX8Disp = dispinterface
+    ['{181482EE-078A-420E-9B70-605029542C92}']
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX9
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {55826D98-97B3-4614-88E1-8F6C66C90C60}
+// *********************************************************************//
+  ITextCaptureX9 = interface(ITextCaptureX8)
+    ['{55826D98-97B3-4614-88E1-8F6C66C90C60}']
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX9Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {55826D98-97B3-4614-88E1-8F6C66C90C60}
+// *********************************************************************//
+  ITextCaptureX9Disp = dispinterface
+    ['{55826D98-97B3-4614-88E1-8F6C66C90C60}']
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: IRect
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {0E4BE2A0-AD3A-4237-9406-CEB504EFE361}
+// *********************************************************************//
+  IRect = interface(IDispatch)
+    ['{0E4BE2A0-AD3A-4237-9406-CEB504EFE361}']
+    function Get_RLeft: Integer; safecall;
+    procedure Set_RLeft(pVal: Integer); safecall;
+    function Get_RTop: Integer; safecall;
+    procedure Set_RTop(pVal: Integer); safecall;
+    function Get_RRight: Integer; safecall;
+    procedure Set_RRight(pVal: Integer); safecall;
+    function Get_RBottom: Integer; safecall;
+    procedure Set_RBottom(pVal: Integer); safecall;
+    function width: Integer; safecall;
+    function height: Integer; safecall;
+    property RLeft: Integer read Get_RLeft write Set_RLeft;
+    property RTop: Integer read Get_RTop write Set_RTop;
+    property RRight: Integer read Get_RRight write Set_RRight;
+    property RBottom: Integer read Get_RBottom write Set_RBottom;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IRectDisp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {0E4BE2A0-AD3A-4237-9406-CEB504EFE361}
+// *********************************************************************//
+  IRectDisp = dispinterface
+    ['{0E4BE2A0-AD3A-4237-9406-CEB504EFE361}']
+    property RLeft: Integer dispid 1;
+    property RTop: Integer dispid 2;
+    property RRight: Integer dispid 3;
+    property RBottom: Integer dispid 4;
+    function width: Integer; dispid 5;
+    function height: Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX10
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {2F31D2C1-884C-4A65-BF7E-C0F362795C25}
+// *********************************************************************//
+  ITextCaptureX10 = interface(ITextCaptureX9)
+    ['{2F31D2C1-884C-4A65-BF7E-C0F362795C25}']
+    function CheckStopEvent: WordBool; safecall;
+    procedure SignalStopEvent(bSignal: WordBool); safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX10Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {2F31D2C1-884C-4A65-BF7E-C0F362795C25}
+// *********************************************************************//
+  ITextCaptureX10Disp = dispinterface
+    ['{2F31D2C1-884C-4A65-BF7E-C0F362795C25}']
+    function CheckStopEvent: WordBool; dispid 29;
+    procedure SignalStopEvent(bSignal: WordBool); dispid 30;
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX11
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {80F2E9CE-A674-4831-8FE8-BF17270B6A7C}
+// *********************************************************************//
+  ITextCaptureX11 = interface(ITextCaptureX10)
+    ['{80F2E9CE-A674-4831-8FE8-BF17270B6A7C}']
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch): WideString; safecall;
+    function GetTextFromUIElemWithFont(const pUIElemDisp: IDispatch; out font: IFontDisp): WideString; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX11Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {80F2E9CE-A674-4831-8FE8-BF17270B6A7C}
+// *********************************************************************//
+  ITextCaptureX11Disp = dispinterface
+    ['{80F2E9CE-A674-4831-8FE8-BF17270B6A7C}']
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 31;
+    function GetTextFromUIElemWithFont(const pUIElemDisp: IDispatch; out font: IFontDisp): WideString; dispid 32;
+    function CheckStopEvent: WordBool; dispid 29;
+    procedure SignalStopEvent(bSignal: WordBool); dispid 30;
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX12
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {9647861E-6BC5-4906-9B22-807CA2A7302B}
+// *********************************************************************//
+  ITextCaptureX12 = interface(ITextCaptureX11)
+    ['{9647861E-6BC5-4906-9B22-807CA2A7302B}']
+    procedure SetClipboardText(const text: WideString); safecall;
+    function GetClipboardText: WideString; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX12Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {9647861E-6BC5-4906-9B22-807CA2A7302B}
+// *********************************************************************//
+  ITextCaptureX12Disp = dispinterface
+    ['{9647861E-6BC5-4906-9B22-807CA2A7302B}']
+    procedure SetClipboardText(const text: WideString); dispid 33;
+    function GetClipboardText: WideString; dispid 34;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 31;
+    function GetTextFromUIElemWithFont(const pUIElemDisp: IDispatch; out font: IFontDisp): WideString; dispid 32;
+    function CheckStopEvent: WordBool; dispid 29;
+    procedure SignalStopEvent(bSignal: WordBool); dispid 30;
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX13
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {010EF7AF-96F2-4F5A-9DFB-D81FB259CF12}
+// *********************************************************************//
+  ITextCaptureX13 = interface(ITextCaptureX12)
+    ['{010EF7AF-96F2-4F5A-9DFB-D81FB259CF12}']
+    function GetActiveWindowHwnd3(hwnd: Integer; bAll: WordBool): Integer; safecall;
+    function Get_HighlightInfo: ITHighlightInfo2; safecall;
+    procedure Set_HighlightInfo(const pVal: ITHighlightInfo2); safecall;
+    function Get_ExtractHighlightInfo: WordBool; safecall;
+    procedure Set_ExtractHighlightInfo(pVal: WordBool); safecall;
+    property HighlightInfo: ITHighlightInfo2 read Get_HighlightInfo write Set_HighlightInfo;
+    property ExtractHighlightInfo: WordBool read Get_ExtractHighlightInfo write Set_ExtractHighlightInfo;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX13Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {010EF7AF-96F2-4F5A-9DFB-D81FB259CF12}
+// *********************************************************************//
+  ITextCaptureX13Disp = dispinterface
+    ['{010EF7AF-96F2-4F5A-9DFB-D81FB259CF12}']
+    function GetActiveWindowHwnd3(hwnd: Integer; bAll: WordBool): Integer; dispid 35;
+    property HighlightInfo: ITHighlightInfo2 dispid 36;
+    property ExtractHighlightInfo: WordBool dispid 37;
+    procedure SetClipboardText(const text: WideString); dispid 33;
+    function GetClipboardText: WideString; dispid 34;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 31;
+    function GetTextFromUIElemWithFont(const pUIElemDisp: IDispatch; out font: IFontDisp): WideString; dispid 32;
+    function CheckStopEvent: WordBool; dispid 29;
+    procedure SignalStopEvent(bSignal: WordBool); dispid 30;
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX14
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {F7ACFE99-3CC9-40DA-85D1-42D882CAE986}
+// *********************************************************************//
+  ITextCaptureX14 = interface(ITextCaptureX13)
+    ['{F7ACFE99-3CC9-40DA-85D1-42D882CAE986}']
+    function Get_NativeCaptureTimeoutSec: Integer; safecall;
+    procedure Set_NativeCaptureTimeoutSec(pVal: Integer); safecall;
+    property NativeCaptureTimeoutSec: Integer read Get_NativeCaptureTimeoutSec write Set_NativeCaptureTimeoutSec;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX14Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {F7ACFE99-3CC9-40DA-85D1-42D882CAE986}
+// *********************************************************************//
+  ITextCaptureX14Disp = dispinterface
+    ['{F7ACFE99-3CC9-40DA-85D1-42D882CAE986}']
+    property NativeCaptureTimeoutSec: Integer dispid 38;
+    function GetActiveWindowHwnd3(hwnd: Integer; bAll: WordBool): Integer; dispid 35;
+    property HighlightInfo: ITHighlightInfo2 dispid 36;
+    property ExtractHighlightInfo: WordBool dispid 37;
+    procedure SetClipboardText(const text: WideString); dispid 33;
+    function GetClipboardText: WideString; dispid 34;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 31;
+    function GetTextFromUIElemWithFont(const pUIElemDisp: IDispatch; out font: IFontDisp): WideString; dispid 32;
+    function CheckStopEvent: WordBool; dispid 29;
+    procedure SignalStopEvent(bSignal: WordBool); dispid 30;
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
+// Interface: ITHighlightInfo
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {FF7B48D0-4615-49FA-970B-56A95EDA143A}
+// *********************************************************************//
+  ITHighlightInfo = interface(IDispatch)
+    ['{FF7B48D0-4615-49FA-970B-56A95EDA143A}']
+    function Get_hwnd: Integer; safecall;
+    procedure Set_hwnd(pVal: Integer); safecall;
+    function Get_Count: Integer; safecall;
+    procedure Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
+                  bottom: Integer); safecall;
+    procedure Remove(index: Integer); safecall;
+    procedure Get(index: Integer; out text: WideString; out left: Integer; out top: Integer; 
+                  out right: Integer; out bottom: Integer); safecall;
+    procedure PerformHighlight(delay: Integer); safecall;
+    procedure PerformHighlightFull(delay: Integer); safecall;
+    property hwnd: Integer read Get_hwnd write Set_hwnd;
+    property Count: Integer read Get_Count;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITHighlightInfoDisp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {FF7B48D0-4615-49FA-970B-56A95EDA143A}
+// *********************************************************************//
+  ITHighlightInfoDisp = dispinterface
+    ['{FF7B48D0-4615-49FA-970B-56A95EDA143A}']
+    property hwnd: Integer dispid 1;
+    property Count: Integer readonly dispid 2;
+    procedure Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
+                  bottom: Integer); dispid 3;
+    procedure Remove(index: Integer); dispid 4;
+    procedure Get(index: Integer; out text: WideString; out left: Integer; out top: Integer; 
+                  out right: Integer; out bottom: Integer); dispid 5;
+    procedure PerformHighlight(delay: Integer); dispid 6;
+    procedure PerformHighlightFull(delay: Integer); dispid 7;
+  end;
+
+// *********************************************************************//
+// Interface: ITHighlightInfo2
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {6B558D32-93F8-41E6-AD6E-79E64D58AC45}
+// *********************************************************************//
+  ITHighlightInfo2 = interface(ITHighlightInfo)
+    ['{6B558D32-93F8-41E6-AD6E-79E64D58AC45}']
+    procedure GhostMethod_ITHighlightInfo2_0_1; safecall;
+    procedure GhostMethod_ITHighlightInfo2_4_2; safecall;
+    procedure GhostMethod_ITHighlightInfo2_8_3; safecall;
+    procedure GhostMethod_ITHighlightInfo2_12_4; safecall;
+    procedure GhostMethod_ITHighlightInfo2_16_5; safecall;
+    procedure GhostMethod_ITHighlightInfo2_20_6; safecall;
+    procedure GhostMethod_ITHighlightInfo2_24_7; safecall;
+    procedure GhostMethod_ITHighlightInfo2_28_8; safecall;
+    procedure GhostMethod_ITHighlightInfo2_32_9; safecall;
+    procedure GhostMethod_ITHighlightInfo2_36_10; safecall;
+    procedure GhostMethod_ITHighlightInfo2_40_11; safecall;
+    procedure GhostMethod_ITHighlightInfo2_44_12; safecall;
+    procedure GhostMethod_ITHighlightInfo2_48_13; safecall;
+    procedure GhostMethod_ITHighlightInfo2_52_14; safecall;
+    procedure GhostMethod_ITHighlightInfo2_56_15; safecall;
+    procedure SerializeToBuffer(size: Integer; out buf: Integer); safecall;
+    procedure DeserializeFromBuffer(var buf: Integer); safecall;
+    function GetSerializedSize: Integer; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITHighlightInfo2Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {6B558D32-93F8-41E6-AD6E-79E64D58AC45}
+// *********************************************************************//
+  ITHighlightInfo2Disp = dispinterface
+    ['{6B558D32-93F8-41E6-AD6E-79E64D58AC45}']
+    procedure GhostMethod_ITHighlightInfo2_0_1; dispid 1610678272;
+    procedure GhostMethod_ITHighlightInfo2_4_2; dispid 1610678273;
+    procedure GhostMethod_ITHighlightInfo2_8_3; dispid 1610678274;
+    procedure GhostMethod_ITHighlightInfo2_12_4; dispid 1610678275;
+    procedure GhostMethod_ITHighlightInfo2_16_5; dispid 1610678276;
+    procedure GhostMethod_ITHighlightInfo2_20_6; dispid 1610678277;
+    procedure GhostMethod_ITHighlightInfo2_24_7; dispid 1610678278;
+    procedure GhostMethod_ITHighlightInfo2_28_8; dispid 1610678279;
+    procedure GhostMethod_ITHighlightInfo2_32_9; dispid 1610678280;
+    procedure GhostMethod_ITHighlightInfo2_36_10; dispid 1610678281;
+    procedure GhostMethod_ITHighlightInfo2_40_11; dispid 1610678282;
+    procedure GhostMethod_ITHighlightInfo2_44_12; dispid 1610678283;
+    procedure GhostMethod_ITHighlightInfo2_48_13; dispid 1610678284;
+    procedure GhostMethod_ITHighlightInfo2_52_14; dispid 1610678285;
+    procedure GhostMethod_ITHighlightInfo2_56_15; dispid 1610678286;
+    procedure SerializeToBuffer(size: Integer; out buf: Integer); dispid 8;
+    procedure DeserializeFromBuffer(var buf: Integer); dispid 9;
+    function GetSerializedSize: Integer; dispid 10;
+    property hwnd: Integer dispid 1;
+    property Count: Integer readonly dispid 2;
+    procedure Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
+                  bottom: Integer); dispid 3;
+    procedure Remove(index: Integer); dispid 4;
+    procedure Get(index: Integer; out text: WideString; out left: Integer; out top: Integer; 
+                  out right: Integer; out bottom: Integer); dispid 5;
+    procedure PerformHighlight(delay: Integer); dispid 6;
+    procedure PerformHighlightFull(delay: Integer); dispid 7;
+  end;
+
+// *********************************************************************//
+// Interface: ITextCaptureX15
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {F087CCAF-0108-455B-A8F0-CCC05C0CE457}
+// *********************************************************************//
+  ITextCaptureX15 = interface(ITextCaptureX14)
+    ['{F087CCAF-0108-455B-A8F0-CCC05C0CE457}']
+    function GetRectFromUIElemText(const pUIElemDisp: IDispatch; const bstrText: WideString; 
+                                   nOccurence: Integer): IRect; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  ITextCaptureX15Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {F087CCAF-0108-455B-A8F0-CCC05C0CE457}
+// *********************************************************************//
+  ITextCaptureX15Disp = dispinterface
+    ['{F087CCAF-0108-455B-A8F0-CCC05C0CE457}']
+    function GetRectFromUIElemText(const pUIElemDisp: IDispatch; const bstrText: WideString; 
+                                   nOccurence: Integer): IRect; dispid 39;
+    property NativeCaptureTimeoutSec: Integer dispid 38;
+    function GetActiveWindowHwnd3(hwnd: Integer; bAll: WordBool): Integer; dispid 35;
+    property HighlightInfo: ITHighlightInfo2 dispid 36;
+    property ExtractHighlightInfo: WordBool dispid 37;
+    procedure SetClipboardText(const text: WideString); dispid 33;
+    function GetClipboardText: WideString; dispid 34;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 31;
+    function GetTextFromUIElemWithFont(const pUIElemDisp: IDispatch; out font: IFontDisp): WideString; dispid 32;
+    function CheckStopEvent: WordBool; dispid 29;
+    procedure SignalStopEvent(bSignal: WordBool); dispid 30;
+    function CaptureControl(hwnd: Integer; const class_name: WideString; const aa_name: WideString; 
+                            aa_role: Integer): WideString; dispid 27;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             occurence: Integer): IRect; dispid 26;
+    property NoWordsInContext: Integer writeonly dispid 23;
+    property Context: WideString readonly dispid 24;
+    procedure EndCaptureSession; dispid 25;
+    property FormattedText: WordBool dispid 22;
+    function GetTextFromPointWithFont(hwnd: Integer; x: Integer; y: Integer; out font: IFontDisp): WideString; dispid 12;
+    function GetTextFromRectWithFont(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                     height: Integer; out font: IFontDisp): WideString; dispid 13;
+    function CaptureActiveWindowWithFont(out font: IFontDisp): WideString; dispid 14;
+    function GetTextFromPoint2WithFont(hwnd: Integer; x: Integer; y: Integer; 
+                                       const separators: WideString; out font: IFontDisp): WideString; dispid 15;
+    function CaptureActiveWindow2WithFont(pid: Integer; out font: IFontDisp): WideString; dispid 16;
+    function CaptureWindow(hwnd: Integer): WideString; dispid 17;
+    function CaptureWindowWithFont(hwnd: Integer; out font: IFontDisp): WideString; dispid 18;
+    property UseClientCoordinates: WordBool dispid 19;
+    property BringWindowToTop: WordBool dispid 20;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 21;
+    procedure GetCaret(hwnd: Integer; out x: Integer; out y: Integer); dispid 10;
+    procedure GetCaret2(out hwnd: Integer; out x: Integer; out y: Integer); dispid 11;
+    function CaptureActiveWindow2(pid: Integer): WideString; dispid 8;
+    function GetActiveWindowHwnd2(pid: Integer): Integer; dispid 9;
+    function GetTextFromPoint2(hwnd: Integer; x: Integer; y: Integer; const separators: WideString): WideString; dispid 7;
+    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString; dispid 1;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer): WideString; dispid 2;
+    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
+                                out width: Integer; out height: Integer): Integer; dispid 3;
+    function CaptureActiveWindow: WideString; dispid 4;
+    function GetActiveWindowHwnd: Integer; dispid 5;
+    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer; dispid 6;
+  end;
+
+// *********************************************************************//
 // Interface: IGetAAText
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
 // GUID:      {4652E117-CDF0-4B10-B3C9-4FE74FD0FA5B}
@@ -508,118 +1123,338 @@ type
   end;
 
 // *********************************************************************//
-// Interface: ITHighlightInfo
+// Interface: IGetAAText3
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
-// GUID:      {FF7B48D0-4615-49FA-970B-56A95EDA143A}
+// GUID:      {39B4B3E6-4C2B-4574-B9C7-088AF5FAF8A3}
 // *********************************************************************//
-  ITHighlightInfo = interface(IDispatch)
-    ['{FF7B48D0-4615-49FA-970B-56A95EDA143A}']
-    function Get_hwnd: Integer; safecall;
-    procedure Set_hwnd(pVal: Integer); safecall;
-    function Get_Count: Integer; safecall;
-    procedure Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
-                  bottom: Integer); safecall;
-    procedure Remove(index: Integer); safecall;
-    procedure Get(index: Integer; out text: WideString; out left: Integer; out top: Integer; 
-                  out right: Integer; out bottom: Integer); safecall;
-    procedure PerformHighlight(delay: Integer); safecall;
-    procedure PerformHighlightFull(delay: Integer); safecall;
-    property hwnd: Integer read Get_hwnd write Set_hwnd;
-    property Count: Integer read Get_Count;
+  IGetAAText3 = interface(IGetAAText2)
+    ['{39B4B3E6-4C2B-4574-B9C7-088AF5FAF8A3}']
+    function GetFullTextFromRectangle(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer): WideString; safecall;
+    function Get_UseClientCoordinates: WordBool; safecall;
+    procedure Set_UseClientCoordinates(pVal: WordBool); safecall;
+    property UseClientCoordinates: WordBool read Get_UseClientCoordinates write Set_UseClientCoordinates;
   end;
 
 // *********************************************************************//
-// DispIntf:  ITHighlightInfoDisp
+// DispIntf:  IGetAAText3Disp
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
-// GUID:      {FF7B48D0-4615-49FA-970B-56A95EDA143A}
+// GUID:      {39B4B3E6-4C2B-4574-B9C7-088AF5FAF8A3}
 // *********************************************************************//
-  ITHighlightInfoDisp = dispinterface
-    ['{FF7B48D0-4615-49FA-970B-56A95EDA143A}']
-    property hwnd: Integer dispid 1;
-    property Count: Integer readonly dispid 2;
-    procedure Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
-                  bottom: Integer); dispid 3;
-    procedure Remove(index: Integer); dispid 4;
-    procedure Get(index: Integer; out text: WideString; out left: Integer; out top: Integer; 
-                  out right: Integer; out bottom: Integer); dispid 5;
-    procedure PerformHighlight(delay: Integer); dispid 6;
-    procedure PerformHighlightFull(delay: Integer); dispid 7;
+  IGetAAText3Disp = dispinterface
+    ['{39B4B3E6-4C2B-4574-B9C7-088AF5FAF8A3}']
+    function GetFullTextFromRectangle(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer): WideString; dispid 4;
+    property UseClientCoordinates: WordBool dispid 5;
+    property HighlightInfo: ITHighlightInfo dispid 2;
+    property ExtractHighlightInfo: WordBool dispid 3;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 1;
   end;
 
 // *********************************************************************//
-// Interface: ITSelection
+// Interface: IGetAAText4
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
-// GUID:      {24455CC7-C5E2-4D5B-A37C-47C76CFE1905}
+// GUID:      {1FA317DF-A401-490A-A35E-160521FF62B1}
 // *********************************************************************//
-  ITSelection = interface(IDispatch)
-    ['{24455CC7-C5E2-4D5B-A37C-47C76CFE1905}']
-    procedure Start(selection_type: Integer; options: Integer; 
-                    out selection_result: ITSelectionInfo; out result: Integer); safecall;
-    function Get_FixedRegionWidth: Integer; safecall;
-    procedure Set_FixedRegionWidth(pVal: Integer); safecall;
-    function Get_FixedRegionHeight: Integer; safecall;
-    procedure Set_FixedRegionHeight(pVal: Integer); safecall;
-    property FixedRegionWidth: Integer read Get_FixedRegionWidth write Set_FixedRegionWidth;
-    property FixedRegionHeight: Integer read Get_FixedRegionHeight write Set_FixedRegionHeight;
+  IGetAAText4 = interface(IGetAAText3)
+    ['{1FA317DF-A401-490A-A35E-160521FF62B1}']
+    function GetFullTextFromUIElem(const pUIElemDisp: IDispatch): WideString; safecall;
   end;
 
 // *********************************************************************//
-// DispIntf:  ITSelectionDisp
+// DispIntf:  IGetAAText4Disp
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
-// GUID:      {24455CC7-C5E2-4D5B-A37C-47C76CFE1905}
+// GUID:      {1FA317DF-A401-490A-A35E-160521FF62B1}
 // *********************************************************************//
-  ITSelectionDisp = dispinterface
-    ['{24455CC7-C5E2-4D5B-A37C-47C76CFE1905}']
-    procedure Start(selection_type: Integer; options: Integer; 
-                    out selection_result: ITSelectionInfo; out result: Integer); dispid 1;
-    property FixedRegionWidth: Integer dispid 3;
-    property FixedRegionHeight: Integer dispid 4;
+  IGetAAText4Disp = dispinterface
+    ['{1FA317DF-A401-490A-A35E-160521FF62B1}']
+    function GetFullTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 6;
+    function GetFullTextFromRectangle(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer): WideString; dispid 4;
+    property UseClientCoordinates: WordBool dispid 5;
+    property HighlightInfo: ITHighlightInfo dispid 2;
+    property ExtractHighlightInfo: WordBool dispid 3;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 1;
   end;
 
 // *********************************************************************//
-// Interface: ITSelectionInfo
+// Interface: IGetAAText5
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
-// GUID:      {12E679EC-86BF-4AA2-AA94-1B8D16E30EAF}
+// GUID:      {2B5BB8EC-4219-42AE-A486-79D517753198}
 // *********************************************************************//
-  ITSelectionInfo = interface(IDispatch)
-    ['{12E679EC-86BF-4AA2-AA94-1B8D16E30EAF}']
-    function Get_type_: Integer; safecall;
-    procedure Set_type_(pVal: Integer); safecall;
-    function Get_WindowHandle: Integer; safecall;
-    procedure Set_WindowHandle(pVal: Integer); safecall;
-    function Get_Points: OleVariant; safecall;
-    procedure Set_Points(pVal: OleVariant); safecall;
-    function Get_Image: IPictureDisp; safecall;
-    procedure Set_Image(const pVal: IPictureDisp); safecall;
-    property type_: Integer read Get_type_ write Set_type_;
-    property WindowHandle: Integer read Get_WindowHandle write Set_WindowHandle;
-    property Points: OleVariant read Get_Points write Set_Points;
-    property Image: IPictureDisp read Get_Image write Set_Image;
+  IGetAAText5 = interface(IGetAAText4)
+    ['{2B5BB8EC-4219-42AE-A486-79D517753198}']
+    function Get_IgnoreHidden: WordBool; safecall;
+    procedure Set_IgnoreHidden(pVal: WordBool); safecall;
+    property IgnoreHidden: WordBool read Get_IgnoreHidden write Set_IgnoreHidden;
   end;
 
 // *********************************************************************//
-// DispIntf:  ITSelectionInfoDisp
+// DispIntf:  IGetAAText5Disp
 // Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
-// GUID:      {12E679EC-86BF-4AA2-AA94-1B8D16E30EAF}
+// GUID:      {2B5BB8EC-4219-42AE-A486-79D517753198}
 // *********************************************************************//
-  ITSelectionInfoDisp = dispinterface
-    ['{12E679EC-86BF-4AA2-AA94-1B8D16E30EAF}']
-    property type_: Integer dispid 1;
-    property WindowHandle: Integer dispid 2;
-    property Points: OleVariant dispid 3;
-    property Image: IPictureDisp dispid 4;
+  IGetAAText5Disp = dispinterface
+    ['{2B5BB8EC-4219-42AE-A486-79D517753198}']
+    property IgnoreHidden: WordBool dispid 7;
+    function GetFullTextFromUIElem(const pUIElemDisp: IDispatch): WideString; dispid 6;
+    function GetFullTextFromRectangle(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer): WideString; dispid 4;
+    property UseClientCoordinates: WordBool dispid 5;
+    property HighlightInfo: ITHighlightInfo dispid 2;
+    property ExtractHighlightInfo: WordBool dispid 3;
+    function GetFullTextAA(hwnd: Integer): WideString; dispid 1;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {0A293C91-E546-4025-86D0-57A7875EA634}
+// *********************************************************************//
+  IGetOCRText = interface(IDispatch)
+    ['{0A293C91-E546-4025-86D0-57A7875EA634}']
+    function IsMODIAvailable: WordBool; safecall;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRTextDisp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {0A293C91-E546-4025-86D0-57A7875EA634}
+// *********************************************************************//
+  IGetOCRTextDisp = dispinterface
+    ['{0A293C91-E546-4025-86D0-57A7875EA634}']
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText2
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {E5E40C21-EFE8-45AC-AC04-A415924B36CD}
+// *********************************************************************//
+  IGetOCRText2 = interface(IGetOCRText)
+    ['{E5E40C21-EFE8-45AC-AC04-A415924B36CD}']
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRText2Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {E5E40C21-EFE8-45AC-AC04-A415924B36CD}
+// *********************************************************************//
+  IGetOCRText2Disp = dispinterface
+    ['{E5E40C21-EFE8-45AC-AC04-A415924B36CD}']
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; dispid 3;
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText3
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {1C943625-61D2-4258-8632-9C65EBB0B9EC}
+// *********************************************************************//
+  IGetOCRText3 = interface(IGetOCRText2)
+    ['{1C943625-61D2-4258-8632-9C65EBB0B9EC}']
+    function GetTextFromUIElemUsingMODI(const pUIElemDisp: IDispatch; const language: WideString): WideString; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRText3Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {1C943625-61D2-4258-8632-9C65EBB0B9EC}
+// *********************************************************************//
+  IGetOCRText3Disp = dispinterface
+    ['{1C943625-61D2-4258-8632-9C65EBB0B9EC}']
+    function GetTextFromUIElemUsingMODI(const pUIElemDisp: IDispatch; const language: WideString): WideString; dispid 4;
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; dispid 3;
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText4
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {C3F9D942-688D-40FD-BA4C-F69D077A03AF}
+// *********************************************************************//
+  IGetOCRText4 = interface(IGetOCRText3)
+    ['{C3F9D942-688D-40FD-BA4C-F69D077A03AF}']
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer; const language: WideString; invert: WordBool): WideString; safecall;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch; const language: WideString; 
+                               invert: WordBool): WideString; safecall;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             const bstrLanguage: WideString; invert: WordBool; occurence: Integer): IRect; safecall;
+    function IsTesseractAvailable: WordBool; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRText4Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {C3F9D942-688D-40FD-BA4C-F69D077A03AF}
+// *********************************************************************//
+  IGetOCRText4Disp = dispinterface
+    ['{C3F9D942-688D-40FD-BA4C-F69D077A03AF}']
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer; const language: WideString; invert: WordBool): WideString; dispid 5;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch; const language: WideString; 
+                               invert: WordBool): WideString; dispid 6;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             const bstrLanguage: WideString; invert: WordBool; occurence: Integer): IRect; dispid 7;
+    function IsTesseractAvailable: WordBool; dispid 8;
+    function GetTextFromUIElemUsingMODI(const pUIElemDisp: IDispatch; const language: WideString): WideString; dispid 4;
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; dispid 3;
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText5
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {0E32FA09-68CA-430B-B444-B0589C5EBF5D}
+// *********************************************************************//
+  IGetOCRText5 = interface(IGetOCRText4)
+    ['{0E32FA09-68CA-430B-B444-B0589C5EBF5D}']
+    function Get_UseClientCoordinates: WordBool; safecall;
+    procedure Set_UseClientCoordinates(pVal: WordBool); safecall;
+    function Get_HighlightInfo: ITHighlightInfo; safecall;
+    procedure Set_HighlightInfo(const pVal: ITHighlightInfo); safecall;
+    function Get_ExtractHighlightInfo: WordBool; safecall;
+    procedure Set_ExtractHighlightInfo(pVal: WordBool); safecall;
+    property UseClientCoordinates: WordBool read Get_UseClientCoordinates write Set_UseClientCoordinates;
+    property HighlightInfo: ITHighlightInfo read Get_HighlightInfo write Set_HighlightInfo;
+    property ExtractHighlightInfo: WordBool read Get_ExtractHighlightInfo write Set_ExtractHighlightInfo;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRText5Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {0E32FA09-68CA-430B-B444-B0589C5EBF5D}
+// *********************************************************************//
+  IGetOCRText5Disp = dispinterface
+    ['{0E32FA09-68CA-430B-B444-B0589C5EBF5D}']
+    property UseClientCoordinates: WordBool dispid 9;
+    property HighlightInfo: ITHighlightInfo dispid 10;
+    property ExtractHighlightInfo: WordBool dispid 11;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer; const language: WideString; invert: WordBool): WideString; dispid 5;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch; const language: WideString; 
+                               invert: WordBool): WideString; dispid 6;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             const bstrLanguage: WideString; invert: WordBool; occurence: Integer): IRect; dispid 7;
+    function IsTesseractAvailable: WordBool; dispid 8;
+    function GetTextFromUIElemUsingMODI(const pUIElemDisp: IDispatch; const language: WideString): WideString; dispid 4;
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; dispid 3;
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText6
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {C0AD18D0-676F-44DD-9728-6822CE39AB6F}
+// *********************************************************************//
+  IGetOCRText6 = interface(IGetOCRText5)
+    ['{C0AD18D0-676F-44DD-9728-6822CE39AB6F}']
+    function Get_OCRCorrection: WordBool; safecall;
+    procedure Set_OCRCorrection(pVal: WordBool); safecall;
+    property OCRCorrection: WordBool read Get_OCRCorrection write Set_OCRCorrection;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRText6Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {C0AD18D0-676F-44DD-9728-6822CE39AB6F}
+// *********************************************************************//
+  IGetOCRText6Disp = dispinterface
+    ['{C0AD18D0-676F-44DD-9728-6822CE39AB6F}']
+    property OCRCorrection: WordBool dispid 12;
+    property UseClientCoordinates: WordBool dispid 9;
+    property HighlightInfo: ITHighlightInfo dispid 10;
+    property ExtractHighlightInfo: WordBool dispid 11;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer; const language: WideString; invert: WordBool): WideString; dispid 5;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch; const language: WideString; 
+                               invert: WordBool): WideString; dispid 6;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             const bstrLanguage: WideString; invert: WordBool; occurence: Integer): IRect; dispid 7;
+    function IsTesseractAvailable: WordBool; dispid 8;
+    function GetTextFromUIElemUsingMODI(const pUIElemDisp: IDispatch; const language: WideString): WideString; dispid 4;
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; dispid 3;
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
+  end;
+
+// *********************************************************************//
+// Interface: IGetOCRText7
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {09C4FAF6-B846-4185-850D-27B8501EE752}
+// *********************************************************************//
+  IGetOCRText7 = interface(IGetOCRText6)
+    ['{09C4FAF6-B846-4185-850D-27B8501EE752}']
+    function Get_NumbersOnly: WordBool; safecall;
+    procedure Set_NumbersOnly(pVal: WordBool); safecall;
+    property NumbersOnly: WordBool read Get_NumbersOnly write Set_NumbersOnly;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGetOCRText7Disp
+// Flags:     (4544) Dual NonExtensible OleAutomation Dispatchable
+// GUID:      {09C4FAF6-B846-4185-850D-27B8501EE752}
+// *********************************************************************//
+  IGetOCRText7Disp = dispinterface
+    ['{09C4FAF6-B846-4185-850D-27B8501EE752}']
+    property NumbersOnly: WordBool dispid 13;
+    property OCRCorrection: WordBool dispid 12;
+    property UseClientCoordinates: WordBool dispid 9;
+    property HighlightInfo: ITHighlightInfo dispid 10;
+    property ExtractHighlightInfo: WordBool dispid 11;
+    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                             height: Integer; const language: WideString; invert: WordBool): WideString; dispid 5;
+    function GetTextFromUIElem(const pUIElemDisp: IDispatch; const language: WideString; 
+                               invert: WordBool): WideString; dispid 6;
+    function GetRectFromText(hwnd: Integer; const text: WideString; const target_rect: IRect; 
+                             const bstrLanguage: WideString; invert: WordBool; occurence: Integer): IRect; dispid 7;
+    function IsTesseractAvailable: WordBool; dispid 8;
+    function GetTextFromUIElemUsingMODI(const pUIElemDisp: IDispatch; const language: WideString): WideString; dispid 4;
+    function GetRectFromTextUsingMODI(hwnd: Integer; const text: WideString; 
+                                      const target_rect: IRect; const bstrLanguage: WideString; 
+                                      occurence: Integer): IRect; dispid 3;
+    function IsMODIAvailable: WordBool; dispid 1;
+    function GetTextFromRectUsingMODI(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
+                                      height: Integer; const language: WideString): WideString; dispid 2;
   end;
 
 // *********************************************************************//
 // The Class CoTextCaptureX provides a Create and CreateRemote method to          
-// create instances of the default interface ITextCaptureX exposed by              
+// create instances of the default interface ITextCaptureX15 exposed by              
 // the CoClass TextCaptureX. The functions are intended to be used by             
 // clients wishing to automate the CoClass objects exposed by the         
 // server of this typelibrary.                                            
 // *********************************************************************//
   CoTextCaptureX = class
-    class function Create: ITextCaptureX;
-    class function CreateRemote(const MachineName: string): ITextCaptureX;
+    class function Create: ITextCaptureX15;
+    class function CreateRemote(const MachineName: string): ITextCaptureX15;
   end;
 
 
@@ -627,7 +1462,7 @@ type
 // OLE Server Proxy class declaration
 // Server Object    : TTextCaptureX
 // Help String      : TextCaptureX Class
-// Default Interface: ITextCaptureX
+// Default Interface: ITextCaptureX15
 // Def. Intf. DISP? : No
 // Event   Interface: 
 // TypeFlags        : (2) CanCreate
@@ -637,29 +1472,23 @@ type
 {$ENDIF}
   TTextCaptureX = class(TOleServer)
   private
-    FIntf: ITextCaptureX;
+    FIntf:        ITextCaptureX15;
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps: TTextCaptureXProperties;
-    function GetServerProperties: TTextCaptureXProperties;
+    FProps:       TTextCaptureXProperties;
+    function      GetServerProperties: TTextCaptureXProperties;
 {$ENDIF}
-    function GetDefaultInterface: ITextCaptureX;
+    function      GetDefaultInterface: ITextCaptureX15;
   protected
     procedure InitServerData; override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor  Destroy; override;
     procedure Connect; override;
-    procedure ConnectTo(svrIntf: ITextCaptureX);
+    procedure ConnectTo(svrIntf: ITextCaptureX15);
     procedure Disconnect; override;
-    function GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString;
-    function GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
-                             height: Integer): WideString;
-    function CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
-                                out width: Integer; out height: Integer): Integer;
-    function CaptureActiveWindow: WideString;
-    function GetActiveWindowHwnd: Integer;
-    function CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer;
-    property DefaultInterface: ITextCaptureX read GetDefaultInterface;
+    function GetRectFromUIElemText(const pUIElemDisp: IDispatch; const bstrText: WideString; 
+                                   nOccurence: Integer): IRect;
+    property DefaultInterface: ITextCaptureX15 read GetDefaultInterface;
   published
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
     property Server: TTextCaptureXProperties read GetServerProperties;
@@ -676,11 +1505,11 @@ type
  TTextCaptureXProperties = class(TPersistent)
   private
     FServer:    TTextCaptureX;
-    function    GetDefaultInterface: ITextCaptureX;
+    function    GetDefaultInterface: ITextCaptureX15;
     constructor Create(AServer: TTextCaptureX);
   protected
   public
-    property DefaultInterface: ITextCaptureX read GetDefaultInterface;
+    property DefaultInterface: ITextCaptureX15 read GetDefaultInterface;
   published
   end;
 {$ENDIF}
@@ -688,14 +1517,14 @@ type
 
 // *********************************************************************//
 // The Class CoGetAAText provides a Create and CreateRemote method to          
-// create instances of the default interface IGetAAText exposed by              
+// create instances of the default interface IGetAAText5 exposed by              
 // the CoClass GetAAText. The functions are intended to be used by             
 // clients wishing to automate the CoClass objects exposed by the         
 // server of this typelibrary.                                            
 // *********************************************************************//
   CoGetAAText = class
-    class function Create: IGetAAText;
-    class function CreateRemote(const MachineName: string): IGetAAText;
+    class function Create: IGetAAText5;
+    class function CreateRemote(const MachineName: string): IGetAAText5;
   end;
 
 
@@ -703,7 +1532,7 @@ type
 // OLE Server Proxy class declaration
 // Server Object    : TGetAAText
 // Help String      : GetAAText
-// Default Interface: IGetAAText
+// Default Interface: IGetAAText5
 // Def. Intf. DISP? : No
 // Event   Interface: 
 // TypeFlags        : (2) CanCreate
@@ -713,22 +1542,24 @@ type
 {$ENDIF}
   TGetAAText = class(TOleServer)
   private
-    FIntf: IGetAAText;
+    FIntf:        IGetAAText5;
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps: TGetAATextProperties;
-    function GetServerProperties: TGetAATextProperties;
+    FProps:       TGetAATextProperties;
+    function      GetServerProperties: TGetAATextProperties;
 {$ENDIF}
-    function GetDefaultInterface: IGetAAText;
+    function      GetDefaultInterface: IGetAAText5;
   protected
     procedure InitServerData; override;
+    function Get_IgnoreHidden: WordBool;
+    procedure Set_IgnoreHidden(pVal: WordBool);
   public
     constructor Create(AOwner: TComponent); override;
     destructor  Destroy; override;
     procedure Connect; override;
-    procedure ConnectTo(svrIntf: IGetAAText);
+    procedure ConnectTo(svrIntf: IGetAAText5);
     procedure Disconnect; override;
-    function GetFullTextAA(hwnd: Integer): WideString;
-    property DefaultInterface: IGetAAText read GetDefaultInterface;
+    property DefaultInterface: IGetAAText5 read GetDefaultInterface;
+    property IgnoreHidden: WordBool read Get_IgnoreHidden write Set_IgnoreHidden;
   published
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
     property Server: TGetAATextProperties read GetServerProperties;
@@ -745,199 +1576,103 @@ type
  TGetAATextProperties = class(TPersistent)
   private
     FServer:    TGetAAText;
-    function    GetDefaultInterface: IGetAAText;
+    function    GetDefaultInterface: IGetAAText5;
     constructor Create(AServer: TGetAAText);
   protected
+    function Get_IgnoreHidden: WordBool;
+    procedure Set_IgnoreHidden(pVal: WordBool);
   public
-    property DefaultInterface: IGetAAText read GetDefaultInterface;
+    property DefaultInterface: IGetAAText5 read GetDefaultInterface;
   published
+    property IgnoreHidden: WordBool read Get_IgnoreHidden write Set_IgnoreHidden;
   end;
 {$ENDIF}
 
 
 // *********************************************************************//
-// The Class CoTSelection provides a Create and CreateRemote method to          
-// create instances of the default interface ITSelection exposed by              
-// the CoClass TSelection. The functions are intended to be used by             
+// The Class CoGetOCRText provides a Create and CreateRemote method to          
+// create instances of the default interface IGetOCRText7 exposed by              
+// the CoClass GetOCRText. The functions are intended to be used by             
 // clients wishing to automate the CoClass objects exposed by the         
 // server of this typelibrary.                                            
 // *********************************************************************//
-  CoTSelection = class
-    class function Create: ITSelection;
-    class function CreateRemote(const MachineName: string): ITSelection;
+  CoGetOCRText = class
+    class function Create: IGetOCRText7;
+    class function CreateRemote(const MachineName: string): IGetOCRText7;
   end;
 
 
 // *********************************************************************//
 // OLE Server Proxy class declaration
-// Server Object    : TTSelection
-// Help String      : TSelection
-// Default Interface: ITSelection
+// Server Object    : TGetOCRText
+// Help String      : GetOCRText
+// Default Interface: IGetOCRText7
 // Def. Intf. DISP? : No
 // Event   Interface: 
 // TypeFlags        : (2) CanCreate
 // *********************************************************************//
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TTSelectionProperties= class;
+  TGetOCRTextProperties= class;
 {$ENDIF}
-  TTSelection = class(TOleServer)
+  TGetOCRText = class(TOleServer)
   private
-    FIntf: ITSelection;
+    FIntf:        IGetOCRText7;
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps: TTSelectionProperties;
-    function GetServerProperties: TTSelectionProperties;
+    FProps:       TGetOCRTextProperties;
+    function      GetServerProperties: TGetOCRTextProperties;
 {$ENDIF}
-    function GetDefaultInterface: ITSelection;
+    function      GetDefaultInterface: IGetOCRText7;
   protected
     procedure InitServerData; override;
-    function Get_FixedRegionWidth: Integer;
-    procedure Set_FixedRegionWidth(pVal: Integer);
-    function Get_FixedRegionHeight: Integer;
-    procedure Set_FixedRegionHeight(pVal: Integer);
+    function Get_NumbersOnly: WordBool;
+    procedure Set_NumbersOnly(pVal: WordBool);
   public
     constructor Create(AOwner: TComponent); override;
     destructor  Destroy; override;
     procedure Connect; override;
-    procedure ConnectTo(svrIntf: ITSelection);
+    procedure ConnectTo(svrIntf: IGetOCRText7);
     procedure Disconnect; override;
-    procedure Start(selection_type: Integer; options: Integer; 
-                    out selection_result: ITSelectionInfo; out result: Integer);
-    property DefaultInterface: ITSelection read GetDefaultInterface;
-    property FixedRegionWidth: Integer read Get_FixedRegionWidth write Set_FixedRegionWidth;
-    property FixedRegionHeight: Integer read Get_FixedRegionHeight write Set_FixedRegionHeight;
+    property DefaultInterface: IGetOCRText7 read GetDefaultInterface;
+    property NumbersOnly: WordBool read Get_NumbersOnly write Set_NumbersOnly;
   published
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TTSelectionProperties read GetServerProperties;
+    property Server: TGetOCRTextProperties read GetServerProperties;
 {$ENDIF}
   end;
 
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
 // *********************************************************************//
 // OLE Server Properties Proxy Class
-// Server Object    : TTSelection
+// Server Object    : TGetOCRText
 // (This object is used by the IDE's Property Inspector to allow editing
 //  of the properties of this server)
 // *********************************************************************//
- TTSelectionProperties = class(TPersistent)
+ TGetOCRTextProperties = class(TPersistent)
   private
-    FServer:    TTSelection;
-    function    GetDefaultInterface: ITSelection;
-    constructor Create(AServer: TTSelection);
+    FServer:    TGetOCRText;
+    function    GetDefaultInterface: IGetOCRText7;
+    constructor Create(AServer: TGetOCRText);
   protected
-    function Get_FixedRegionWidth: Integer;
-    procedure Set_FixedRegionWidth(pVal: Integer);
-    function Get_FixedRegionHeight: Integer;
-    procedure Set_FixedRegionHeight(pVal: Integer);
+    function Get_NumbersOnly: WordBool;
+    procedure Set_NumbersOnly(pVal: WordBool);
   public
-    property DefaultInterface: ITSelection read GetDefaultInterface;
+    property DefaultInterface: IGetOCRText7 read GetDefaultInterface;
   published
-    property FixedRegionWidth: Integer read Get_FixedRegionWidth write Set_FixedRegionWidth;
-    property FixedRegionHeight: Integer read Get_FixedRegionHeight write Set_FixedRegionHeight;
-  end;
-{$ENDIF}
-
-
-// *********************************************************************//
-// The Class CoTSelectionInfo provides a Create and CreateRemote method to          
-// create instances of the default interface ITSelectionInfo exposed by              
-// the CoClass TSelectionInfo. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
-// *********************************************************************//
-  CoTSelectionInfo = class
-    class function Create: ITSelectionInfo;
-    class function CreateRemote(const MachineName: string): ITSelectionInfo;
-  end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TTSelectionInfo
-// Help String      : TSelectionInfo
-// Default Interface: ITSelectionInfo
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  TTSelectionInfoProperties= class;
-{$ENDIF}
-  TTSelectionInfo = class(TOleServer)
-  private
-    FIntf: ITSelectionInfo;
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps: TTSelectionInfoProperties;
-    function GetServerProperties: TTSelectionInfoProperties;
-{$ENDIF}
-    function GetDefaultInterface: ITSelectionInfo;
-  protected
-    procedure InitServerData; override;
-    function Get_type_: Integer;
-    procedure Set_type_(pVal: Integer);
-    function Get_WindowHandle: Integer;
-    procedure Set_WindowHandle(pVal: Integer);
-    function Get_Points: OleVariant;
-    procedure Set_Points(pVal: OleVariant);
-    function Get_Image: IPictureDisp;
-    procedure Set_Image(const pVal: IPictureDisp);
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: ITSelectionInfo);
-    procedure Disconnect; override;
-    property DefaultInterface: ITSelectionInfo read GetDefaultInterface;
-    property Points: OleVariant read Get_Points write Set_Points;
-    property type_: Integer read Get_type_ write Set_type_;
-    property WindowHandle: Integer read Get_WindowHandle write Set_WindowHandle;
-    property Image: IPictureDisp read Get_Image write Set_Image;
-  published
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    property Server: TTSelectionInfoProperties read GetServerProperties;
-{$ENDIF}
-  end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-// *********************************************************************//
-// OLE Server Properties Proxy Class
-// Server Object    : TTSelectionInfo
-// (This object is used by the IDE's Property Inspector to allow editing
-//  of the properties of this server)
-// *********************************************************************//
- TTSelectionInfoProperties = class(TPersistent)
-  private
-    FServer:    TTSelectionInfo;
-    function    GetDefaultInterface: ITSelectionInfo;
-    constructor Create(AServer: TTSelectionInfo);
-  protected
-    function Get_type_: Integer;
-    procedure Set_type_(pVal: Integer);
-    function Get_WindowHandle: Integer;
-    procedure Set_WindowHandle(pVal: Integer);
-    function Get_Points: OleVariant;
-    procedure Set_Points(pVal: OleVariant);
-    function Get_Image: IPictureDisp;
-    procedure Set_Image(const pVal: IPictureDisp);
-  public
-    property DefaultInterface: ITSelectionInfo read GetDefaultInterface;
-  published
-    property type_: Integer read Get_type_ write Set_type_;
-    property WindowHandle: Integer read Get_WindowHandle write Set_WindowHandle;
-    property Image: IPictureDisp read Get_Image write Set_Image;
+    property NumbersOnly: WordBool read Get_NumbersOnly write Set_NumbersOnly;
   end;
 {$ENDIF}
 
 
 // *********************************************************************//
 // The Class CoTHighlightInfo provides a Create and CreateRemote method to          
-// create instances of the default interface ITHighlightInfo exposed by              
+// create instances of the default interface ITHighlightInfo2 exposed by              
 // the CoClass THighlightInfo. The functions are intended to be used by             
 // clients wishing to automate the CoClass objects exposed by the         
 // server of this typelibrary.                                            
 // *********************************************************************//
   CoTHighlightInfo = class
-    class function Create: ITHighlightInfo;
-    class function CreateRemote(const MachineName: string): ITHighlightInfo;
+    class function Create: ITHighlightInfo2;
+    class function CreateRemote(const MachineName: string): ITHighlightInfo2;
   end;
 
 
@@ -945,7 +1680,7 @@ type
 // OLE Server Proxy class declaration
 // Server Object    : TTHighlightInfo
 // Help String      : THighlightInfo
-// Default Interface: ITHighlightInfo
+// Default Interface: ITHighlightInfo2
 // Def. Intf. DISP? : No
 // Event   Interface: 
 // TypeFlags        : (2) CanCreate
@@ -955,33 +1690,24 @@ type
 {$ENDIF}
   TTHighlightInfo = class(TOleServer)
   private
-    FIntf: ITHighlightInfo;
+    FIntf:        ITHighlightInfo2;
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-    FProps: TTHighlightInfoProperties;
-    function GetServerProperties: TTHighlightInfoProperties;
+    FProps:       TTHighlightInfoProperties;
+    function      GetServerProperties: TTHighlightInfoProperties;
 {$ENDIF}
-    function GetDefaultInterface: ITHighlightInfo;
+    function      GetDefaultInterface: ITHighlightInfo2;
   protected
     procedure InitServerData; override;
-    function Get_hwnd: Integer;
-    procedure Set_hwnd(pVal: Integer);
-    function Get_Count: Integer;
   public
     constructor Create(AOwner: TComponent); override;
     destructor  Destroy; override;
     procedure Connect; override;
-    procedure ConnectTo(svrIntf: ITHighlightInfo);
+    procedure ConnectTo(svrIntf: ITHighlightInfo2);
     procedure Disconnect; override;
-    procedure Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
-                  bottom: Integer);
-    procedure Remove(index: Integer);
-    procedure Get(index: Integer; out text: WideString; out left: Integer; out top: Integer; 
-                  out right: Integer; out bottom: Integer);
-    procedure PerformHighlight(delay: Integer);
-    procedure PerformHighlightFull(delay: Integer);
-    property DefaultInterface: ITHighlightInfo read GetDefaultInterface;
-    property Count: Integer read Get_Count;
-    property hwnd: Integer read Get_hwnd write Set_hwnd;
+    procedure SerializeToBuffer(size: Integer; out buf: Integer);
+    procedure DeserializeFromBuffer(var buf: Integer);
+    function GetSerializedSize: Integer;
+    property DefaultInterface: ITHighlightInfo2 read GetDefaultInterface;
   published
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
     property Server: TTHighlightInfoProperties read GetServerProperties;
@@ -998,16 +1724,106 @@ type
  TTHighlightInfoProperties = class(TPersistent)
   private
     FServer:    TTHighlightInfo;
-    function    GetDefaultInterface: ITHighlightInfo;
+    function    GetDefaultInterface: ITHighlightInfo2;
     constructor Create(AServer: TTHighlightInfo);
   protected
-    function Get_hwnd: Integer;
-    procedure Set_hwnd(pVal: Integer);
-    function Get_Count: Integer;
   public
-    property DefaultInterface: ITHighlightInfo read GetDefaultInterface;
+    property DefaultInterface: ITHighlightInfo2 read GetDefaultInterface;
   published
-    property hwnd: Integer read Get_hwnd write Set_hwnd;
+  end;
+{$ENDIF}
+
+
+// *********************************************************************//
+// The Class Corect provides a Create and CreateRemote method to          
+// create instances of the default interface IRect exposed by              
+// the CoClass rect. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  Corect = class
+    class function Create: IRect;
+    class function CreateRemote(const MachineName: string): IRect;
+  end;
+
+
+// *********************************************************************//
+// OLE Server Proxy class declaration
+// Server Object    : Trect
+// Help String      : Rect Class
+// Default Interface: IRect
+// Def. Intf. DISP? : No
+// Event   Interface: 
+// TypeFlags        : (2) CanCreate
+// *********************************************************************//
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+  TrectProperties= class;
+{$ENDIF}
+  Trect = class(TOleServer)
+  private
+    FIntf:        IRect;
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+    FProps:       TrectProperties;
+    function      GetServerProperties: TrectProperties;
+{$ENDIF}
+    function      GetDefaultInterface: IRect;
+  protected
+    procedure InitServerData; override;
+    function Get_RLeft: Integer;
+    procedure Set_RLeft(pVal: Integer);
+    function Get_RTop: Integer;
+    procedure Set_RTop(pVal: Integer);
+    function Get_RRight: Integer;
+    procedure Set_RRight(pVal: Integer);
+    function Get_RBottom: Integer;
+    procedure Set_RBottom(pVal: Integer);
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor  Destroy; override;
+    procedure Connect; override;
+    procedure ConnectTo(svrIntf: IRect);
+    procedure Disconnect; override;
+    function width: Integer;
+    function height: Integer;
+    property DefaultInterface: IRect read GetDefaultInterface;
+    property RLeft: Integer read Get_RLeft write Set_RLeft;
+    property RTop: Integer read Get_RTop write Set_RTop;
+    property RRight: Integer read Get_RRight write Set_RRight;
+    property RBottom: Integer read Get_RBottom write Set_RBottom;
+  published
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+    property Server: TrectProperties read GetServerProperties;
+{$ENDIF}
+  end;
+
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+// *********************************************************************//
+// OLE Server Properties Proxy Class
+// Server Object    : Trect
+// (This object is used by the IDE's Property Inspector to allow editing
+//  of the properties of this server)
+// *********************************************************************//
+ TrectProperties = class(TPersistent)
+  private
+    FServer:    Trect;
+    function    GetDefaultInterface: IRect;
+    constructor Create(AServer: Trect);
+  protected
+    function Get_RLeft: Integer;
+    procedure Set_RLeft(pVal: Integer);
+    function Get_RTop: Integer;
+    procedure Set_RTop(pVal: Integer);
+    function Get_RRight: Integer;
+    procedure Set_RRight(pVal: Integer);
+    function Get_RBottom: Integer;
+    procedure Set_RBottom(pVal: Integer);
+  public
+    property DefaultInterface: IRect read GetDefaultInterface;
+  published
+    property RLeft: Integer read Get_RLeft write Set_RLeft;
+    property RTop: Integer read Get_RTop write Set_RTop;
+    property RRight: Integer read Get_RRight write Set_RRight;
+    property RBottom: Integer read Get_RBottom write Set_RBottom;
   end;
 {$ENDIF}
 
@@ -1015,29 +1831,29 @@ type
 procedure Register;
 
 resourcestring
-  dtlServerPage = '(none)';
+  dtlServerPage = 'ActiveX';
 
-  dtlOcxPage = '(none)';
+  dtlOcxPage = 'ActiveX';
 
 implementation
 
 uses ComObj;
 
-class function CoTextCaptureX.Create: ITextCaptureX;
+class function CoTextCaptureX.Create: ITextCaptureX15;
 begin
-  Result := CreateComObject(CLASS_TextCaptureX) as ITextCaptureX;
+  Result := CreateComObject(CLASS_TextCaptureX) as ITextCaptureX15;
 end;
 
-class function CoTextCaptureX.CreateRemote(const MachineName: string): ITextCaptureX;
+class function CoTextCaptureX.CreateRemote(const MachineName: string): ITextCaptureX15;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_TextCaptureX) as ITextCaptureX;
+  Result := CreateRemoteComObject(MachineName, CLASS_TextCaptureX) as ITextCaptureX15;
 end;
 
 procedure TTextCaptureX.InitServerData;
 const
   CServerData: TServerData = (
     ClassID:   '{13FE2FA1-EE8B-45B9-BBB4-08E5F2F43AC3}';
-    IntfIID:   '{EEA5ABD9-2C89-4CDD-9C07-C3DDDF162A37}';
+    IntfIID:   '{F087CCAF-0108-455B-A8F0-CCC05C0CE457}';
     EventIID:  '';
     LicenseKey: nil;
     Version: 500);
@@ -1052,11 +1868,11 @@ begin
   if FIntf = nil then
   begin
     punk := GetServer;
-    Fintf:= punk as ITextCaptureX;
+    Fintf:= punk as ITextCaptureX15;
   end;
 end;
 
-procedure TTextCaptureX.ConnectTo(svrIntf: ITextCaptureX);
+procedure TTextCaptureX.ConnectTo(svrIntf: ITextCaptureX15);
 begin
   Disconnect;
   FIntf := svrIntf;
@@ -1070,11 +1886,11 @@ begin
   end;
 end;
 
-function TTextCaptureX.GetDefaultInterface: ITextCaptureX;
+function TTextCaptureX.GetDefaultInterface: ITextCaptureX15;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
   Result := FIntf;
 end;
 
@@ -1101,36 +1917,10 @@ begin
 end;
 {$ENDIF}
 
-function TTextCaptureX.GetTextFromPoint(hwnd: Integer; x: Integer; y: Integer): WideString;
+function TTextCaptureX.GetRectFromUIElemText(const pUIElemDisp: IDispatch; 
+                                             const bstrText: WideString; nOccurence: Integer): IRect;
 begin
-  Result := DefaultInterface.GetTextFromPoint(hwnd, x, y);
-end;
-
-function TTextCaptureX.GetTextFromRect(hwnd: Integer; left: Integer; top: Integer; width: Integer; 
-                                       height: Integer): WideString;
-begin
-  Result := DefaultInterface.GetTextFromRect(hwnd, left, top, width, height);
-end;
-
-function TTextCaptureX.CaptureInteractive(out hwnd: Integer; out left: Integer; out top: Integer; 
-                                          out width: Integer; out height: Integer): Integer;
-begin
-  Result := DefaultInterface.CaptureInteractive(hwnd, left, top, width, height);
-end;
-
-function TTextCaptureX.CaptureActiveWindow: WideString;
-begin
-  Result := DefaultInterface.CaptureActiveWindow;
-end;
-
-function TTextCaptureX.GetActiveWindowHwnd: Integer;
-begin
-  Result := DefaultInterface.GetActiveWindowHwnd;
-end;
-
-function TTextCaptureX.CaptureInteractiveFreeHand(out hwnd: Integer; out arPoints: OleVariant): Integer;
-begin
-  Result := DefaultInterface.CaptureInteractiveFreeHand(hwnd, arPoints);
+  Result := DefaultInterface.GetRectFromUIElemText(pUIElemDisp, bstrText, nOccurence);
 end;
 
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
@@ -1140,28 +1930,28 @@ begin
   FServer := AServer;
 end;
 
-function TTextCaptureXProperties.GetDefaultInterface: ITextCaptureX;
+function TTextCaptureXProperties.GetDefaultInterface: ITextCaptureX15;
 begin
   Result := FServer.DefaultInterface;
 end;
 
 {$ENDIF}
 
-class function CoGetAAText.Create: IGetAAText;
+class function CoGetAAText.Create: IGetAAText5;
 begin
-  Result := CreateComObject(CLASS_GetAAText) as IGetAAText;
+  Result := CreateComObject(CLASS_GetAAText) as IGetAAText5;
 end;
 
-class function CoGetAAText.CreateRemote(const MachineName: string): IGetAAText;
+class function CoGetAAText.CreateRemote(const MachineName: string): IGetAAText5;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_GetAAText) as IGetAAText;
+  Result := CreateRemoteComObject(MachineName, CLASS_GetAAText) as IGetAAText5;
 end;
 
 procedure TGetAAText.InitServerData;
 const
   CServerData: TServerData = (
     ClassID:   '{924699E8-66EF-4EB9-AB6E-3CA9660B31EC}';
-    IntfIID:   '{4652E117-CDF0-4B10-B3C9-4FE74FD0FA5B}';
+    IntfIID:   '{2B5BB8EC-4219-42AE-A486-79D517753198}';
     EventIID:  '';
     LicenseKey: nil;
     Version: 500);
@@ -1176,11 +1966,11 @@ begin
   if FIntf = nil then
   begin
     punk := GetServer;
-    Fintf:= punk as IGetAAText;
+    Fintf:= punk as IGetAAText5;
   end;
 end;
 
-procedure TGetAAText.ConnectTo(svrIntf: IGetAAText);
+procedure TGetAAText.ConnectTo(svrIntf: IGetAAText5);
 begin
   Disconnect;
   FIntf := svrIntf;
@@ -1194,11 +1984,11 @@ begin
   end;
 end;
 
-function TGetAAText.GetDefaultInterface: IGetAAText;
+function TGetAAText.GetDefaultInterface: IGetAAText5;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
   Result := FIntf;
 end;
 
@@ -1225,9 +2015,14 @@ begin
 end;
 {$ENDIF}
 
-function TGetAAText.GetFullTextAA(hwnd: Integer): WideString;
+function TGetAAText.Get_IgnoreHidden: WordBool;
 begin
-  Result := DefaultInterface.GetFullTextAA(hwnd);
+    Result := DefaultInterface.IgnoreHidden;
+end;
+
+procedure TGetAAText.Set_IgnoreHidden(pVal: WordBool);
+begin
+  DefaultInterface.Set_IgnoreHidden(pVal);
 end;
 
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
@@ -1237,28 +2032,38 @@ begin
   FServer := AServer;
 end;
 
-function TGetAATextProperties.GetDefaultInterface: IGetAAText;
+function TGetAATextProperties.GetDefaultInterface: IGetAAText5;
 begin
   Result := FServer.DefaultInterface;
 end;
 
+function TGetAATextProperties.Get_IgnoreHidden: WordBool;
+begin
+    Result := DefaultInterface.IgnoreHidden;
+end;
+
+procedure TGetAATextProperties.Set_IgnoreHidden(pVal: WordBool);
+begin
+  DefaultInterface.Set_IgnoreHidden(pVal);
+end;
+
 {$ENDIF}
 
-class function CoTSelection.Create: ITSelection;
+class function CoGetOCRText.Create: IGetOCRText7;
 begin
-  Result := CreateComObject(CLASS_TSelection) as ITSelection;
+  Result := CreateComObject(CLASS_GetOCRText) as IGetOCRText7;
 end;
 
-class function CoTSelection.CreateRemote(const MachineName: string): ITSelection;
+class function CoGetOCRText.CreateRemote(const MachineName: string): IGetOCRText7;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_TSelection) as ITSelection;
+  Result := CreateRemoteComObject(MachineName, CLASS_GetOCRText) as IGetOCRText7;
 end;
 
-procedure TTSelection.InitServerData;
+procedure TGetOCRText.InitServerData;
 const
   CServerData: TServerData = (
-    ClassID:   '{BF616448-1D65-4559-9293-0F6B607BA892}';
-    IntfIID:   '{24455CC7-C5E2-4D5B-A37C-47C76CFE1905}';
+    ClassID:   '{F827ADF4-AC12-4FAA-8073-4558C0489283}';
+    IntfIID:   '{09C4FAF6-B846-4185-850D-27B8501EE752}';
     EventIID:  '';
     LicenseKey: nil;
     Version: 500);
@@ -1266,24 +2071,24 @@ begin
   ServerData := @CServerData;
 end;
 
-procedure TTSelection.Connect;
+procedure TGetOCRText.Connect;
 var
   punk: IUnknown;
 begin
   if FIntf = nil then
   begin
     punk := GetServer;
-    Fintf:= punk as ITSelection;
+    Fintf:= punk as IGetOCRText7;
   end;
 end;
 
-procedure TTSelection.ConnectTo(svrIntf: ITSelection);
+procedure TGetOCRText.ConnectTo(svrIntf: IGetOCRText7);
 begin
   Disconnect;
   FIntf := svrIntf;
 end;
 
-procedure TTSelection.DisConnect;
+procedure TGetOCRText.DisConnect;
 begin
   if Fintf <> nil then
   begin
@@ -1291,23 +2096,23 @@ begin
   end;
 end;
 
-function TTSelection.GetDefaultInterface: ITSelection;
+function TGetOCRText.GetDefaultInterface: IGetOCRText7;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
   Result := FIntf;
 end;
 
-constructor TTSelection.Create(AOwner: TComponent);
+constructor TGetOCRText.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TTSelectionProperties.Create(Self);
+  FProps := TGetOCRTextProperties.Create(Self);
 {$ENDIF}
 end;
 
-destructor TTSelection.Destroy;
+destructor TGetOCRText.Destroy;
 begin
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
   FProps.Free;
@@ -1316,265 +2121,61 @@ begin
 end;
 
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TTSelection.GetServerProperties: TTSelectionProperties;
+function TGetOCRText.GetServerProperties: TGetOCRTextProperties;
 begin
   Result := FProps;
 end;
 {$ENDIF}
 
-function TTSelection.Get_FixedRegionWidth: Integer;
+function TGetOCRText.Get_NumbersOnly: WordBool;
 begin
-    Result := DefaultInterface.FixedRegionWidth;
+    Result := DefaultInterface.NumbersOnly;
 end;
 
-procedure TTSelection.Set_FixedRegionWidth(pVal: Integer);
+procedure TGetOCRText.Set_NumbersOnly(pVal: WordBool);
 begin
-  DefaultInterface.Set_FixedRegionWidth(pVal);
-end;
-
-function TTSelection.Get_FixedRegionHeight: Integer;
-begin
-    Result := DefaultInterface.FixedRegionHeight;
-end;
-
-procedure TTSelection.Set_FixedRegionHeight(pVal: Integer);
-begin
-  DefaultInterface.Set_FixedRegionHeight(pVal);
-end;
-
-procedure TTSelection.Start(selection_type: Integer; options: Integer; 
-                            out selection_result: ITSelectionInfo; out result: Integer);
-begin
-  DefaultInterface.Start(selection_type, options, selection_result, result);
+  DefaultInterface.Set_NumbersOnly(pVal);
 end;
 
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TTSelectionProperties.Create(AServer: TTSelection);
+constructor TGetOCRTextProperties.Create(AServer: TGetOCRText);
 begin
   inherited Create;
   FServer := AServer;
 end;
 
-function TTSelectionProperties.GetDefaultInterface: ITSelection;
+function TGetOCRTextProperties.GetDefaultInterface: IGetOCRText7;
 begin
   Result := FServer.DefaultInterface;
 end;
 
-function TTSelectionProperties.Get_FixedRegionWidth: Integer;
+function TGetOCRTextProperties.Get_NumbersOnly: WordBool;
 begin
-    Result := DefaultInterface.FixedRegionWidth;
+    Result := DefaultInterface.NumbersOnly;
 end;
 
-procedure TTSelectionProperties.Set_FixedRegionWidth(pVal: Integer);
+procedure TGetOCRTextProperties.Set_NumbersOnly(pVal: WordBool);
 begin
-  DefaultInterface.Set_FixedRegionWidth(pVal);
-end;
-
-function TTSelectionProperties.Get_FixedRegionHeight: Integer;
-begin
-    Result := DefaultInterface.FixedRegionHeight;
-end;
-
-procedure TTSelectionProperties.Set_FixedRegionHeight(pVal: Integer);
-begin
-  DefaultInterface.Set_FixedRegionHeight(pVal);
+  DefaultInterface.Set_NumbersOnly(pVal);
 end;
 
 {$ENDIF}
 
-class function CoTSelectionInfo.Create: ITSelectionInfo;
+class function CoTHighlightInfo.Create: ITHighlightInfo2;
 begin
-  Result := CreateComObject(CLASS_TSelectionInfo) as ITSelectionInfo;
+  Result := CreateComObject(CLASS_THighlightInfo) as ITHighlightInfo2;
 end;
 
-class function CoTSelectionInfo.CreateRemote(const MachineName: string): ITSelectionInfo;
+class function CoTHighlightInfo.CreateRemote(const MachineName: string): ITHighlightInfo2;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_TSelectionInfo) as ITSelectionInfo;
-end;
-
-procedure TTSelectionInfo.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{AD58B105-E00C-4F3F-81A5-54F741853E5C}';
-    IntfIID:   '{12E679EC-86BF-4AA2-AA94-1B8D16E30EAF}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TTSelectionInfo.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as ITSelectionInfo;
-  end;
-end;
-
-procedure TTSelectionInfo.ConnectTo(svrIntf: ITSelectionInfo);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TTSelectionInfo.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TTSelectionInfo.GetDefaultInterface: ITSelectionInfo;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
-end;
-
-constructor TTSelectionInfo.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps := TTSelectionInfoProperties.Create(Self);
-{$ENDIF}
-end;
-
-destructor TTSelectionInfo.Destroy;
-begin
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-  FProps.Free;
-{$ENDIF}
-  inherited Destroy;
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-function TTSelectionInfo.GetServerProperties: TTSelectionInfoProperties;
-begin
-  Result := FProps;
-end;
-{$ENDIF}
-
-function TTSelectionInfo.Get_type_: Integer;
-begin
-    Result := DefaultInterface.type_;
-end;
-
-procedure TTSelectionInfo.Set_type_(pVal: Integer);
-begin
-  DefaultInterface.Set_type_(pVal);
-end;
-
-function TTSelectionInfo.Get_WindowHandle: Integer;
-begin
-    Result := DefaultInterface.WindowHandle;
-end;
-
-procedure TTSelectionInfo.Set_WindowHandle(pVal: Integer);
-begin
-  DefaultInterface.Set_WindowHandle(pVal);
-end;
-
-function TTSelectionInfo.Get_Points: OleVariant;
-var
-  InterfaceVariant : OleVariant;
-begin
-  InterfaceVariant := DefaultInterface;
-  Result := InterfaceVariant.Points;
-end;
-
-procedure TTSelectionInfo.Set_Points(pVal: OleVariant);
-begin
-  DefaultInterface.Set_Points(pVal);
-end;
-
-function TTSelectionInfo.Get_Image: IPictureDisp;
-begin
-    Result := DefaultInterface.Image;
-end;
-
-procedure TTSelectionInfo.Set_Image(const pVal: IPictureDisp);
-begin
-  DefaultInterface.Set_Image(pVal);
-end;
-
-{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
-constructor TTSelectionInfoProperties.Create(AServer: TTSelectionInfo);
-begin
-  inherited Create;
-  FServer := AServer;
-end;
-
-function TTSelectionInfoProperties.GetDefaultInterface: ITSelectionInfo;
-begin
-  Result := FServer.DefaultInterface;
-end;
-
-function TTSelectionInfoProperties.Get_type_: Integer;
-begin
-    Result := DefaultInterface.type_;
-end;
-
-procedure TTSelectionInfoProperties.Set_type_(pVal: Integer);
-begin
-  DefaultInterface.Set_type_(pVal);
-end;
-
-function TTSelectionInfoProperties.Get_WindowHandle: Integer;
-begin
-    Result := DefaultInterface.WindowHandle;
-end;
-
-procedure TTSelectionInfoProperties.Set_WindowHandle(pVal: Integer);
-begin
-  DefaultInterface.Set_WindowHandle(pVal);
-end;
-
-function TTSelectionInfoProperties.Get_Points: OleVariant;
-var
-  InterfaceVariant : OleVariant;
-begin
-  InterfaceVariant := DefaultInterface;
-  Result := InterfaceVariant.Points;
-end;
-
-procedure TTSelectionInfoProperties.Set_Points(pVal: OleVariant);
-begin
-  DefaultInterface.Set_Points(pVal);
-end;
-
-function TTSelectionInfoProperties.Get_Image: IPictureDisp;
-begin
-    Result := DefaultInterface.Image;
-end;
-
-procedure TTSelectionInfoProperties.Set_Image(const pVal: IPictureDisp);
-begin
-  DefaultInterface.Set_Image(pVal);
-end;
-
-{$ENDIF}
-
-class function CoTHighlightInfo.Create: ITHighlightInfo;
-begin
-  Result := CreateComObject(CLASS_THighlightInfo) as ITHighlightInfo;
-end;
-
-class function CoTHighlightInfo.CreateRemote(const MachineName: string): ITHighlightInfo;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_THighlightInfo) as ITHighlightInfo;
+  Result := CreateRemoteComObject(MachineName, CLASS_THighlightInfo) as ITHighlightInfo2;
 end;
 
 procedure TTHighlightInfo.InitServerData;
 const
   CServerData: TServerData = (
     ClassID:   '{B13501DF-12B3-4A6A-9A5B-8FA1EBCF8699}';
-    IntfIID:   '{FF7B48D0-4615-49FA-970B-56A95EDA143A}';
+    IntfIID:   '{6B558D32-93F8-41E6-AD6E-79E64D58AC45}';
     EventIID:  '';
     LicenseKey: nil;
     Version: 500);
@@ -1589,11 +2190,11 @@ begin
   if FIntf = nil then
   begin
     punk := GetServer;
-    Fintf:= punk as ITHighlightInfo;
+    Fintf:= punk as ITHighlightInfo2;
   end;
 end;
 
-procedure TTHighlightInfo.ConnectTo(svrIntf: ITHighlightInfo);
+procedure TTHighlightInfo.ConnectTo(svrIntf: ITHighlightInfo2);
 begin
   Disconnect;
   FIntf := svrIntf;
@@ -1607,11 +2208,11 @@ begin
   end;
 end;
 
-function TTHighlightInfo.GetDefaultInterface: ITHighlightInfo;
+function TTHighlightInfo.GetDefaultInterface: ITHighlightInfo2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
   Result := FIntf;
 end;
 
@@ -1638,46 +2239,19 @@ begin
 end;
 {$ENDIF}
 
-function TTHighlightInfo.Get_hwnd: Integer;
+procedure TTHighlightInfo.SerializeToBuffer(size: Integer; out buf: Integer);
 begin
-    Result := DefaultInterface.hwnd;
+  DefaultInterface.SerializeToBuffer(size, buf);
 end;
 
-procedure TTHighlightInfo.Set_hwnd(pVal: Integer);
+procedure TTHighlightInfo.DeserializeFromBuffer(var buf: Integer);
 begin
-  DefaultInterface.Set_hwnd(pVal);
+  DefaultInterface.DeserializeFromBuffer(buf);
 end;
 
-function TTHighlightInfo.Get_Count: Integer;
+function TTHighlightInfo.GetSerializedSize: Integer;
 begin
-    Result := DefaultInterface.Count;
-end;
-
-procedure TTHighlightInfo.Add(const text: WideString; left: Integer; top: Integer; right: Integer; 
-                              bottom: Integer);
-begin
-  DefaultInterface.Add(text, left, top, right, bottom);
-end;
-
-procedure TTHighlightInfo.Remove(index: Integer);
-begin
-  DefaultInterface.Remove(index);
-end;
-
-procedure TTHighlightInfo.Get(index: Integer; out text: WideString; out left: Integer; 
-                              out top: Integer; out right: Integer; out bottom: Integer);
-begin
-  DefaultInterface.Get(index, text, left, top, right, bottom);
-end;
-
-procedure TTHighlightInfo.PerformHighlight(delay: Integer);
-begin
-  DefaultInterface.PerformHighlight(delay);
-end;
-
-procedure TTHighlightInfo.PerformHighlightFull(delay: Integer);
-begin
-  DefaultInterface.PerformHighlightFull(delay);
+  Result := DefaultInterface.GetSerializedSize;
 end;
 
 {$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
@@ -1687,32 +2261,199 @@ begin
   FServer := AServer;
 end;
 
-function TTHighlightInfoProperties.GetDefaultInterface: ITHighlightInfo;
+function TTHighlightInfoProperties.GetDefaultInterface: ITHighlightInfo2;
 begin
   Result := FServer.DefaultInterface;
 end;
 
-function TTHighlightInfoProperties.Get_hwnd: Integer;
+{$ENDIF}
+
+class function Corect.Create: IRect;
 begin
-    Result := DefaultInterface.hwnd;
+  Result := CreateComObject(CLASS_rect) as IRect;
 end;
 
-procedure TTHighlightInfoProperties.Set_hwnd(pVal: Integer);
+class function Corect.CreateRemote(const MachineName: string): IRect;
 begin
-  DefaultInterface.Set_hwnd(pVal);
+  Result := CreateRemoteComObject(MachineName, CLASS_rect) as IRect;
 end;
 
-function TTHighlightInfoProperties.Get_Count: Integer;
+procedure Trect.InitServerData;
+const
+  CServerData: TServerData = (
+    ClassID:   '{FB9DE2D6-DDAF-47B3-BCF0-31D17E8D34C5}';
+    IntfIID:   '{0E4BE2A0-AD3A-4237-9406-CEB504EFE361}';
+    EventIID:  '';
+    LicenseKey: nil;
+    Version: 500);
 begin
-    Result := DefaultInterface.Count;
+  ServerData := @CServerData;
+end;
+
+procedure Trect.Connect;
+var
+  punk: IUnknown;
+begin
+  if FIntf = nil then
+  begin
+    punk := GetServer;
+    Fintf:= punk as IRect;
+  end;
+end;
+
+procedure Trect.ConnectTo(svrIntf: IRect);
+begin
+  Disconnect;
+  FIntf := svrIntf;
+end;
+
+procedure Trect.DisConnect;
+begin
+  if Fintf <> nil then
+  begin
+    FIntf := nil;
+  end;
+end;
+
+function Trect.GetDefaultInterface: IRect;
+begin
+  if FIntf = nil then
+    Connect;
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call ''Connect'' or ''ConnectTo'' before this operation');
+  Result := FIntf;
+end;
+
+constructor Trect.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+  FProps := TrectProperties.Create(Self);
+{$ENDIF}
+end;
+
+destructor Trect.Destroy;
+begin
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+  FProps.Free;
+{$ENDIF}
+  inherited Destroy;
+end;
+
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+function Trect.GetServerProperties: TrectProperties;
+begin
+  Result := FProps;
+end;
+{$ENDIF}
+
+function Trect.Get_RLeft: Integer;
+begin
+    Result := DefaultInterface.RLeft;
+end;
+
+procedure Trect.Set_RLeft(pVal: Integer);
+begin
+  DefaultInterface.Set_RLeft(pVal);
+end;
+
+function Trect.Get_RTop: Integer;
+begin
+    Result := DefaultInterface.RTop;
+end;
+
+procedure Trect.Set_RTop(pVal: Integer);
+begin
+  DefaultInterface.Set_RTop(pVal);
+end;
+
+function Trect.Get_RRight: Integer;
+begin
+    Result := DefaultInterface.RRight;
+end;
+
+procedure Trect.Set_RRight(pVal: Integer);
+begin
+  DefaultInterface.Set_RRight(pVal);
+end;
+
+function Trect.Get_RBottom: Integer;
+begin
+    Result := DefaultInterface.RBottom;
+end;
+
+procedure Trect.Set_RBottom(pVal: Integer);
+begin
+  DefaultInterface.Set_RBottom(pVal);
+end;
+
+function Trect.width: Integer;
+begin
+  Result := DefaultInterface.width;
+end;
+
+function Trect.height: Integer;
+begin
+  Result := DefaultInterface.height;
+end;
+
+{$IFDEF LIVE_SERVER_AT_DESIGN_TIME}
+constructor TrectProperties.Create(AServer: Trect);
+begin
+  inherited Create;
+  FServer := AServer;
+end;
+
+function TrectProperties.GetDefaultInterface: IRect;
+begin
+  Result := FServer.DefaultInterface;
+end;
+
+function TrectProperties.Get_RLeft: Integer;
+begin
+    Result := DefaultInterface.RLeft;
+end;
+
+procedure TrectProperties.Set_RLeft(pVal: Integer);
+begin
+  DefaultInterface.Set_RLeft(pVal);
+end;
+
+function TrectProperties.Get_RTop: Integer;
+begin
+    Result := DefaultInterface.RTop;
+end;
+
+procedure TrectProperties.Set_RTop(pVal: Integer);
+begin
+  DefaultInterface.Set_RTop(pVal);
+end;
+
+function TrectProperties.Get_RRight: Integer;
+begin
+    Result := DefaultInterface.RRight;
+end;
+
+procedure TrectProperties.Set_RRight(pVal: Integer);
+begin
+  DefaultInterface.Set_RRight(pVal);
+end;
+
+function TrectProperties.Get_RBottom: Integer;
+begin
+    Result := DefaultInterface.RBottom;
+end;
+
+procedure TrectProperties.Set_RBottom(pVal: Integer);
+begin
+  DefaultInterface.Set_RBottom(pVal);
 end;
 
 {$ENDIF}
 
 procedure Register;
 begin
-  RegisterComponents(dtlServerPage, [TTextCaptureX, TGetAAText, TTSelection, TTSelectionInfo, 
-    TTHighlightInfo]);
+  RegisterComponents(dtlServerPage, [TTextCaptureX, TGetAAText, TGetOCRText, TTHighlightInfo, 
+    Trect]);
 end;
 
 end.

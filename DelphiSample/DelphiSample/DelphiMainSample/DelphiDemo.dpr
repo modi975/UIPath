@@ -3,9 +3,9 @@ program DelphiDemo;
 uses
   Forms,
   Unit1 in 'Unit1.pas' {Form1},
-  TSelectionLib_TLB in 'C:\Users\Alex\Documents\RAD Studio\7.0\Imports\TSelectionLib_TLB.pas',
-  TCaptureXLib_TLB in 'C:\Users\Alex\Documents\RAD Studio\7.0\Imports\TCaptureXLib_TLB.pas',
-  UIElementLib_TLB in 'C:\Users\Alex\Documents\RAD Studio\7.0\Imports\UIElementLib_TLB.pas';
+  TSelectionLib_TLB in 'TSelectionLib_TLB.pas',
+  TCaptureXLib_TLB in 'TCaptureXLib_TLB.pas',
+  UIElementLib_TLB in 'UIElementLib_TLB.pas';
 
 {$R *.res}
 
