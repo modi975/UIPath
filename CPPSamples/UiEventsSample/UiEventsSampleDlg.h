@@ -33,7 +33,7 @@ protected:
 
 
 
-	BOOL GetEventInfo();
+	HRESULT GetEventInfo();
 	void UpdateUI();
 	void UnCheckKeyboard();
 	void UnCheckMouse();

@@ -179,31 +179,51 @@ void CUiEventsSampleDlg::AttachToEvent()
 	//Connect to UiEvents object
 	m_evHandler.DispEventAdvise(m_spEvents);
 
-	BOOL bRes = GetEventInfo();
-	if(bRes)
+	HRESULT hr = GetEventInfo();
+	if(!FAILED(hr))
 	{
-		if(m_bMouse)
+		if(hr == S_OK)
 		{
-			m_spEvents->AttachClick(m_enMouseBtn, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, NULL);
+			//a selector was inserted
+			if(m_bMouse)
+			{
+				m_spEvents->AttachClick(m_enMouseBtn, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, NULL);
+			}
+			else
+			{
+				m_spEvents->AttachKeys((_bstr_t)m_strKey, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, NULL);
+			}
 		}
 		else
 		{
-			m_spEvents->AttachKeys((_bstr_t)m_strKey, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, NULL);
+			//system monitor
+			if(m_bMouse)
+			{
+				m_spEvents->MonitorClick(m_enMouseBtn, m_enKeyModifier);
+			}
+			else
+			{
+				m_spEvents->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier);
+			}
 		}
 	}
 	
 
 }
 
-BOOL CUiEventsSampleDlg::GetEventInfo()
+HRESULT CUiEventsSampleDlg::GetEventInfo()
 {
+	HRESULT hr;
 	//Get event info
 	CEdit* selectorEdit = (CEdit*)GetDlgItem(IDC_SELECTOR);
 	selectorEdit->GetWindowText(m_strSelector);
 	if(m_strSelector.IsEmpty())
 	{
-		AfxMessageBox(_T("You must insert a selector!"));
-		return FALSE;
+		hr = S_FALSE;
+	}
+	else
+	{
+		hr = S_OK;
 	}
 	CButton* mouseCheckBox = (CButton*) GetDlgItem(IDC_MOUSE_CHECK);
 	CButton* keyboardCheckBox = (CButton*) GetDlgItem(IDC_KEYBOARD_CHECK);
@@ -226,7 +246,7 @@ BOOL CUiEventsSampleDlg::GetEventInfo()
 	if(!m_bMouse && !m_bKeyboard)
 	{
 		AfxMessageBox(_T("You must check a checkbox"));
-		return FALSE;
+		hr = E_FAIL;
 	}
 
 	CComboBox* keyModifier = (CComboBox*)GetDlgItem(IDC_COMBO_KEY_MODIF);
@@ -234,7 +254,7 @@ BOOL CUiEventsSampleDlg::GetEventInfo()
 
 	CComboBox* eventType = (CComboBox*)GetDlgItem(IDC_COMBO_EVENT_TYPE);
 	m_enEventType = (UiEventType)eventType->GetCurSel();
-	return TRUE;
+	return hr;
 }
 
 void CUiEventsSampleDlg::UpdateUI()
