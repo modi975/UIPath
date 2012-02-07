@@ -1,0 +1,2 @@
+﻿  stdafx.cpp
+c:\program files (x86)\microsoft visual studio 10.0\vc\atlmfc\include\atlcore.h(35): fatal error C1189: #error :  This file requires _WIN32_WINNT to be #defined at least to 0x0403. Value 0x0501 or higher is recommended.
