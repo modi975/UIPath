@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.KeyModifier_Combo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Blocking_Combo = new System.Windows.Forms.ComboBox();
+            this.EventType_Combo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.KeyTextBox = new System.Windows.Forms.TextBox();
             this.LogTextBox = new System.Windows.Forms.TextBox();
@@ -44,6 +44,9 @@
             this.StartVMMonitor = new System.Windows.Forms.Button();
             this.MonitorUIObject = new System.Windows.Forms.Button();
             this.StopMonitoring = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Blocking_Combo = new System.Windows.Forms.ComboBox();
+            this.IncludeChildren_Checkbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +73,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 112);
+            this.label2.Location = new System.Drawing.Point(14, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 2;
@@ -96,7 +99,7 @@
             "UiKeyEx_WinShiftAlt",
             "UiKeyEx_WinShiftCtrl",
             "UiKeyEx_WinShiftAltCtrl"});
-            this.KeyModifier_Combo.Location = new System.Drawing.Point(93, 112);
+            this.KeyModifier_Combo.Location = new System.Drawing.Point(93, 134);
             this.KeyModifier_Combo.Name = "KeyModifier_Combo";
             this.KeyModifier_Combo.Size = new System.Drawing.Size(148, 21);
             this.KeyModifier_Combo.TabIndex = 3;
@@ -104,22 +107,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 147);
+            this.label3.Location = new System.Drawing.Point(14, 169);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Blocking";
+            this.label3.Text = "Event type";
             // 
-            // Blocking_Combo
+            // EventType_Combo
             // 
-            this.Blocking_Combo.FormattingEnabled = true;
-            this.Blocking_Combo.Items.AddRange(new object[] {
-            "Non blocking",
+            this.EventType_Combo.FormattingEnabled = true;
+            this.EventType_Combo.Items.AddRange(new object[] {
+            "Asynchronous",
             "Synchronous"});
-            this.Blocking_Combo.Location = new System.Drawing.Point(93, 139);
-            this.Blocking_Combo.Name = "Blocking_Combo";
-            this.Blocking_Combo.Size = new System.Drawing.Size(148, 21);
-            this.Blocking_Combo.TabIndex = 5;
+            this.EventType_Combo.Location = new System.Drawing.Point(93, 161);
+            this.EventType_Combo.Name = "EventType_Combo";
+            this.EventType_Combo.Size = new System.Drawing.Size(148, 21);
+            this.EventType_Combo.TabIndex = 5;
             // 
             // label4
             // 
@@ -140,7 +143,7 @@
             // 
             // LogTextBox
             // 
-            this.LogTextBox.Location = new System.Drawing.Point(13, 215);
+            this.LogTextBox.Location = new System.Drawing.Point(13, 237);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
             this.LogTextBox.Size = new System.Drawing.Size(494, 152);
@@ -149,7 +152,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 196);
+            this.label5.Location = new System.Drawing.Point(13, 218);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 9;
@@ -265,7 +268,7 @@
             // 
             // StopMonitoring
             // 
-            this.StopMonitoring.Location = new System.Drawing.Point(259, 112);
+            this.StopMonitoring.Location = new System.Drawing.Point(259, 134);
             this.StopMonitoring.Name = "StopMonitoring";
             this.StopMonitoring.Size = new System.Drawing.Size(108, 23);
             this.StopMonitoring.TabIndex = 16;
@@ -273,11 +276,44 @@
             this.StopMonitoring.UseVisualStyleBackColor = true;
             this.StopMonitoring.Click += new System.EventHandler(this.StopMonitoring_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 193);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Monitor type";
+            // 
+            // Blocking_Combo
+            // 
+            this.Blocking_Combo.FormattingEnabled = true;
+            this.Blocking_Combo.Items.AddRange(new object[] {
+            "Non Blocking",
+            "Blocking"});
+            this.Blocking_Combo.Location = new System.Drawing.Point(93, 189);
+            this.Blocking_Combo.Name = "Blocking_Combo";
+            this.Blocking_Combo.Size = new System.Drawing.Size(148, 21);
+            this.Blocking_Combo.TabIndex = 18;
+            // 
+            // IncludeChildren_Checkbox
+            // 
+            this.IncludeChildren_Checkbox.AutoSize = true;
+            this.IncludeChildren_Checkbox.Location = new System.Drawing.Point(17, 114);
+            this.IncludeChildren_Checkbox.Name = "IncludeChildren_Checkbox";
+            this.IncludeChildren_Checkbox.Size = new System.Drawing.Size(101, 17);
+            this.IncludeChildren_Checkbox.TabIndex = 19;
+            this.IncludeChildren_Checkbox.Text = "Include children";
+            this.IncludeChildren_Checkbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 379);
+            this.ClientSize = new System.Drawing.Size(516, 419);
+            this.Controls.Add(this.IncludeChildren_Checkbox);
+            this.Controls.Add(this.Blocking_Combo);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.StopMonitoring);
             this.Controls.Add(this.MonitorUIObject);
             this.Controls.Add(this.StartVMMonitor);
@@ -288,7 +324,7 @@
             this.Controls.Add(this.LogTextBox);
             this.Controls.Add(this.KeyTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.Blocking_Combo);
+            this.Controls.Add(this.EventType_Combo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.KeyModifier_Combo);
             this.Controls.Add(this.label2);
@@ -308,7 +344,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox KeyModifier_Combo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox Blocking_Combo;
+        private System.Windows.Forms.ComboBox EventType_Combo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox KeyTextBox;
         private System.Windows.Forms.TextBox LogTextBox;
@@ -319,6 +355,9 @@
         private System.Windows.Forms.Button StartVMMonitor;
         private System.Windows.Forms.Button MonitorUIObject;
         private System.Windows.Forms.Button StopMonitoring;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox Blocking_Combo;
+        private System.Windows.Forms.CheckBox IncludeChildren_Checkbox;
     }
 }
 
