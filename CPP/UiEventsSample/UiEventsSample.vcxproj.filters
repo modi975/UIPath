@@ -39,7 +39,10 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EventHandler.h">
+    <ClInclude Include="NodeMonitorHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemMonitorHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,7 +32,7 @@
 
 //UiPath dll
 //add the path to UiPath.dll
-#import "UiPath.dll" named_guids
+#import "C:\Projects\Scraping\Output\bin\Debug\UiPath.dll" named_guids
 
 using namespace UiPathLib;
 

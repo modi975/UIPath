@@ -164,46 +164,53 @@ HCURSOR CUiEventsSampleDlg::OnQueryDragIcon()
 
 void CUiEventsSampleDlg::AttachToEvent()
 {
-	
-	if( m_spEvents!= nullptr)
-	{
-		m_evHandler.DispEventUnadvise(m_spEvents);
-		m_spEvents->DetachAll();
-		m_spEvents.Release();		
-	}
-	m_spEvents.CoCreateInstance(CLSID_UiEvents);
-	
-	//Disconnect 
-	
-
-	//Connect to UiEvents object
-	m_evHandler.DispEventAdvise(m_spEvents);
-
 	HRESULT hr = GetEventInfo();
 	if(!FAILED(hr))
 	{
 		if(hr == S_OK)
 		{
+			if( m_spNodeEvents!= nullptr)
+			{
+				m_evNodeHandler.DispEventUnadvise(m_spNodeEvents);
+				m_spNodeEvents->StopMonitoring();
+				m_spNodeEvents.Release();		
+			}
+			m_spNodeEvents.CoCreateInstance(CLSID_UiNodeMonitor);
+
+			//Connect to UiNodeMonitor object
+			m_evNodeHandler.DispEventAdvise(m_spNodeEvents);
 			//a selector was inserted
 			if(m_bMouse)
 			{
-				m_spEvents->AttachClick(m_enMouseBtn, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, NULL);
+				m_spNodeEvents->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, m_bMatchChildren, NULL);
 			}
 			else
 			{
-				m_spEvents->AttachKeys((_bstr_t)m_strKey, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, NULL);
+				m_spNodeEvents->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, m_bMatchChildren);
 			}
 		}
 		else
 		{
 			//system monitor
+
+			if( m_spSystem!= nullptr)
+			{
+				m_evSystemHandler.DispEventUnadvise(m_spSystem);
+				m_spSystem->StopMonitoring();
+				m_spSystem.Release();		
+			}
+			m_spSystem.CoCreateInstance(CLSID_UiSystem);
+
+			//Connect to UiSystem object
+			m_evSystemHandler.DispEventAdvise(m_spSystem);
+
 			if(m_bMouse)
 			{
-				m_spEvents->MonitorClick(m_enMouseBtn, m_enKeyModifier);
+				m_spSystem->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enMonitorType);
 			}
 			else
 			{
-				m_spEvents->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier);
+				m_spSystem->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier);
 			}
 		}
 	}
@@ -254,6 +261,9 @@ HRESULT CUiEventsSampleDlg::GetEventInfo()
 
 	CComboBox* eventType = (CComboBox*)GetDlgItem(IDC_COMBO_EVENT_TYPE);
 	m_enEventType = (UiEventType)eventType->GetCurSel();
+
+	m_bMatchChildren = ((CButton*)GetDlgItem(IDC_CHECK_INCLUDE_CHILDREN))->GetCheck();
+	m_enMonitorType = (UiMonitorType)((CComboBox*)GetDlgItem(IDC_COMBO_MONITOR_TYPE))->GetCurSel();
 	return hr;
 }
 
@@ -262,6 +272,8 @@ void CUiEventsSampleDlg::UpdateUI()
 	CButton* mouseCheckBox = (CButton*) GetDlgItem(IDC_MOUSE_CHECK);
 	mouseCheckBox->SetCheck(TRUE);
 	UnCheckKeyboard();
+	m_bMatchChildren = FALSE;
+
 	//Add mouse btns
     CComboBox* mouseBtn = (CComboBox*) GetDlgItem(IDC_MOUSE_BTN);
 	mouseBtn->InsertString(0, L"UI_BTN_LEFT");
@@ -355,6 +367,13 @@ void CUiEventsSampleDlg::UpdateUI()
 	eventType->InsertString(0, L"UI_EVENT_NONBLOCKING");
 	eventType->InsertString(1, L"UI_EVENT_SYNCHRONOUS");
 	eventType->SetCurSel(0);
+
+	//Add Monitor Type
+	CComboBox* monitorType = (CComboBox*)GetDlgItem(IDC_COMBO_MONITOR_TYPE);
+	monitorType->InsertString(0, L"UI_MONITOR_NONBLOCKING");
+	monitorType->InsertString(1, L"UI_MONITOR_BLOCKING");
+	monitorType->SetCurSel(0);
+	m_enMonitorType = UI_MONITOR_NONBLOCKING;
 }
 
 void CUiEventsSampleDlg::UnCheckKeyboard()

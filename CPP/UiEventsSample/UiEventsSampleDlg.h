@@ -3,7 +3,8 @@
 //
 
 #pragma once
-#include "EventHandler.h"
+#include "NodeMonitorHandler.h"
+#include "SystemMonitorHandle.h"
 
 
 // CUiEventsSampleDlg dialog
@@ -42,14 +43,20 @@ protected:
 
 	//attributes
 protected:
-	CComPtr<IUiEvents> m_spEvents;
-	CEventHandler      m_evHandler;
+	CComPtr<IUiNodeMonitor> m_spNodeEvents;
+	CComPtr<IUiSystem>      m_spSystem;
+	CNodeMonitorHandler     m_evNodeHandler;
+	CSystemEventsHandler    m_evSystemHandler;
+	
+
 
 	BOOL               m_bMouse;
 	BOOL               m_bKeyboard;
+	BOOL               m_bMatchChildren;
 	CString            m_strSelector;
 	CString            m_strKey;
 	UiMouseButton      m_enMouseBtn;
 	UiKeyModifier      m_enKeyModifier;
 	UiEventType        m_enEventType;
+	UiMonitorType      m_enMonitorType;
 };
