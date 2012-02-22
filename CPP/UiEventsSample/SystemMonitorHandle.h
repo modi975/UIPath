@@ -12,8 +12,8 @@ public:
 
 public:
    BEGIN_SINK_MAP(CSystemEventsHandler)
-      SINK_ENTRY_INFO(1, __uuidof(IUiSystemEvents), 3, &CSystemEventsHandler::OnUiMouse, &FiredSystemMouseEventStruct)
-	  SINK_ENTRY_INFO(1, __uuidof(IUiSystemEvents), 4, &CSystemEventsHandler::OnUiKeyboard, &FiredSystemKeyboardEventStruct)
+      SINK_ENTRY_INFO(1, __uuidof(IUiSystemEvents), 1, &CSystemEventsHandler::OnUiMouse, &FiredSystemMouseEventStruct)
+	  SINK_ENTRY_INFO(1, __uuidof(IUiSystemEvents), 2, &CSystemEventsHandler::OnUiKeyboard, &FiredSystemKeyboardEventStruct)
    END_SINK_MAP()
 
    
