@@ -37,9 +37,11 @@
 
 #include <afxcontrolbars.h>     // MFC support for ribbons and control bars
 
+#include <atlsafe.h>
 
 
-#import "D:\\work\\projects\\Output\\bin\\Debug\\UiPath.dll"
+
+#import "C:\Projects\Scraping\Output\bin\Debug\UiPath.dll" named_guids
 using namespace UiPathLib;
 
 

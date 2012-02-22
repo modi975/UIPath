@@ -65,7 +65,7 @@ BEGIN_MESSAGE_MAP(CMiniStudioDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
     ON_BN_CLICKED(IDC_RADIO_ACTIVE, SelectedActive)
-    ON_BN_CLICKED(IDC_RADIO_WINDOW, SelectedWindow)
+    ON_BN_CLICKED(IDC_RADIO_UIOBJECT, SelectedUIObject)
     ON_BN_CLICKED(IDC_RADIO_REGION, SelectedRegion)
     ON_BN_CLICKED(IDOK, Scrape)
 END_MESSAGE_MAP()
@@ -165,9 +165,9 @@ void CMiniStudioDlg::SelectedRegion()
 {
     m_enScenario = REGION;
 }
-void CMiniStudioDlg::SelectedWindow()
+void CMiniStudioDlg::SelectedUIObject()
 {
-    m_enScenario = WINDOW;
+	m_enScenario = UIOBJECT;
 }
 
 void CMiniStudioDlg::Scrape()
@@ -175,5 +175,5 @@ void CMiniStudioDlg::Scrape()
     this->ShowWindow(SW_HIDE);
     CScrapeDlg dlg(m_enScenario, this);
     dlg.DoModal();
-    this->ShowWindow(SW_SHOW);
+	this->ShowWindow(SW_SHOW);
 }

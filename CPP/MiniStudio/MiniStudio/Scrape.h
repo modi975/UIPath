@@ -12,13 +12,18 @@ public:
 
     virtual BOOL OnInitDialog();
     void MethodChanged();
+	void EngineChanged();
     void ShowNativeOptions(int nShow);
     void ShowFullTextOptions(int nShow);
     void ShowOCROptions(int nShow);
     void GetLanguages(UiOCREngine enOCREngine);
-
+	void ScrapeUiNode();
+	void SelectRegion();
+	void SelectUIObject();
 protected:
     Scenario m_enScenario;
+	UiScrapingMethod m_enScrapingMethod;
+	CComPtr<IUiNode> spNode;
     DECLARE_MESSAGE_MAP()
 
 };

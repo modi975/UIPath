@@ -8,7 +8,7 @@
 enum Scenario
 {
     ACTIVE_WINDOW = 0,
-    WINDOW,
+    UIOBJECT,
     REGION
 };
 
@@ -35,7 +35,7 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
     void SelectedActive();
-    void SelectedWindow();
+    void SelectedUIObject();
     void SelectedRegion();
     void Scrape();
 	afx_msg HCURSOR OnQueryDragIcon();
