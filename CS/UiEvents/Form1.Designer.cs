@@ -281,16 +281,16 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(14, 193);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Monitor type";
+            this.label7.Text = "Event mode";
             // 
             // Blocking_Combo
             // 
             this.Blocking_Combo.FormattingEnabled = true;
             this.Blocking_Combo.Items.AddRange(new object[] {
-            "Non Blocking",
-            "Blocking"});
+            "Forward",
+            "Block"});
             this.Blocking_Combo.Location = new System.Drawing.Point(93, 189);
             this.Blocking_Combo.Name = "Blocking_Combo";
             this.Blocking_Combo.Size = new System.Drawing.Size(148, 21);

@@ -28,7 +28,7 @@ namespace Scrape
             OCREngine_combo.SelectedIndex = 0;
 
             //create uiNode
-            uiNode = ComFactory.Instance.NewUiNode();
+            uiNode = UiFactory.Instance.NewUiNode();
         }
 
         private void NativeScrapeOptions(bool Visibile)
@@ -127,7 +127,7 @@ namespace Scrape
             try
             {
                 //get active window
-                UiWindow uiWindow = ComFactory.Instance.NewUiWindow();
+                UiWindow uiWindow = UiFactory.Instance.NewUiWindow();
                 uiWindow.FromActiveWindow();
            
                 //initialize uiNode from active window
@@ -148,7 +148,7 @@ namespace Scrape
         private void Scrape_Click(object sender, EventArgs e)
         {
             //Create UiScrapeOptions object
-            UiScrapeOptions uiScrapeOptions = ComFactory.Instance.NewUiScrapeOptions();
+            UiScrapeOptions uiScrapeOptions = UiFactory.Instance.NewUiScrapeOptions();
 
             //Set scraping options
             uiScrapeOptions.Set("scrapingmethod", ScrapeMethod);
@@ -217,7 +217,7 @@ namespace Scrape
             OCREngine = (UiOCREngine)OCREngine_combo.SelectedIndex;
             
             //get OCR specific languages
-            UiSystem uiSystem = ComFactory.Instance.NewUiSystem();
+            UiSystem uiSystem = UiFactory.Instance.NewUiSystem();
             try
             {
                 string[] languages = uiSystem.GetOCRLanguages(OCREngine);

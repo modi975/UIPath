@@ -47,8 +47,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UiPathNet">
-      <HintPath>..\UiPathNet.dll</HintPath>
+    <Reference Include="UiPath.Interop, Version=5.0.4442.34443, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>UiPath.Interop.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

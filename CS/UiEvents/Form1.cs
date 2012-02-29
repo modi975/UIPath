@@ -42,8 +42,8 @@ namespace UiEventsSample
                 uiSystemEvents.OnUiMouse += new IUiSystemEvents_OnUiMouseEventHandler(UiSystemEvents_OnUiMouseEvent);
                 UiMouseButton msBtn = (UiMouseButton)BTN_Combo.SelectedIndex;
                 UiKeyModifier kModif = (UiKeyModifier)KeyModifier_Combo.SelectedIndex;
-                UiMonitorType monitorType = (UiMonitorType)Blocking_Combo.SelectedIndex;
-                uiSystemEvents.MonitorClick(msBtn, kModif, monitorType);
+                UiEventMode eventMode = (UiEventMode)Blocking_Combo.SelectedIndex;
+                uiSystemEvents.MonitorClick(msBtn, kModif, eventMode);
             }
             else
             {
@@ -153,24 +153,24 @@ namespace UiEventsSample
             LogTextBox.AppendText("OnMonitorHotkeyEvent fired : hwnd: " + hWnd + ", x: " + x + ", y: " + y + ", id:" + id + "\r\n");
         }
 
-        void uiNodeMonitor_OnUiMouseEvent(int monitorID, int hWnd, int x, int y, out bool Forward)
+        void uiNodeMonitor_OnUiMouseEvent(int monitorID, int hWnd, int x, int y, out UiEventMode Forward)
         {
             LogTextBox.AppendText("OnUiMouseEvent fired : monitorID: " + monitorID + ", hwnd: " + hWnd + ", x: " + x + ", y:" + y + "\r\n");
             //Pass the event to control
             if (Blocking_Combo.SelectedIndex == 0)
-                Forward = true;
+                Forward = UiEventMode.UI_EVENT_FORWARD;
             else
-                Forward = false;
+                Forward = UiEventMode.UI_EVENT_BLOCK;
         }
 
-        void uiNodeMonitor_OnUiKeyboardEvent(int monitorID, int hWnd, int ScanCode, out bool Forward)
+        void uiNodeMonitor_OnUiKeyboardEvent(int monitorID, int hWnd, int ScanCode, out UiEventMode Forward)
         {
             LogTextBox.AppendText("OnUiKeyboardEvent fired : monitorID: " + monitorID + ", hwnd: " + hWnd + ", ScanCode: " + ScanCode + "\r\n");
             //Pass the event to control
             if (Blocking_Combo.SelectedIndex == 0)
-                Forward = true;
+                Forward = UiEventMode.UI_EVENT_FORWARD;
             else
-                Forward = false;
+                Forward = UiEventMode.UI_EVENT_BLOCK;
         }
 
     }
