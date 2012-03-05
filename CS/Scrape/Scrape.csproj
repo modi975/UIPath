@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="UiPath.Interop, Version=5.0.4442.34443, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>UiPath.Interop.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
