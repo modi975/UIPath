@@ -176,7 +176,7 @@ void CUiEventsSampleDlg::AttachToEvent()
 				m_spNodeEvents.Release();		
 			}
 			m_spNodeEvents.CoCreateInstance(CLSID_UiNodeMonitor);
-
+			m_evNodeHandler.m_enEventMode = m_enEventMode;
 			//Connect to UiNodeMonitor object
 			m_evNodeHandler.DispEventAdvise(m_spNodeEvents);
 			//a selector was inserted
@@ -206,7 +206,7 @@ void CUiEventsSampleDlg::AttachToEvent()
 
 			if(m_bMouse)
 			{
-				m_spSystem->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enMonitorType);
+				m_spSystem->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enEventMode);
 			}
 			else
 			{
@@ -263,7 +263,7 @@ HRESULT CUiEventsSampleDlg::GetEventInfo()
 	m_enEventType = (UiEventType)eventType->GetCurSel();
 
 	m_bMatchChildren = ((CButton*)GetDlgItem(IDC_CHECK_INCLUDE_CHILDREN))->GetCheck();
-	m_enMonitorType = (UiMonitorType)((CComboBox*)GetDlgItem(IDC_COMBO_MONITOR_TYPE))->GetCurSel();
+	m_enEventMode = (UiEventMode)((CComboBox*)GetDlgItem(IDC_COMBO_MONITOR_TYPE))->GetCurSel();
 	return hr;
 }
 
@@ -364,16 +364,16 @@ void CUiEventsSampleDlg::UpdateUI()
 
 	//Add Event type
 	CComboBox* eventType = (CComboBox*)GetDlgItem(IDC_COMBO_EVENT_TYPE);
-	eventType->InsertString(0, L"UI_EVENT_NONBLOCKING");
+	eventType->InsertString(0, L"UI_EVENT_ASYNCHRONOUS");
 	eventType->InsertString(1, L"UI_EVENT_SYNCHRONOUS");
 	eventType->SetCurSel(0);
 
 	//Add Monitor Type
 	CComboBox* monitorType = (CComboBox*)GetDlgItem(IDC_COMBO_MONITOR_TYPE);
-	monitorType->InsertString(0, L"UI_MONITOR_NONBLOCKING");
-	monitorType->InsertString(1, L"UI_MONITOR_BLOCKING");
+	monitorType->InsertString(0, L"UI_EVENT_FORWARD");
+	monitorType->InsertString(1, L"UI_EVENT_BLOCK");
 	monitorType->SetCurSel(0);
-	m_enMonitorType = UI_MONITOR_NONBLOCKING;
+	m_enEventMode = UI_EVENT_FORWARD;
 }
 
 void CUiEventsSampleDlg::UnCheckKeyboard()

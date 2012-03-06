@@ -58,5 +58,5 @@ protected:
 	UiMouseButton      m_enMouseBtn;
 	UiKeyModifier      m_enKeyModifier;
 	UiEventType        m_enEventType;
-	UiMonitorType      m_enMonitorType;
+	UiEventMode        m_enEventMode;
 };

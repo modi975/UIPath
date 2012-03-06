@@ -39,7 +39,7 @@ namespace UiEventsSample
             if (Monitor.SelectedIndex == 0)
             {
                 //register for mouse monitoring
-                uiSystemEvents.OnUiMouse += new IUiSystemEvents_OnUiMouseEventHandler(UiSystemEvents_OnUiMouseEvent);
+                uiSystemEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(UiSystemEvents_OnUiMouseEvent);
                 UiMouseButton msBtn = (UiMouseButton)BTN_Combo.SelectedIndex;
                 UiKeyModifier kModif = (UiKeyModifier)KeyModifier_Combo.SelectedIndex;
                 UiEventMode eventMode = (UiEventMode)Blocking_Combo.SelectedIndex;
@@ -48,7 +48,7 @@ namespace UiEventsSample
             else
             {
                 //register for hotkey monitoring
-                uiSystemEvents.OnUiKeyboard += new IUiSystemEvents_OnUiKeyboardEventHandler(UiSystemEvents_OnUiKeyboardEvent);
+                uiSystemEvents.OnUiKeyboard += new IUiEvents_OnUiKeyboardEventHandler(UiSystemEvents_OnUiKeyboardEvent);
                 string key = KeyTextBox.Text;
                 if(key == "")
                 {
@@ -106,13 +106,13 @@ namespace UiEventsSample
             if (Monitor.SelectedIndex == 0)
             {
                 //register for mouse monitoring
-                uiNodeEvents.OnUiMouse += new IUiNodeMonitorEvents_OnUiMouseEventHandler(uiNodeMonitor_OnUiMouseEvent);
+                uiNodeEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(uiNodeMonitor_OnUiMouseEvent);
                 uiNodeEvents.MonitorClick((UiMouseButton)BTN_Combo.SelectedIndex, (UiKeyModifier)KeyModifier_Combo.SelectedIndex, (UiEventType)EventType_Combo.SelectedIndex, Selector, MatchChildren, null);
             }
             else
             {
                 //register for keyboard monitoring
-                uiNodeEvents.OnUiKeyboard += new IUiNodeMonitorEvents_OnUiKeyboardEventHandler(uiNodeMonitor_OnUiKeyboardEvent);
+                uiNodeEvents.OnUiKeyboard += new IUiEvents_OnUiKeyboardEventHandler(uiNodeMonitor_OnUiKeyboardEvent);
                 string key = KeyTextBox.Text;
                 if (key == "")
                 {
@@ -143,34 +143,34 @@ namespace UiEventsSample
             
         }
 
-        void UiSystemEvents_OnUiMouseEvent(int hWnd, int x1, int y1, int x2, int y2)
+        void UiSystemEvents_OnUiMouseEvent(UiEventInfo eventInfo)
         {
-            LogTextBox.AppendText("OnMonitorMouseEvent fired : hwnd: " + hWnd + ", x1: " + x1 + ", y1: " + y1 + ", x2:" + x2 + ", y2: " + y2 + "\r\n");
+            LogTextBox.AppendText("OnMonitorMouseEvent fired : hwnd: " + eventInfo.targetWindow.hWnd + ", x1: " + eventInfo.position.left + ", y1: " + eventInfo.position.top + ", x2:" + eventInfo.position.right + ", y2: " + eventInfo.position.bottom + "\r\n");
         }
 
-        void UiSystemEvents_OnUiKeyboardEvent(int hWnd, int x, int y, int id)
+        void UiSystemEvents_OnUiKeyboardEvent(UiEventInfo eventInfo)
         {
-            LogTextBox.AppendText("OnMonitorHotkeyEvent fired : hwnd: " + hWnd + ", x: " + x + ", y: " + y + ", id:" + id + "\r\n");
+            LogTextBox.AppendText("OnMonitorHotkeyEvent fired  x: " + eventInfo.position.left + ", y: " + eventInfo.position.top + ", id:" + eventInfo.monitorID + "\r\n");
         }
 
-        void uiNodeMonitor_OnUiMouseEvent(int monitorID, int hWnd, int x, int y, out UiEventMode Forward)
+        void uiNodeMonitor_OnUiMouseEvent(UiEventInfo eventInfo)
         {
-            LogTextBox.AppendText("OnUiMouseEvent fired : monitorID: " + monitorID + ", hwnd: " + hWnd + ", x: " + x + ", y:" + y + "\r\n");
+            LogTextBox.AppendText("OnUiMouseEvent fired : monitorID: " + eventInfo.monitorID + ", hwnd: " + eventInfo.targetWindow.hWnd + ", x: " + eventInfo.position.left  + ", y:" + eventInfo.position.top + "\r\n");
             //Pass the event to control
             if (Blocking_Combo.SelectedIndex == 0)
-                Forward = UiEventMode.UI_EVENT_FORWARD;
+                eventInfo.forward = UiEventMode.UI_EVENT_FORWARD;
             else
-                Forward = UiEventMode.UI_EVENT_BLOCK;
+                eventInfo.forward = UiEventMode.UI_EVENT_BLOCK;
         }
 
-        void uiNodeMonitor_OnUiKeyboardEvent(int monitorID, int hWnd, int ScanCode, out UiEventMode Forward)
+        void uiNodeMonitor_OnUiKeyboardEvent(UiEventInfo eventInfo)
         {
-            LogTextBox.AppendText("OnUiKeyboardEvent fired : monitorID: " + monitorID + ", hwnd: " + hWnd + ", ScanCode: " + ScanCode + "\r\n");
+            LogTextBox.AppendText("OnUiKeyboardEvent fired : monitorID: " + eventInfo.monitorID + ", hwnd: " + eventInfo.targetWindow.hWnd + ", ScanCode: " + eventInfo.scanCode + "\r\n");
             //Pass the event to control
             if (Blocking_Combo.SelectedIndex == 0)
-                Forward = UiEventMode.UI_EVENT_FORWARD;
+                eventInfo.forward = UiEventMode.UI_EVENT_FORWARD;
             else
-                Forward = UiEventMode.UI_EVENT_BLOCK;
+                eventInfo.forward = UiEventMode.UI_EVENT_BLOCK;
         }
 
     }
