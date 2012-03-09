@@ -1,7 +1,7 @@
 // ClickNodeDlg.cpp : implementation file
 #include "stdafx.h"
-#include "ClickNode.h"
-#include "ClickNodeDlg.h"
+#include "WriteText.h"
+#include "WriteTextDlg.h"
 #include "afxdialogex.h"
 
 #ifdef _DEBUG
@@ -15,6 +15,7 @@ CClickNodeDlg::CClickNodeDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CClickNodeDlg::IDD, pParent)
     , m_hwnd(_T(""))
     , m_selector(_T(""))
+    , m_textToType(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -24,9 +25,8 @@ void CClickNodeDlg::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
     DDX_Text(pDX, IDC_HWND_EDIT, m_hwnd);
     DDX_Text(pDX, IDC_SELECTOR_EDIT, m_selector);
-    DDX_Control(pDX, IDC_MOUSE_BTN_COMBO, m_mouseBtnCombo);
-    DDX_Control(pDX, IDC_CLICK_TYPE_COMBO, m_clickTypeCombo);
     DDX_Control(pDX, IDC_INPUT_METHOD_COMBO, m_inputMethodCombo);
+    DDX_Text(pDX, IDC_TEXT_EDIT, m_textToType);
 }
 
 BEGIN_MESSAGE_MAP(CClickNodeDlg, CDialogEx)
@@ -47,15 +47,6 @@ BOOL CClickNodeDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-
-    m_mouseBtnCombo.AddString(_T("Left"));
-    m_mouseBtnCombo.AddString(_T("Middle"));
-    m_mouseBtnCombo.AddString(_T("Right"));
-    m_mouseBtnCombo.SetCurSel(0);
-
-    m_clickTypeCombo.AddString(_T("Single"));
-    m_clickTypeCombo.AddString(_T("Double"));
-    m_clickTypeCombo.SetCurSel(0);
 
     m_inputMethodCombo.AddString(_T("Hardware Events"));
     m_inputMethodCombo.AddString(_T("Win32 Messages"));
@@ -149,8 +140,6 @@ void CClickNodeDlg::OnBnClickedClickBtn()
 
     UpdateData();
 
-    UiMouseButton mouseBtn  = (UiMouseButton)m_mouseBtnCombo.GetCurSel();
-    UiClickType   clickType = (UiClickType)m_clickTypeCombo.GetCurSel();
     UiInputMethod inputMeth = (UiInputMethod)m_inputMethodCombo.GetCurSel();
 
     ShowWindow(SW_HIDE);
@@ -159,7 +148,14 @@ void CClickNodeDlg::OnBnClickedClickBtn()
     {
         spNode->timeout = 1000;
         spNode->FromSelector(_bstr_t(m_selector));
-        spNode->Click(2, 2, clickType, mouseBtn, inputMeth);
+
+        if (UI_HARDWARE_EVENTS == inputMeth)
+        {
+            spNode->Click(2, 2, UI_CLICK_SINGLE, UI_BTN_LEFT, inputMeth);
+        }
+
+        spNode->WriteText(_bstr_t(m_textToType), inputMeth);
+        
     }
     catch (_com_error e)
     {
