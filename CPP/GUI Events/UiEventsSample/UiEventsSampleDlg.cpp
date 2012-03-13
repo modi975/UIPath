@@ -164,54 +164,81 @@ HCURSOR CUiEventsSampleDlg::OnQueryDragIcon()
 
 void CUiEventsSampleDlg::AttachToEvent()
 {
-	HRESULT hr = GetEventInfo();
-	if(!FAILED(hr))
+	CButton* attachButton = (CButton*)GetDlgItem(ID_ATTACH);
+	CString buttonText;
+	attachButton->GetWindowText(buttonText);
+	if(buttonText == _T("Attach to event"))
 	{
-		if(hr == S_OK)
+		attachButton->SetWindowText(_T("Stop event"));
+		HRESULT hr = GetEventInfo();
+		if(!FAILED(hr))
 		{
-			if( m_spNodeEvents!= nullptr)
+			if(hr == S_OK)
 			{
-				m_evNodeHandler.DispEventUnadvise(m_spNodeEvents);
-				m_spNodeEvents->StopMonitoring();
-				m_spNodeEvents.Release();		
-			}
-			m_spNodeEvents.CoCreateInstance(CLSID_UiNodeMonitor);
-			m_evNodeHandler.m_enEventMode = m_enEventMode;
-			//Connect to UiNodeMonitor object
-			m_evNodeHandler.DispEventAdvise(m_spNodeEvents);
-			//a selector was inserted
-			if(m_bMouse)
-			{
-				m_spNodeEvents->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, m_bMatchChildren, NULL);
+				if( m_spNodeEvents!= nullptr)
+				{
+					m_evNodeHandler.DispEventUnadvise(m_spNodeEvents);
+					m_spNodeEvents->StopMonitoring();
+					m_spNodeEvents.Release();		
+				}
+				m_spNodeEvents.CoCreateInstance(CLSID_UiNodeMonitor);
+				m_evNodeHandler.m_enEventMode = m_enEventMode;
+				//Connect to UiNodeMonitor object
+				m_evNodeHandler.DispEventAdvise(m_spNodeEvents);
+				//a selector was inserted
+				if(m_bMouse)
+				{
+					m_spNodeEvents->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, m_bMatchChildren, NULL);
+				}
+				else
+				{
+					m_spNodeEvents->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, m_bMatchChildren);
+				}
 			}
 			else
 			{
-				m_spNodeEvents->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier, m_enEventType, (_bstr_t)m_strSelector, m_bMatchChildren);
+				//system monitor
+
+				if( m_spSystem!= nullptr)
+				{
+					m_evSystemHandler.DispEventUnadvise(m_spSystem);
+					m_spSystem->StopMonitoring();
+					m_spSystem.Release();		
+				}
+				m_spSystem.CoCreateInstance(CLSID_UiSystem);
+
+				//Connect to UiSystem object
+				m_evSystemHandler.DispEventAdvise(m_spSystem);
+
+				if(m_bMouse)
+				{
+					m_spSystem->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enEventMode);
+				}
+				else
+				{
+					m_spSystem->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier);
+				}
 			}
 		}
 		else
 		{
-			//system monitor
-
-			if( m_spSystem!= nullptr)
-			{
-				m_evSystemHandler.DispEventUnadvise(m_spSystem);
-				m_spSystem->StopMonitoring();
-				m_spSystem.Release();		
-			}
-			m_spSystem.CoCreateInstance(CLSID_UiSystem);
-
-			//Connect to UiSystem object
-			m_evSystemHandler.DispEventAdvise(m_spSystem);
-
-			if(m_bMouse)
-			{
-				m_spSystem->MonitorClick(m_enMouseBtn, m_enKeyModifier, m_enEventMode);
-			}
-			else
-			{
-				m_spSystem->MonitorHotkey((_bstr_t)m_strKey, m_enKeyModifier);
-			}
+			attachButton->SetWindowText(_T("Attach to event"));
+		}
+	}
+	else
+	{
+		attachButton->SetWindowText(_T("Attach to event"));
+		if( m_spNodeEvents != nullptr)
+		{
+			m_evNodeHandler.DispEventUnadvise(m_spNodeEvents);
+			m_spNodeEvents->StopMonitoring();
+			m_spNodeEvents.Release();		
+		}
+		if( m_spSystem != nullptr)
+		{
+			m_evSystemHandler.DispEventUnadvise(m_spSystem);
+			m_spSystem->StopMonitoring();
+			m_spSystem.Release();		
 		}
 	}
 	
