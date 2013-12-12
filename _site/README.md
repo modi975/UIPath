@@ -1,4 +1,0 @@
-UiPath
-======
-
-UiPath Samples
