@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="fuelux" lang="en" charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Installing the browser extensions in Chrome and Firefox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
+	<meta name="keywords" content="UiPath Studio, ui automation, screen scraping, web scraping, data scraping, text capture, workflow automation, web automation, report mining">
+	
+	<!-- Le styles -->
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux.css" rel="stylesheet" />
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+	<script src="http://fuelcdn.com/fuelux/2.2/loader.min.js" type="text/javascript"></script> 
+    <link href="/css/docs.css" rel="stylesheet">
+	<link href="/js/google-code-prettify/prettify.css" rel="stylesheet">	
+	
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/style-v.4.css" rel="stylesheet">
+	<link href="/css/fonts.css" rel="stylesheet">
+	
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/favicon.ico">    
+  </head>
+<body id="body" data-spy="scroll" data-target=".subnav" data-offset="50" style="background: none #f5f5f5;">
+<div id="container" class="">
+    <div id="header-container">
+        <div id="header">
+			<a href="/" class="link_logo" id="logo-link" alt="logo"><img src="/img/logo_small.png" class="logo_holder" alt=""><span id="header-logo-text">uipath</span></a>
+			<span class="header_small_motto" id="header-motto">Understands User Interface</span>
+			<div class="navigation">
+				<ul>
+					<li><a href="http://www.uipath.com/" title="Product Site">Product Site</a></li>
+					<li><a href="https://github.com/Deskover/UiPath/wiki" title="Documentation Wiki">Documentation Wiki</a></li>
+				</ul>
+			</div>       
+		</div>
+    </div>
+</div>
+
+
+<div class="home_content">
+	<h1 style="text-align: center;">Installing the browser extensions in Chrome and Firefox</h2>
+	<div class="tab_description">	  		
+		<div style="margin: 20px;">
+			<h2>Overview</h2>
+
+<p>The UiPath browser extensions play a very important role in isolating and automating UI elements in Web pages. All the UiPath features, such as the visual selection, the UiNode object and all its live attributes, or the monitoring the user interaction through UiEvents, are only possible in browsers through these extensions.
+When you install UiStudio, these extensions are automatically enabled in Chrome and Firefox. However, you might want to know how to enable them manually, because problems may occur and you must know how to deal with them.</p>
+
+<p>In this article, we will learn how to enable these features for Chrome and Firefox by installing the browser extensions explicitly.</p>
+
+<h2>Installing the Google Chrome extension</h2>
+
+<h3>Manual installation</h3>
+
+<p>Installing the UiPath extension for the Google Chrome browser is fairly easy. If you did it before, that is...</p>
+
+<p>OK, so here are the steps to enable the UiPath browser extension:</p>
+
+<ol>
+<li>Click the <em>Settings</em> icon in the upper-right part of the Chrome main window, then choose <em>Tools</em> and <em>Extensions</em>, as shown in the figure below:
+<img src="/img/blog/Chrome_step_1.jpg" alt="&quot;Chrome Step 1&quot;"></li>
+<li>You should see the list of extensions in Google Chrome. Now you have to add the UiPath extensions to this list. To find our extension, go to the installation directory where you installed UiPath. Let&#39;s say it&#39;s the default location, like <em>&quot;C:\Program Files\UiPath Studio\v6&quot;</em>. You will notice a <em>&quot;BrowserExtensions&quot;</em> subdirectory, which you will navigate into and find a file named <em>&quot;uiPathExt.crx&quot;</em>. You have to drag this file in Windows Explorer using the mouse and drop it into the list of Chrome extensions, as shown below:
+<img src="/img/blog/Chrome_step_2.jpg" alt="&quot;Chrome Step 2&quot;"></li>
+<li>The Chrome extension is now successfully installed and you can automate Web pages in Chrome using UiPath.</li>
+</ol>
+
+<h3>Automated deployment</h3>
+
+<p>If you want to deploy the Chrome extension with your product setup package, all you have to do is add the following registry content on the target machine:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Windows Registry Editor Version 5.00
+
+[Software\Google\Chrome\Extensions\mfbmkebgbbbcpfeppkndaicpmlgijlke]
+&quot;path&quot;=&quot;[INSTALLDIR]uiPathExt.crx&quot;
+&quot;version&quot;=&quot;5.0.0&quot;
+</code></pre></div>
+<p><em>&quot;[INSTALLDIR]&quot;</em> is the target installation directory, for example <em>&quot;c:\program files\AnySoft\AnyProduct\&quot;</em>. If you are working with MSI packages, then the <em>&quot;[INSTALLDIR]&quot;</em> itself will point to the actual target directory.</p>
+
+<h3>Rebranding</h3>
+
+<p>This section will help you deploy the UiPath Chrome extension under a different name. Just follow these steps to accomplish this:</p>
+
+<ol>
+<li> Go to the <em>&quot;BrowserExtensions&quot;</em> subdirectory in the UiPath installation directory and you will find the Chrome extension as the <em>&quot;uiPathExt.crx&quot;</em> file. Copy this file somewhere else and rename it to <em>&quot;uiPathExt.zip&quot;</em>.</li>
+<li> Expand the ZIP archive into a directory named as you like. Let&#39;s say for example that we extract into <em>&quot;c:\temp\myChromeExt&quot;</em>.</li>
+<li> Browse this directory and you will find the version information file under the name of <em>&quot;manifest.json&quot;</em>. Open it using a text editor and modify the <strong>name</strong>, <strong>version</strong> and <strong>description</strong> fields to suit your needs.</li>
+<li> You can modify the icons that will appear in the list of extensions by replacing the three PNG files: <em>&quot;uiPath16.png&quot;</em> for the icon with 16x16 pixel resolution, <em>&quot;uiPath48.png&quot;</em> for 48x48, and <em>&quot;uiPath128.png&quot;</em> for the big 128x128 icon.</li>
+<li> Now that the extension is rebranded, it will have to be re-packaged into a new CRX file. For that, you will have to go to the <em>Extensions</em> page in Chrome, as described in the <strong>Manual installation</strong> section. Then, you will press the <em>Pack extension...</em> button and you will see the following screen:
+<img src="/img/blog/Chrome_rebranding_1.jpg" alt="&quot;Chrome Rebranding 1&quot;"></li>
+<li> In the <strong>Extension root directory</strong> field, you must write the path to your rebranded extension files. In our example, it&#39;s the <em>&quot;c:\temp\myChromeExt&quot;</em> directory from step 2.</li>
+<li> You do not have a <strong>Private key file</strong> yet. Leave this field blank for now, this will tell Google Chrome that you need such a file and it will create one for you.</li>
+<li> Click the <strong>Pack Extension</strong> button. Google Chrome will respond with a dialog that looks like this:
+<img src="/img/blog/Chrome_rebranding_2.jpg" alt="&quot;Chrome Rebranding 2&quot;"></li>
+<li> The CRX file is the rebranded Chrome extension. The PEM file is the private key and you must keep it, it uniquely identifies your extension. Next time you pack your extension, fill in the <strong>Private key file</strong> field at step 7 with the path to the PEM file.</li>
+<li><p>Now that you have the private key (PEM) file, you can pack the Chrome extension automatically using this command line:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">&lt;Path_to_Chrome.exe&gt; --pack-extension=&lt;Path_to_extension_directory&gt; --pack-extension-key=&lt;Path_to_private_key_file&gt;
+</code></pre></div>
+<p><em>Example:</em></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">&quot;C:\programs\chrome.exe&quot; --pack-extension=&quot;c:\temp\myChromeExt&quot; --pack-extension-key=&quot;c:\temp\myChromeExt.pem&quot;
+</code></pre></div></li>
+</ol>
+
+<h3>Troubleshooting</h3>
+
+<p>Sometimes, the automatic installation of the Chrome extension may fail. You will notice this through the fact that the on-screen selection will not work in Chrome after the installation. </p>
+
+<p>A very common cause for this problem is the manual removal of the UiPath extension from the list. Whenever you remove an extension explicitly, Chrome stores its identifier into a &quot;black list&quot;, which prevents the extension from re-installing itself automatically. The solution is to re-install it manually via drag-and-drop, like we described above in the <strong>Manual installation</strong> section.</p>
+
+<h2>Installing the Mozilla Firefox extension</h2>
+
+<h3>Manual installation</h3>
+
+<p>The Firefox extension must be installed in a totally different manner: through Windows Registry files. For this operation, it is required that you have Administrator privileges enabled for your current Windows account.</p>
+
+<p>First, you have to know where UiPath is installed. Let&#39;s say it&#39;s in <em>&quot;C:\Program Files\UiPath Studio\v6&quot;</em>. Then the browser extension directory will be <em>&quot;C:\Program Files\UiPath Studio\v6\BrowserExtensions&quot;</em>. Considering these, we have the following REG file content:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\Software\Mozilla\Firefox\Extensions]
+&quot;info@uipath.com&quot;=&quot;C:\Program Files\UiPath Studio\v6\BrowserExtension&quot;
+</code></pre></div>
+<p>Copy this text content into the Clipboard and save it into a file named <em>&quot;Install<em>UiPath</em>for_Firefox.REG&quot;</em> (or any other suggestive name that you like) using a text editor, such as Notepad. Notice the blank line between <em>&quot;Windows Registry Editor Version 5.00&quot;</em> and the text that follows, it is important.</p>
+
+<p>Then, open it in Windows Explorer via double click or the <em><Enter></em> key and restart Firefox (if opened). This will merge the registry values contained by the file into the Windows Registry, thus enabling the UiPath extension in Firefox.</p>
+
+<h3>Automated deployment</h3>
+
+<p>This registry content can also be used in your setup package for deploying the UiPath Firefox extension on the target machine.</p>
+
+<h3>Rebranding</h3>
+
+<p>This section will help you change the name and the company under which the UiPath extension will be listed in Mozilla Firefox.</p>
+
+<ol>
+<li>Go to the <em>&quot;BrowserExtensions&quot;</em> subdirectory in the UiPath installation directory and you will find the Firefox extension, consisting of the following files and directories: 
+
+<ul>
+<li>The <em>&quot;chrome&quot;</em> directory. </li>
+<li>The <em>&quot;plugins&quot;</em> directory. </li>
+<li>The <em>&quot;chrome.manifest&quot;</em> file. </li>
+<li>The <em>&quot;install.rdf&quot;</em> file. 
+Take all those files and copy them somewhere else, into a temporary directory. Let&#39;s say for example that we copy them in <em>&quot;c:\temp\myFirefoxExt&quot;</em>.</li>
+</ul></li>
+<li>Open the <em>&quot;install.rdf&quot;</em> file in a text editor. You will notice that it&#39;s written in the XML format. Here are the important sections:
+
+<ul>
+<li><strong>em:id</strong> - it&#39;s the string identifier of your extension. For UiPath, it&#39;s <em>info@uipath.com</em>. Let&#39;s say for example that your string identifier is <em>steve@devs.com</em>.</li>
+<li><strong>em:name</strong> - the name of your extension.</li>
+<li><strong>em:creator</strong> - the name of your company.</li>
+<li><strong>em:description</strong> - just a brief description of your Firefox extension.</li>
+<li>under the <strong>em:targetApplication</strong> section, you will find another XML entry named <strong>em:id</strong>. That string is called a <em>globally unique identifier</em> (GUID) and it&#39;s a unique characteristic of your extension. You will have to generate another GUID for making sure that you have a one-of-a-kind extension.</li>
+</ul></li>
+<li>For deploying your newly rebranded extension, you will need to generate a registry file similar to the one in the <strong>Installation</strong> section. Considering our example where the identifier of your extension is <em>steve@devs.com</em>, the REG file used for deployment should look like this:</li>
+</ol>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\Software\Mozilla\Firefox\Extensions]
+&quot;steve@devs.com&quot;=&quot;c:\programs\MyProduct\MyFirefoxExtension&quot;
+</code></pre></div>
+<p>That&#39;s it, we hope that UiPath is working now in Chrome and Firefox and that you are enjoying all the features in our product!</p>
+ 					
+		</div>			
+	</div>			
+</div>		
+
+<footer class="footer">
+  <div class="container">
+	<p class="pull-right">  |  <a href="#">Back to top</a>  |   </p>        
+	<p>Page last generated on September 19, 2013</p>
+  </div>
+</footer>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>    
+   	<script src="/js/custom.js" type="text/javascript"></script>	
+
+	<script type="text/javascript">
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'screenscraper'; // required: replace example with your forum shortname
+
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function () {
+			var s = document.createElement('script'); s.async = true;
+			s.type = 'text/javascript';
+			s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+			(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+	</script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-65056-8']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+  </body>
+</html>

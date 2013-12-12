@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="fuelux" lang="en" charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+    <title>UiExplorer &mdash; the UI and Selectors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
+	<meta name="keywords" content="UiPath Studio, ui automation, screen scraping, web scraping, data scraping, text capture, workflow automation, web automation, report mining">
+	
+	<!-- Le styles -->
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux.css" rel="stylesheet" />
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+	<script src="http://fuelcdn.com/fuelux/2.2/loader.min.js" type="text/javascript"></script> 
+    <link href="/css/docs.css" rel="stylesheet">
+	<link href="/js/google-code-prettify/prettify.css" rel="stylesheet">	
+	
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/style-v.4.css" rel="stylesheet">
+	<link href="/css/fonts.css" rel="stylesheet">
+	
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/favicon.ico">    
+  </head>
+<body id="body" data-spy="scroll" data-target=".subnav" data-offset="50" style="background: none #f5f5f5;">
+<div id="container" class="">
+    <div id="header-container">
+        <div id="header">
+			<a href="/" class="link_logo" id="logo-link" alt="logo"><img src="/img/logo_small.png" class="logo_holder" alt=""><span id="header-logo-text">uipath</span></a>
+			<span class="header_small_motto" id="header-motto">Understands User Interface</span>
+			<div class="navigation">
+				<ul>
+					<li><a href="http://www.uipath.com/" title="Product Site">Product Site</a></li>
+					<li><a href="https://github.com/Deskover/UiPath/wiki" title="Documentation Wiki">Documentation Wiki</a></li>
+				</ul>
+			</div>       
+		</div>
+    </div>
+</div>
+
+
+<div class="home_content">
+	<h1 style="text-align: center;">UiExplorer &mdash; the UI and Selectors</h2>
+	<div class="tab_description">	  		
+		<div style="margin: 20px;">
+			<h2>What is UiExplorer?</h2>
+
+<p>UiExplorer is a tool for (guess what!) inspecting applications&#39; UI hierarchy, for obtaining or improving <a href="https://github.com/Deskover/UiPath/wiki/Selector">selectors</a> that <a href="https://github.com/Deskover/UiPath/wiki/UI-Automation-API-reference">our library</a> identifies <a href="https://github.com/Deskover/UiPath/wiki/Uinode">UiNodes</a> with.</p>
+
+<p>Most often, the selectors you are working with will have been composed by the <a href="https://github.com/Deskover/UiPath/wiki/Uinode#wiki-GetSelector">GetSelector</a> method of UiNode. 
+Just as often, they should be sufficient for your needs, as is the case in apps with static user interface. 
+However, some programs have volatile layout &ndash;because of nodes with unsteady attribute values; such is the case of web-apps, but not only&ndash; that make automatic generation of <em>reliable</em> selectors impossible &mdash; GetSelector can&#39;t predict how an attribute&#39;s value will change along the runtime, or between runs of an app.</p>
+
+<p>We know editing selectors in these cases can be bothersome, if not difficult and time consuming &mdash; we built UiExplorer to make quick work of this task: it conveniently exposes node values, position, and can sometimes even repair selectors automatically, with minimal input from the user.</p>
+
+<h2>Layout and States</h2>
+
+<p>UiExplorer operates in two modes: <em>Top-Level</em> and <em>Selector-Editing</em>. </p>
+
+<p>The Top-Level view is the state that UiExplorer normally starts up in. 
+In it, you can explore the Ui-Tree of apps, and see node values in the Runtime Attributes view. One of its uses is locating nodes that are hard to <a href="https://github.com/Deskover/UiPath/wiki/Uinode#wiki-SelectInteractive">select interactively</a>. 
+You can go from Selector-Editing mode into Top-Levels using <em>View &#8594; Top Levels</em>.</p>
+
+<table style="table-layout: fixed; width: 100%; margin: 0.7em 0">
+<thead>
+<tr><td colspan=3><span style="display: block; text-align: center"><strong>UiExplorer's States</strong></td></tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Top-Level-View.png" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Selector-Edit-Mode children.png" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Edit-Selector-Mode no-children.png" /></td>
+</tr>
+
+<tr>
+<td><span style="display: block; text-align: center">Top-Level View</span></td>
+<td><span style="display: block; text-align: center">Editing w/ Ui-Tree</span></td>
+<td><span style="display: block; text-align: center">Editing w/o Ui-Tree</span></td>
+</tr>
+</tbody>
+</table>
+
+<p>The second state is Selector-Editing mode; UiExplorer opens in it when you chose to edit a selector activity property, in <a href="https://github.com/Deskover/UiPath/wiki/UiPath-Studio">UiPath Studio</a>. This state allows you to choose which nodes &ndash;in the parent hierarchy of the UiNode of interest&ndash; you want to include in the selector, or to alter some tags&#39; attributes. You can enter Selector-Editing mode in a number of ways:</p>
+
+<ul>
+<li>From the Ui-Tree view, for example by double-clicking</li>
+<li>Using <a href="https://github.com/Deskover/UiPath/wiki/Uinode#wiki-SelectInteractive">interactive selection</a> (arrow button in the toolbar)</li>
+<li>Entering a selector in the <em>Edit Manually</em> dialog (opened by pressing the pencil button in the toolbar)</li>
+</ul>
+
+<p>In Selector-Editing mode, the Ui-Tree will initially be hidden. You can make it visible using <em>View &#8594; Show Children</em>. The Ui-Tree&#39;s top-level will be that of the UiNode&#39;s <em>who&#39;s selector you are editing</em>. You can hide the Ui-Tree the same way you opened it (View &#8594; Hide Children).</p>
+
+<p>As you can see in the images, UiExplorer has five views (not all of which are visible at all times):</p>
+
+<ol>
+<li><strong>The Selector View</strong> (top-left) displays selectors, their efficiency (how fast the node is obtained using the <a href="https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindFirst">FindFirst</a> method), and sometimes error messages.</li>
+<li><strong>The Hierarchy View</strong> (middle-left) is only visible when in <em>Selector-Editing</em> mode, and shows the parent hierarchy of the UiNode matched by the currently edited selector.</li>
+<li><strong>The Ui-Tree View</strong> (bottom-left) is used for navigating the UI hierarchy. You can easily see where the currently selected UiNode is located by turning on <em>highlight</em> from the applications toolbar. Double-clicking an element gets you into Selector-Editing mode.</li>
+<li><strong>The Selector Properties View</strong> (top-right) is used for adding, removing or changing the attribute in a selector tag, when you have a selector to work with.</li>
+<li><strong>The Runtime Attributes View</strong> (bottom-right) shows the current attribute values of the selected UiNode.</li>
+</ol>
+
+<p>I&#39;d like to mention once again, that if you have a selector available, you can start editing by entering it into the Edit Manually dialog.</p>
+
+<h2>Selector editing capabilities</h2>
+
+<h3>Adding intermediate tags to a selector</h3>
+
+<p>Adding tags is useful when the element you are interested in is hard to identify within the whole app, but easy within the descendants of one of its parents. 
+The example I&#39;m using is taken from UiPath Studio; I&#39;m interested in the name of the start-point of workflows (green highlight in first figure). </p>
+
+<table style="table-layout: fixed; width: 100%; margin: 0.7em 0">
+<thead>
+<tr><td colspan=3><span style="display: block; text-align: center"><strong>Adding an ancestor to the selector</strong></td></tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Intermediate-Tag text-view.gif" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Intermediate-Tag weak.gif" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Intermediate-Tag strong.gif" /></td>
+</tr>
+
+<tr>
+<td><span style="display: block; text-align: center">Workflow-Startpoint text</span></td>
+<td><span style="display: block; text-align: center">Generated Selector</span></td>
+<td><span style="display: block; text-align: center">Improved Selector</span></td>
+</tr>
+</tbody>
+</table>
+
+<p>The second image shows the selector generated by GetSelector. 
+Notice it makes use of the <em>automationid</em> property, who&#39;s value is &quot;TextBlock_1&quot;. 
+The value is likely to be dynamically generated, and is not a good fit for a resilient selector; so I replaced it with the <em>role</em> property.
+Because nodes with a text role appear a lot, I&#39;ve also added the node&#39;s parent to the selector, who&#39;s automationid property seems to have a value that will apear in all flowcharts.</p>
+
+<h3>Modifying attributes</h3>
+
+<p>Elements will sometimes have attributes whose value changes; however, values will often have invariant parts. 
+Notepad&#39;s title, for example, depends on the name of the file being edited, but always ends in &quot; &mdash; Notepad&quot;. 
+You can use &quot;&ast;&quot; to replace the transient part; this way, you could match it with: <em>title=&quot;&ast; &mdash; Notepad&quot;</em>. 
+Attribute values can be changed from the <em>Selector Properties</em> view (top-right); the current runtime attributes of the inspected node can be seen in the <em>Runtime Attributes</em> view (bottom-right).
+UiExplorer makes sure the attribute value you provide matches that of the element.</p>
+
+<h3>Automatically repairing selectors</h3>
+
+<p>The main use we see for UiExplorer is helping produce selectors for elements that change often. When an element changes state, UiExplorer can sometimes automatically repair its selector (if it no longer matches the intended node). For that, you can use <em>Selector &#8594; Repair Selector</em> &mdash; UiExplorer will try to improve the selector, without requiring any other input from the user. Unfortunatelly, there are cases where the visual aspect of the app remains the same, but the underlying node is programmatically changed, and the new node must be indicated on screen; if that is the case, you will be asked to interactively indicate it. If Improve Selector succeeded, a selector matching the two states of the element is created.</p>
+
+<p>The following example is taken from <a href="http://finance.yahoo.com/q?s=AAPL">Yahoo Finance</a>; the shown price is updated in real time, to reflect the current unit value. 
+The first image shows the selector obtained by interactivelly selecting the price field; it will become invalid after the first market change.
+After chosing repair selector, UiExplorer is able to automatically find common patterns in the different states.</p>
+
+<table style="table-layout: fixed; width: 100%; margin: 0.7em 0">
+<thead>
+<tr><td colspan=2><span style="display: block; text-align: center"><strong>Repairing selectors in volatile apps</strong></td></tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Improve-Selector fresh.gif" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Improve-Selector break.gif" /></td>
+</tr>
+<tr>
+<td><span style="display: block; text-align: center">Live price</span></td>
+<td><span style="display: block; text-align: center">Selector became invalid</span></td>
+</tr>
+
+<tr>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Improve-Selector menu.gif" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog Improve-Selector done.gif" /></td>
+</tr>
+<tr>
+<td><span style="display: block; text-align: center">Repair Selector Option</span></td>
+<td><span style="display: block; text-align: center">Selector after Repair</span></td>
+</tr>
+</tbody>
+</table>
+
+<h2>UI exploration capabilities</h2>
+
+<h3>Usage of the Ui-Tree</h3>
+
+<p>UiExplorer enables you to easily explore the UI of an app by exposing its tree. 
+You can tell where each UiNode is positioned on screen using the <em>highlight</em> option &mdash; when toggled on, it will draw a rectangle around the selected UiNode (if the node is visible). 
+Most selectors you will ever edit will be ones returned by the GetSelector method, from nodes obtained using interactive selection. 
+However, strangely positioned elements can throw off interactive selection, and you have to reach the node by navigating the tree.</p>
+
+<h3>Filtering descendants</h3>
+
+<p>The nodes in the UI can also be easily filtered, by selecting one of the options in the drop-down of the view&#39;s toolbar (not the apps toolbar!). 
+Filtering can be done using an attribute, or you can come up with your own selector. 
+This allows you to see which nodes are similar (in terms of attributes) to the node you are interested in. 
+If you wanted to see which were the nodes that matched the last tag&#39;s attributes, you could do it in the following way:</p>
+
+<ol>
+<li>Select the top-level node of the application, and go into Selector-Editing mode</li>
+<li>Open the Ui-Tree, and chose to filter elements using a selector</li>
+<li>Choose to see all descending UiNodes &mdash; as already mentioned, these will be descendants of the UiNode&#39;s whose selector you are currently editing</li>
+<li>Insert the last tag of the selector, after removing the idx attribute</li>
+<li>Press the Find button</li>
+</ol>
+
+<table style="table-layout: fixed; width: 100%; margin: 0.7em 0">
+<thead>
+<tr><td colspan=3><span style="display: block; text-align: center"><strong>Listing all matching descendants</strong></td></tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog List-Children start.gif" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog List-Children parent.gif" /></td>
+<td style="width: 100%; padding: 1%"><img src="/img/blog/UiExplorer-Blog List-Children result.gif" /></td>
+</tr>
+
+<tr>
+<td><span style="display: block; text-align: center">The start node</span></td>
+<td><span style="display: block; text-align: center">After removing the last tag</span></td>
+<td><span style="display: block; text-align: center">Find all matching last tag</span></td>
+</tr>
+</tbody>
+</table>
+
+<h2>That was it</h2>
+
+<p>Hopefully you now know what UiExplorer can do, and how you can use it.</p>
+
+<p>Till next time,<br/>
+Liviu</p>
+ 					
+		</div>			
+	</div>			
+</div>		
+
+<footer class="footer">
+  <div class="container">
+	<p class="pull-right">  |  <a href="#">Back to top</a>  |   </p>        
+	<p>Page last generated on September 19, 2013</p>
+  </div>
+</footer>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>    
+   	<script src="/js/custom.js" type="text/javascript"></script>	
+
+	<script type="text/javascript">
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'screenscraper'; // required: replace example with your forum shortname
+
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function () {
+			var s = document.createElement('script'); s.async = true;
+			s.type = 'text/javascript';
+			s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+			(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+	</script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-65056-8']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+  </body>
+</html>

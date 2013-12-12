@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=unicode">
+<META content="MSHTML 6.00.2800.1458" name=GENERATOR></HEAD>
+<BODY>
+<P>
+<TABLE cellSpacing=1 cellPadding=1 width="380" border=0 style="WIDTH: 380px; HEIGHT: 206px">
+  
+  <TR>
+    <TD>HWND:</TD>
+    <TD><INPUT type=text id=txtHwnd ></TD>
+    </TR>
+  <TR>
+    <TD>Left:</TD>
+    <TD><INPUT type=text id=txtLeft value=0></TD>
+    </TR>
+  <TR>
+    <TD>Top:</TD>
+    <TD><INPUT type=text id=txtTop value=0></TD>
+    </TR>
+  <TR>
+    <TD>Width:</TD>
+    <TD><INPUT type=text id=txtWidth value=1000></TD>
+    </TR>
+  <TR>
+    <TD>Height:</TD>
+    <TD><INPUT type=text id=txtHeight value=1000></TD>
+    </TR></TABLE></P>
+<P>
+<INPUT style="WIDTH: 142px; HEIGHT: 24px" type=button size=48 value="Get from point" id=button1 name=button1 onClick="GetTextFromPoint();">
+&nbsp;&nbsp;
+<INPUT style="WIDTH: 128px; HEIGHT: 24px" type=button size=44 value="Get from rectangle" onClick="GetTextFromRect()">
+&nbsp;&nbsp;
+<!--
+<INPUT style="WIDTH: 128px; HEIGHT: 24px" type=button size=44 value="Collect" onClick="CaptureInteractive()">
+-->
+</P>
+<P>Result:</P>
+<P><TEXTAREA style="WIDTH: 611px; HEIGHT: 162px" rows=7 cols=66 id=txtResult></TEXTAREA></P>
+
+
+<script language=jscript>
+function GetHwnd()
+{
+	var hwnd = parseInt(txtHwnd.value, 16);
+	if(isNaN(hwnd))
+		return 0;
+	return hwnd;
+}
+
+function GetTextFromPoint()
+{
+	txtResult.value = "";
+	var hwnd = GetHwnd();
+	var x = parseInt(txtLeft.value);
+	var y = parseInt(txtTop.value);
+	var obj = new ActiveXObject("TCaptureX.TextCaptureX");
+	var res = obj.GetTextFromPoint(hwnd, x, y);
+	txtResult.value = res.toString();
+}
+function GetTextFromRect()
+{
+	txtResult.value = "";
+	var hwnd = GetHwnd();
+	var left = parseInt(txtLeft.value);
+	var top = parseInt(txtTop.value);
+	var width = parseInt(txtWidth.value);
+	var height = parseInt(txtHeight.value);
+	var obj = new ActiveXObject("TCaptureX.TextCaptureX");
+	var res = obj.GetTextFromRect(hwnd, left, top, width, height);
+	txtResult.value = res.toString();
+}
+/*function CaptureInteractive()
+{
+	//save window position
+	var wndPosX = window.screenLeft;
+	var wndPosY = window.screenLeft;
+	window.blur();
+	var hwnd = 0;
+	var left = 0;
+	var top = 0;
+	var width = 0;
+	var height = 0;
+	var obj = new ActiveXObject("TCaptureX.TextCaptureX");
+	var res = obj.CaptureInteractive(hwnd, left, top, width, height);
+	if(res == 0)
+	{
+		txtHwnd.value = parseInt(hwnd, 16);
+		txtLeft.value = left;
+		txtTop.value = top;
+		txtWidth.value = width;
+		txtHeight.value = height;
+	}
+	//restore window position
+}*/
+</script>
+
+</BODY></HTML>

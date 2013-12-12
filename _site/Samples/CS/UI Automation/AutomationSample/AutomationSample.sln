@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClickControl", "ClickControl\ClickControl.csproj", "{4CA3F60B-015C-429B-A17E-0F0EAAB2C4D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteControl", "WriteControl\WriteControl.csproj", "{7D6C50BD-CF6E-4AB9-B722-AC80FA0F3BF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CA3F60B-015C-429B-A17E-0F0EAAB2C4D9}.Debug|x86.ActiveCfg = Debug|x86
+		{4CA3F60B-015C-429B-A17E-0F0EAAB2C4D9}.Debug|x86.Build.0 = Debug|x86
+		{4CA3F60B-015C-429B-A17E-0F0EAAB2C4D9}.Release|x86.ActiveCfg = Release|x86
+		{4CA3F60B-015C-429B-A17E-0F0EAAB2C4D9}.Release|x86.Build.0 = Release|x86
+		{7D6C50BD-CF6E-4AB9-B722-AC80FA0F3BF8}.Debug|x86.ActiveCfg = Debug|x86
+		{7D6C50BD-CF6E-4AB9-B722-AC80FA0F3BF8}.Debug|x86.Build.0 = Debug|x86
+		{7D6C50BD-CF6E-4AB9-B722-AC80FA0F3BF8}.Release|x86.ActiveCfg = Release|x86
+		{7D6C50BD-CF6E-4AB9-B722-AC80FA0F3BF8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

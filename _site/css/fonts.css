@@ -1,0 +1,61 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+.home_content {
+	font-family: Roboto;
+	font-size: 1.0em;
+	line-height: 1.6em;
+	text-align: justify;
+}
+
+.home_content h1, .home_content h2, .home_content h3, .home_content h4, .home_content h5, .home_content h6 {
+	font-family: Ubuntu, Helvetica, serif;
+	text-align: left;
+}
+
+.home_content ol li { list-style-type: decimal; }
+
+.home_content li {
+	line-height: inherit;
+}
+
+@media all and (min-width: 650px) {
+	.home_content h1 { font-size: 1.75em; text-decoration: underline; }
+	.home_content h2 { font-size: 1.6em; }
+	.home_content h3 { font-size: 1.4em; font-weight: 500; }
+	.home_content h4 { font-size: 1.2em; font-weight: 300; }
+}
+@media all and (max-width: 649px) {
+	.home_content h1 { font-size: 1.5em; text-decoration: underline; }
+	.home_content h2 { font-size: 1.4em; }
+	.home_content h3 { font-size: 1.25em; font-weight: 500; }
+	.home_content h4 { font-size: 1.15em; font-weight: 300; }
+}
+
+#logo-link {
+	position: relative;
+}
+#logo-link:hover {
+	text-decoration: none;
+}
+#header-logo-text {
+	position: relative;
+	font-size: 40px;
+	font-weight: bold;
+	top: 14px;
+	margin-left: 10px;
+	color: black;
+}
+#header-logo-text:hover {
+	text-decoration: none;
+}
+
+@media all and (max-width: 650px) {
+	#header-motto {
+		display: none;
+	}
+}
+@media all and (max-width: 426px) {
+	#header-logo-text {
+		display: none;
+	}
+}

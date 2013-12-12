@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="fuelux" lang="en" charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+    <title>How to identify invisible UI controls using FindAll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
+	<meta name="keywords" content="UiPath Studio, ui automation, screen scraping, web scraping, data scraping, text capture, workflow automation, web automation, report mining">
+	
+	<!-- Le styles -->
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux.css" rel="stylesheet" />
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+	<script src="http://fuelcdn.com/fuelux/2.2/loader.min.js" type="text/javascript"></script> 
+    <link href="/css/docs.css" rel="stylesheet">
+	<link href="/js/google-code-prettify/prettify.css" rel="stylesheet">	
+	
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/style-v.4.css" rel="stylesheet">
+	<link href="/css/fonts.css" rel="stylesheet">
+	
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/favicon.ico">    
+  </head>
+<body id="body" data-spy="scroll" data-target=".subnav" data-offset="50" style="background: none #f5f5f5;">
+<div id="container" class="">
+    <div id="header-container">
+        <div id="header">
+			<a href="/" class="link_logo" id="logo-link" alt="logo"><img src="/img/logo_small.png" class="logo_holder" alt=""><span id="header-logo-text">uipath</span></a>
+			<span class="header_small_motto" id="header-motto">Understands User Interface</span>
+			<div class="navigation">
+				<ul>
+					<li><a href="http://www.uipath.com/" title="Product Site">Product Site</a></li>
+					<li><a href="https://github.com/Deskover/UiPath/wiki" title="Documentation Wiki">Documentation Wiki</a></li>
+				</ul>
+			</div>       
+		</div>
+    </div>
+</div>
+
+
+<div class="home_content">
+	<h1 style="text-align: center;">How to identify invisible UI controls using FindAll</h2>
+	<div class="tab_description">	  		
+		<div style="margin: 20px;">
+			<h2>Overview</h2>
+
+<p>You may have come across the situation where you needed the <a href="https://github.com/Deskover/UiPath/wiki/Selector">selector</a> of an invisible <a href="https://github.com/Deskover/UiPath/wiki/Uinode">UiNode</a>. <a href="http://www.uipath.com/">UiPath</a> enables you to select any UI control visible on screen, however you can&#39;t get the selector of a hidden element, even if you know that at some point it will become visible.</p>
+
+<h2>Problem</h2>
+
+<p>Let&#39;s say that we have a WinForms application that has a hidden TextBox with the name &quot;HiddenText&quot; and we want to find it&#39;s selector. </p>
+
+<h2>How to</h2>
+
+<p>To achieve this, we start from the application&#39;s top-level window and search for the textbox.</p>
+
+<p>First of all we need the selector of the top-level window. This can be optained using UiPath Studio and selecting the whole window. The generated selector should look like this:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">&quot;<span class="nt">&lt;wnd</span> <span class="na">app=</span><span class="s">&#39;sampleapp.exe&#39;</span> <span class="na">ctrlname=</span><span class="s">&#39;Form1&#39;</span><span class="nt">/&gt;</span>&quot;
+</code></pre></div>
+<p>As you might already know, a selector is actually an XML fragment specifying a few attributes and parents of the GUI element it identifies. If a UI control is on screen, visible or hidden, we can still define a selector for it and instantiate a UiNode object using that selector.</p>
+
+<p>Second thing you need to know is what subsystem is the UI control you are looking for. You can determine the subsystem of a UiNode by looking at the last tag of it&#39;s selector. We are currently using five subsystems: </p>
+
+<ul>
+<li>Win32<br></li>
+<li>ActiveAccesibility<br></li>
+<li>Java<br></li>
+<li>Html<br></li>
+<li>Webcontrol<br></li>
+</ul>
+
+<p>Learn more about acceptable subsystem types <a href="https://github.com/Deskover/UiPath/wiki/Selector">here</a>.</p>
+
+<p>Next you need an attribute or a set of attributes of that uniquely identifies the UI control you are searching, like an ID, title, name or any other attribute. If you can&#39;t uniquely identify the UI control you can still use this method, but be aware that the result might contain several UiNodes with the attributes you provided and you should choose whether you keep one or all of them.</p>
+
+<p>In our case, the attribute that uniquely identifies the textbox is the ctrlname-attribute. To retrive the selector for &#39;HiddenText&#39; TextBox we initialize a UiNode that represents the top-level window, let&#39;s call this the parent UiNode, and then search for all its children that have the subsystem type &quot;wnd&quot; and ctrlname = &quot;HiddenText&quot;. You can find code samples for C++ and C# below.</p>
+
+<h2>Code Samples</h2>
+
+<p>C++ code</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="n">CString</span> <span class="nf">GetInvisibleUIControlSelector</span><span class="p">()</span>
+<span class="p">{</span>
+     <span class="n">CString</span> <span class="n">windowId</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;&lt;wnd app=&#39;sampleapp.exe&#39; ctrlname=&#39;Form1&#39;/&gt;&quot;</span><span class="p">);</span>
+     <span class="n">CComPtr</span><span class="o">&lt;</span><span class="n">IUiNode</span><span class="o">&gt;</span> <span class="n">parentNode</span><span class="p">;</span>
+     <span class="n">parentNode</span><span class="p">.</span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_UiNode</span><span class="p">);</span>
+     <span class="n">try</span>
+     <span class="p">{</span>
+          <span class="n">parentNode</span><span class="o">-&gt;</span><span class="n">FromSelector</span><span class="p">((</span><span class="kt">_bstr_t</span><span class="p">)</span><span class="n">windowId</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="k">catch</span><span class="p">(</span><span class="n">_com_error</span> <span class="n">e</span><span class="p">)</span>
+     <span class="p">{</span>
+          <span class="n">AfxMessageBox</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&quot;An error appeared while trying to initialize from selector&quot;</span><span class="p">));</span>
+          <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="c1">//creating the filter for FindAll method</span>
+     <span class="n">CString</span> <span class="n">child</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;&lt;wnd ctrlname=&#39;HiddenText&#39;/&gt;&quot;</span><span class="p">);</span>
+     <span class="n">SAFEARRAY</span><span class="o">*</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+     <span class="n">try</span>
+     <span class="p">{</span>
+          <span class="c1">// Find all children that meet the filter selector </span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">parentNode</span><span class="o">-&gt;</span><span class="n">FindAll</span><span class="p">(</span><span class="n">UI_FIND_DESCENDANTS</span><span class="p">,</span> <span class="p">(</span><span class="kt">_bstr_t</span><span class="p">)</span><span class="n">child</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="k">catch</span> <span class="p">(</span><span class="n">_com_error</span> <span class="n">e</span><span class="p">)</span>
+     <span class="p">{</span>
+          <span class="n">AfxMessageBox</span><span class="p">(</span><span class="n">_T</span><span class="p">(</span><span class="s">&quot;An error appeared while trying to get all the descendents of the parent element&quot;</span><span class="p">));</span>
+          <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="n">LONG</span> <span class="n">collectionLength</span><span class="p">;</span>
+     <span class="n">HRESULT</span> <span class="n">hr</span><span class="p">;</span>
+     <span class="n">hr</span> <span class="o">=</span> <span class="n">SafeArrayGetUBound</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">collectionLength</span><span class="p">);</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+     <span class="p">{</span>
+          <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="k">if</span><span class="p">(</span><span class="n">collectionLength</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+     <span class="p">{</span>
+           <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="c1">//getting the UiNode that defines our control</span>
+     <span class="n">CComQIPtr</span><span class="o">&lt;</span><span class="n">IUiNode</span><span class="o">&gt;</span> <span class="n">spCtrl</span><span class="p">;</span>
+     <span class="n">CComVariant</span> <span class="n">varNode</span><span class="p">;</span>
+     <span class="n">LONG</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="n">SafeArrayGetElement</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">varNode</span><span class="p">);</span>
+     <span class="n">CString</span> <span class="n">selector</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">varNode</span> <span class="o">!=</span> <span class="n">nullptr</span> <span class="o">&amp;&amp;</span> <span class="n">varNode</span><span class="p">.</span><span class="n">vt</span> <span class="o">==</span> <span class="n">VT_DISPATCH</span><span class="p">)</span>
+     <span class="p">{</span>
+        <span class="n">spCtrl</span> <span class="o">=</span> <span class="n">varNode</span><span class="p">.</span><span class="n">pdispVal</span><span class="p">;</span>
+        <span class="c1">//the UiNode objects returned when using FindAll don&#39;t have their selectors   </span>
+        <span class="c1">//defined, so when retrieving them you should use VARIANT_TRUE,</span>
+        <span class="c1">// instead of VARIANT_FALSE,</span>
+        <span class="c1">//even if this may take more time to execute</span>
+        <span class="n">selector</span> <span class="o">=</span> <span class="n">spCtrl</span><span class="o">-&gt;</span><span class="n">GetSelector</span><span class="p">(</span><span class="n">VARIANT_TRUE</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="n">SafeArrayDestroy</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+     <span class="k">return</span> <span class="n">selector</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>C# code</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="k">public</span> <span class="n">String</span> <span class="nf">GetInvisibleControlSelector</span><span class="p">()</span>
+<span class="p">{</span>
+     <span class="kt">string</span> <span class="n">windowId</span> <span class="p">=</span> <span class="s">&quot;&lt;wnd app=&#39;sampleapp.exe&#39; ctrlname=&#39;Form1&#39;/&gt;&quot;</span><span class="p">;</span>
+     <span class="n">UiNode</span> <span class="n">uiNodeParent</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiNode</span><span class="p">();</span>
+     <span class="k">try</span>
+     <span class="p">{</span>
+          <span class="n">uiNodeParent</span><span class="p">.</span><span class="n">FromSelector</span><span class="p">(</span><span class="n">windowId</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="k">catch</span>
+     <span class="p">{</span>
+          <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;An error appeared while trying to initialize from selector&quot;</span><span class="p">);</span>
+          <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="c1">//creating the filter for FindAll method</span>
+     <span class="kt">string</span> <span class="n">childFilter</span> <span class="p">=</span> <span class="s">&quot;&lt;wnd ctrlname=&#39;HiddenText&#39;/&gt;&quot;</span><span class="p">;</span>
+     <span class="n">List</span><span class="p">&lt;</span><span class="n">UiNode</span><span class="p">&gt;</span> <span class="n">UiNodes</span><span class="p">;</span>
+     <span class="k">try</span>
+     <span class="p">{</span>
+          <span class="n">UiNodes</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">CastArray</span><span class="p">&lt;</span><span class="n">UiNode</span><span class="p">&gt;(</span><span class="n">uiNodeParent</span><span class="p">.</span><span class="n">FindAll</span><span class="p">(</span><span class="n">UiFindScope</span><span class="p">.</span><span class="n">UI_FIND_DESCENDANTS</span><span class="p">,</span> <span class="n">childFilter</span><span class="p">)).</span><span class="n">ToList</span><span class="p">&lt;</span><span class="n">UiNode</span><span class="p">&gt;();</span>
+     <span class="p">}</span>
+     <span class="k">catch</span>
+     <span class="p">{</span>
+          <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;An error appeared while trying to get all the descendents of the parent element&quot;</span><span class="p">);</span>
+          <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="c1">// at this point ElemCollection should have only one element, but you should check anyway</span>
+     <span class="kt">int</span> <span class="n">length</span> <span class="p">=</span> <span class="n">UiNodes</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+     <span class="p">{</span>
+          <span class="n">UiNode</span> <span class="n">uiChild</span> <span class="p">=</span> <span class="n">UiNodes</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+          <span class="k">return</span> <span class="n">uiChild</span><span class="p">.</span><span class="n">GetSelector</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+     <span class="p">}</span>
+
+     <span class="n">UiSystem</span> <span class="n">system</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiSystem</span><span class="p">();</span>
+     <span class="n">system</span><span class="p">.</span><span class="n">Cleanup</span><span class="p">();</span>
+     <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If you have more information about the UI control you are searching for you can improve the filter. Also, in the samples above you are looking through the whole UI hierarchy of the application by using <a href="https://github.com/Deskover/UiPath/wiki/Uinode#wiki-UiFindScope">UiFindScope.UI_FIND_DESCENDANTS</a>, but if you know for a fact that the control you search for is a direct children, you can minimize the execution time by using UiFindScope.UI<em>FIND</em>CHILDREN instead.</p>
+
+<p>You can learn more about FindAll method <a href="https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindAll">here</a>.</p>
+
+<p>Have a nice weekend,</p>
+
+<p>Andra</p>
+ 					
+		</div>			
+	</div>			
+</div>		
+
+<footer class="footer">
+  <div class="container">
+	<p class="pull-right">  |  <a href="#">Back to top</a>  |   </p>        
+	<p>Page last generated on September 19, 2013</p>
+  </div>
+</footer>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>    
+   	<script src="/js/custom.js" type="text/javascript"></script>	
+
+	<script type="text/javascript">
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'screenscraper'; // required: replace example with your forum shortname
+
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function () {
+			var s = document.createElement('script'); s.async = true;
+			s.type = 'text/javascript';
+			s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+			(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+	</script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-65056-8']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+  </body>
+</html>

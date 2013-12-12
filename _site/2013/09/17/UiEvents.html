@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html class="fuelux" lang="en" charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Monitoring keyboard and mouse events using the UiPath library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
+	<meta name="keywords" content="UiPath Studio, ui automation, screen scraping, web scraping, data scraping, text capture, workflow automation, web automation, report mining">
+	
+	<!-- Le styles -->
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux.css" rel="stylesheet" />
+	<link href="http://fuelcdn.com/fuelux/2.2/css/fuelux-responsive.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+	<script src="http://fuelcdn.com/fuelux/2.2/loader.min.js" type="text/javascript"></script> 
+    <link href="/css/docs.css" rel="stylesheet">
+	<link href="/js/google-code-prettify/prettify.css" rel="stylesheet">	
+	
+	<link href="/css/syntax.css" rel="stylesheet">
+	<link href="/css/style-v.4.css" rel="stylesheet">
+	<link href="/css/fonts.css" rel="stylesheet">
+	
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/favicon.ico">    
+  </head>
+<body id="body" data-spy="scroll" data-target=".subnav" data-offset="50" style="background: none #f5f5f5;">
+<div id="container" class="">
+    <div id="header-container">
+        <div id="header">
+			<a href="/" class="link_logo" id="logo-link" alt="logo"><img src="/img/logo_small.png" class="logo_holder" alt=""><span id="header-logo-text">uipath</span></a>
+			<span class="header_small_motto" id="header-motto">Understands User Interface</span>
+			<div class="navigation">
+				<ul>
+					<li><a href="http://www.uipath.com/" title="Product Site">Product Site</a></li>
+					<li><a href="https://github.com/Deskover/UiPath/wiki" title="Documentation Wiki">Documentation Wiki</a></li>
+				</ul>
+			</div>       
+		</div>
+    </div>
+</div>
+
+
+<div class="home_content">
+	<h1 style="text-align: center;">Monitoring keyboard and mouse events using the UiPath library</h2>
+	<div class="tab_description">	  		
+		<div style="margin: 20px;">
+			<h1>Introduction</h1>
+
+<p>The <strong>UiPath library</strong> is an automation tool which incorporates the ability to catch user actions in real time and report them. Every 
+input event, such as a mouse click or a keystroke, can be intercepted and a notification will be sent in the form of a COM event.</p>
+
+<p>UiPath offers two kinds of input event monitors: </p>
+
+<ol>
+<li><strong>Global monitors</strong> - they notify about the occurrence of the specified event in any application.</li>
+<li><strong>UI filtering monitors</strong> - they report the event when it occurs on a filtered UI area: a visual element, such as a button or a combo box, or even a smaller region inside a visual element.</li>
+</ol>
+
+<h1>Global event monitors</h1>
+
+<h2>Description</h2>
+
+<p>The UiPath library offers the possibility of monitoring input events throughout all the opened applications in the current desktop.
+This functionality is exported through the <strong>UiSystem interface</strong>, which can monitor the following events:</p>
+
+<ul>
+<li><p><strong>Click on any mouse button</strong>, with an optional modifier key, such as Ctrl, Shift or Alt, or any combination of them.</p>
+
+<p>The method which offers this feature is <em>UiSystem::MonitorClick</em>.</p></li>
+<li><p><strong>Hovering of the mouse cursor</strong> (mouse idle) for a specified amount of time.</p>
+
+<p>The method which enables monitoring mouse hovering is <em>UiSystem::MonitorHover</em>.</p></li>
+<li><p><strong>Hot key triggering</strong>, with an optional modifier, such as Ctrl/Shift/Alt, or any combination of them.</p>
+
+<p>The method that enables you to monitor global hot keys is <em>UiSystem::MonitorHotkey</em></p></li>
+</ul>
+
+<p>The UiPath library supports these features together, you can have a monitor for clicks and keystrokes and hovering at the same time. 
+After you are done monitoring, the event interceptors can be stopped using the <em>UiSystem::StopMonitoring</em> method. It is recommended 
+that you call it upon application exit.</p>
+
+<h2>Technical details</h2>
+
+<p>The event reporting is <strong>synchronous</strong>, which means that the initial event is blocked from reaching the target application. After your 
+monitoring application receives the event via COM, you can make the decision to pass the event back to the original application or 
+prevent it from happening.</p>
+
+<p>The main idea is that the initial event will not alter the state of the target application until you finish processing it in your 
+application.</p>
+
+<h2>Limitations</h2>
+
+<p>For a given instance of an UiSystem object, you can monitor at most 5 distinct &quot;mouse + key&quot; combinations and no more than 10 hot keys.</p>
+
+<p>Each instance of the UiSystem interface takes a <strong>monitoring slot</strong>. One slot can store information for the three types of events 
+described above. <strong>There can be at most 5 active monitoring slots</strong>, used by any application in the system. So, if you write an 
+application which uses (for some strange reason) 3 monitoring UiSystem objects, another application will be able to use a maximum of 2 
+UiSystem objects for global event monitoring.</p>
+
+<p><strong>Recommended</strong>: <strong>use only one UiSystem instance per application</strong>, it offers enough features for most needs. The object will be kept 
+alive throughout the application lifetime and you will start and stop monitoring when needed, without releasing and re-creating the 
+UiSystem object.</p>
+
+<h2>Implementation details</h2>
+
+<h3>COM event listeners</h3>
+
+<p>As we stated above, the application which monitors input events using UiSystem will receive notifications about these events via 
+<em>COM events</em>. This means that you will have to create and attach an event listener.</p>
+
+<h4>COM events in C&#x266f;</h4>
+
+<p>In C&#x266f;, creating and attaching COM event listeners for answering the UiSystem events are accomplished like this:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiMouseEventHandler</span><span class="p">(</span><span class="n">UiSystemEvents_OnUiMouseEvent</span><span class="p">);</span>
+<span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">OnUiKeyboard</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiKeyboardEventHandler</span><span class="p">(</span><span class="n">UiSystemEvents_OnUiKeyboardEvent</span><span class="p">);</span>
+</code></pre></div>
+<p>and the event callbacks look like this:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="k">void</span> <span class="nf">UiSystemEvents_OnUiMouseEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//The UiEventInfo interface is described in the UiSystem documentation.</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">void</span> <span class="nf">UiSystemEvents_OnUiKeyboardEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//The UiEventInfo interface is described in the UiSystem documentation.</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The event callbacks are detached by calling:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">-=</span> <span class="n">UiSystemEvents_OnUiMouseEvent</span><span class="p">;</span>
+<span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">OnUiKeyboard</span> <span class="p">-=</span> <span class="n">UiSystemEvents_OnUiKeyboardEvent</span><span class="p">;</span>
+</code></pre></div>
+<h4>COM events in C++</h4>
+
+<p>In C++, things are more difficult. First, the event listener for UiSystem has to be declared. Luckily, ATL offers an easy way of doing it:</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="c1">//One argument for the mouse event callback: the &quot;IUIEventInfo*&quot; object.</span>
+<span class="k">static</span> <span class="n">_ATL_FUNC_INFO</span> <span class="n">FiredSystemMouseEventStruct</span> <span class="o">=</span> <span class="p">{</span><span class="n">CC_STDCALL</span><span class="p">,</span> <span class="n">VT_EMPTY</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="n">VT_DISPATCH</span><span class="p">}};</span>
+<span class="c1">//One argument for the keyboard event callback: the &quot;IUIEventInfo*&quot; object.</span>
+<span class="k">static</span> <span class="n">_ATL_FUNC_INFO</span> <span class="n">FiredSystemKeyboardEventStruct</span> <span class="o">=</span> <span class="p">{</span><span class="n">CC_STDCALL</span><span class="p">,</span> <span class="n">VT_EMPTY</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="n">VT_DISPATCH</span><span class="p">}};</span>
+
+<span class="k">class</span> <span class="nc">CSystemEventsHandler</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IDispEventSimpleImpl</span><span class="o">&lt;</span><span class="cm">/*nID =*/</span> <span class="mi">1</span><span class="p">,</span> <span class="n">CSystemEventsHandler</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">BEGIN_SINK_MAP</span><span class="p">(</span><span class="n">CSystemEventsHandler</span><span class="p">)</span>
+        <span class="n">SINK_ENTRY_INFO</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CSystemEventsHandler</span><span class="o">::</span><span class="n">OnUiMouse</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FiredSystemMouseEventStruct</span><span class="p">)</span>
+        <span class="n">SINK_ENTRY_INFO</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CSystemEventsHandler</span><span class="o">::</span><span class="n">OnUiKeyboard</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FiredSystemKeyboardEventStruct</span><span class="p">)</span>
+    <span class="n">END_SINK_MAP</span><span class="p">()</span>
+
+    <span class="kt">void</span> <span class="kr">__stdcall</span> <span class="n">OnUiMouse</span><span class="p">(</span><span class="n">CComQIPtr</span><span class="o">&lt;</span><span class="n">IUiEventInfo</span><span class="o">&gt;</span> <span class="n">uiEvent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MessageBox</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event fired&quot;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event handler&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="kr">__stdcall</span> <span class="n">OnUiKeyboard</span><span class="p">(</span><span class="n">CComQIPtr</span><span class="o">&lt;</span><span class="n">IUiEventInfo</span><span class="o">&gt;</span> <span class="n">uiEvent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MessageBox</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event fired&quot;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event handler&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">HRESULT</span> <span class="n">Advise</span><span class="p">(</span><span class="n">IUnknown</span> <span class="o">*</span><span class="n">punk</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">IDispEventSimpleImpl</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="n">CSystemEventsHandler</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">)</span><span class="o">&gt;::</span><span class="n">DispEventAdvise</span><span class="p">(</span><span class="n">punk</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>You can use the code template above and modify the <em>OnUiMouse</em> and <em>OnUiKeyboard</em> methods to suit your needs.</p>
+
+<p>Considering that the event handle class is named as in the code template above, <em>CSystemEventsHandler</em>, you can create a COM event 
+listener for UiSystem like this:</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="n">spUiSystem</span><span class="p">.</span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_UiSystem</span><span class="p">);</span>
+
+<span class="c1">//Create and attach the COM event listener object.</span>
+<span class="n">CSystemEventsHandler</span>     <span class="n">evSystemHandler</span><span class="p">;</span>
+<span class="n">evSystemHandler</span><span class="p">.</span><span class="n">DispEventAdvise</span><span class="p">(</span><span class="n">spUiSystem</span><span class="p">);</span>
+
+<span class="c1">//Start monitoring</span>
+<span class="n">spUiSystem</span><span class="p">.</span><span class="n">StartMonitoring</span><span class="p">(</span><span class="o">&lt;</span><span class="n">something</span><span class="o">&gt;</span><span class="p">);</span>
+</code></pre></div>
+<p>After you are done monitoring, detaching the COM event is easy:</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="c1">//Detach the event listener.</span>
+<span class="n">evSystemHandler</span><span class="p">.</span><span class="n">DispEventUnadvise</span><span class="p">(</span><span class="n">spUiSystem</span><span class="p">);</span>
+
+<span class="c1">//Stop monitoring only after detaching the COM event listener.</span>
+<span class="n">spUiSystem</span><span class="o">-&gt;</span><span class="n">StopMonitoring</span><span class="p">();</span>
+</code></pre></div>
+<h3>Hints for managed languages</h3>
+
+<p>Managed languages, such as C&#x266f; or VB.NET, use garbage collectors to handle the creation and destruction of objects. The objects are still 
+alive when they go out of scope, they are destroyed by the garbage collector &quot;when needed&quot;, which does not guarantee a precise moment 
+when the objects are released from memory. This behaviour can lead to strange errors, such as UiSystem reporting to be <em>&quot;out of 
+monitoring slots&quot;</em>. </p>
+
+<p>So, this C&#x266f; code:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="p">=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span><span class="p">&lt;</span><span class="m">6</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">UiSystem</span> <span class="n">uiSystemEvents</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiSystem</span><span class="p">();</span>
+
+    <span class="c1">//This does not ensure that the uiSystemEvents object is released.</span>
+        <span class="n">uiSystemEvents</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>will yield an exception when <em>i=5</em>, stating that the UiSystem monitor is <em>&quot;out of slots&quot;</em>. This happens because there are already 5 
+UiSystem instances, created when <em>i=0...4</em>, kept alive by the garbage collector.</p>
+
+<p>If you <strong>really</strong> want to write such code (it&#39;s not about the <em>for</em> cycle, it about the redundant creation of UiSystem objects, which 
+we <strong>do not recommend</strong>), the code which does a proper clean-up of an UiSystem object is this:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="p">=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span><span class="p">&lt;</span><span class="m">6</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">UiSystem</span> <span class="n">uiSystemEvents</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiSystem</span><span class="p">();</span>
+
+    <span class="c1">//Ensure that the monitor object is destroyed. Managed languages destroy accumulated object instances using garbage</span>
+    <span class="c1">//collectors. We do not recommend accumulating UiSystem object instances because of the limitations described above.</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">Runtime</span><span class="p">.</span><span class="n">InteropServices</span><span class="p">.</span><span class="n">Marshal</span><span class="p">.</span><span class="n">ReleaseComObject</span><span class="p">(</span><span class="n">uiSystemEvents</span><span class="p">);</span>
+        <span class="n">uiSystemEvents</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="n">GC</span><span class="p">.</span><span class="n">Collect</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>Case study</h2>
+
+<p>Let&#39;s take a simple task as an example: monitoring &quot;Ctrl + Right click&quot; in any application. Here is a sample code, written in C&#x266f;, which 
+can accomplish this.</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="c1">//Import the UiPath library using this line, it must be available as a COM object.</span>
+    <span class="k">using</span> <span class="nn">UiPath</span><span class="p">;</span>
+
+<span class="c1">//The object used to monitor system wide events.</span>
+    <span class="k">public</span> <span class="n">UiSystem</span> <span class="n">uiSystemEvents</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiSystem</span><span class="p">();</span>
+
+<span class="k">public</span> <span class="nf">StartGlobalMonitoring</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Register for mouse monitoring</span>
+        <span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiMouseEventHandler</span><span class="p">(</span><span class="n">UiSystemEvents_OnUiMouseEvent</span><span class="p">);</span>
+    <span class="c1">//Set up the monitoring parameters: &quot;Ctrl + Right click&quot;, and let the events reach the target application after we receive them.</span>
+        <span class="n">UiMouseButton</span> <span class="n">msBtn</span> <span class="p">=</span> <span class="n">UiMouseButton</span><span class="p">.</span><span class="n">UI_BTN_RIGHT</span><span class="p">;</span>
+        <span class="n">UiKeyModifier</span> <span class="n">kModif</span> <span class="p">=</span> <span class="n">UiKeyModifier</span><span class="p">.</span><span class="n">UI_KEY_Ctrl</span><span class="p">;</span>
+        <span class="n">UiEventMode</span>   <span class="n">eventMode</span> <span class="p">=</span> <span class="n">UiEventMode</span><span class="p">.</span><span class="n">UI_EVENT_FORWARD</span><span class="p">;</span>
+    <span class="c1">//Start monitoring &quot;Ctrl + Right click&quot;.</span>
+        <span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">MonitorClick</span><span class="p">(</span><span class="n">msBtn</span><span class="p">,</span> <span class="n">kModif</span><span class="p">,</span> <span class="n">eventMode</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Here is the callback function which UiPath calls to notify our application about the &quot;Ctrl + Right click&quot; event.</span>
+<span class="k">void</span> <span class="nf">UiSystemEvents_OnUiMouseEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//Append the event info to an &quot;imaginary&quot; string variable called &quot;LogText&quot;. </span>
+    <span class="c1">//The idea is to notice the information contained in the &quot;eventInfo&quot; parameter.</span>
+        <span class="n">LogText</span> <span class="p">+=</span> <span class="s">&quot;OnMonitorMouseEvent fired : hwnd: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">targetWindow</span><span class="p">.</span><span class="n">hWnd</span> <span class="p">+</span> 
+                    <span class="s">&quot;, x1: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">left</span> <span class="p">+</span> <span class="s">&quot;, y1: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">top</span> <span class="p">+</span> 
+                    <span class="s">&quot;, x2:&quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">right</span> <span class="p">+</span> <span class="s">&quot;, y2: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">bottom</span> <span class="p">+</span> <span class="s">&quot;\r\n&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="nf">StopGlobalMonitoring</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Detach the event callback</span>
+        <span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">-=</span> <span class="n">UiSystemEvents_OnUiMouseEvent</span><span class="p">;</span>
+    <span class="c1">//Stop monitoring</span>
+        <span class="n">uiSystemEvents</span><span class="p">.</span><span class="n">StopMonitoring</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The usage is pretty straightforward and these principles can be applied to other languages.</p>
+
+<h1>UI filtering monitors</h1>
+
+<h2>Description</h2>
+
+<p>The UiPath library supports restricting the scope of input event monitoring such as only events occurring on a specific visual element 
+are reported to your application. This way, you can receive mouse clicks on a specific button or keystrokes inside a specific editable 
+control.</p>
+
+<p>You can define the area of event monitoring using these filters:</p>
+
+<ul>
+<li><strong>UiNode selectors</strong> - they are strings which indicate visual elements on the screen. They are mandatory, because we are talking about 
+filtered monitoring and we must have at least one filter.</li>
+<li><p><strong>Images inside visual elements</strong> - after the selector filter is passed, there is an optional image which can be specified as a filter 
+for reporting mouse clicks. Only clicks on this image inside the element will be reported.</p>
+
+<p><em>Example</em>: you want to catch a click on the &quot;Save&quot; button in a tool bar, but only when the button is enabled.</p></li>
+<li><p><strong>Regions inside visual elements</strong> - this filter is also optional and only applies to mouse click events. It indicates a region inside a visual element (specified by a selector) which will trigger the mouse clicks.</p>
+
+<p><em>Example</em>: you want to catch a click on a big picture control, but only in its upper-left area.</p></li>
+</ul>
+
+<h2>Technical details</h2>
+
+<p>The programming interface which enables filtered monitoring is called <strong>UiNodeMonitor</strong>.</p>
+
+<p>There are two kinds of UiNode monitors available:</p>
+
+<ul>
+<li><p><strong>Synchronous</strong> - the original event is blocked from reaching the target application. The event occurrence is then reported as a COM event 
+via the event callback. The event callback makes the decision of whether the event will be returned to the original application or not. </p>
+
+<p>The main idea of the synchronous event is that the target application should not alter its visual state until we receive and process 
+the event.</p>
+
+<p><em>Example</em>: you want to process a click on the &quot;OK&quot; button of a dialog box and get some text out of it before it closes.</p></li>
+<li><p><strong>Asynchronous</strong> - the original event is permitted to reach the target application. The UiNodeMonitor object will report the event using 
+<em>COM events</em>, but at the time that you receive the notification, the event may have altered the state of the monitored application. 
+Even if the event reporting is asynchronous with respect to the original event, the events are reported in the order they first appeared.</p></li>
+</ul>
+
+<p>The monitored events can be:
+- <strong>Mouse clicks</strong> with optional keyboard modifiers - such as &quot;Shift + Left click&quot;.
+- <strong>Hot key combinations</strong> - such as &quot;Ctrl + Enter&quot;.</p>
+
+<p>The monitors can be stopped individually, using the <em>UiNodeMonitor::StopMonitor(monitor_id)</em> method, or you can stop all the monitors 
+associated with a specific UiNodeMonitor object by calling the <em>UiNodeMonitor::StopMonitoring(void)</em> method.</p>
+
+<p>If your monitoring application happens to crash, the affected slots will be checked later when starting a monitor from another 
+application. Monitoring slots are constantly checked and they are freed even if your application &quot;forgets&quot; to, for any reason. 
+However, we recommend cleaning up the monitoring slots when you should, to avoid unpleasant surprises, such as the <em>&quot;out of monitoring 
+slots&quot;</em> exception.</p>
+
+<h2>Limitations</h2>
+
+<p>There are no limitations on the number of UiNodeMonitor instances.</p>
+
+<p>Each time you call the <em>Monitor[...]</em> methods of the UiNodeMonitor interface, and the function succeeds, a <strong>monitoring slot</strong> will be 
+occupied with the specified filters (selector, image and region filters). <strong>There can be at most 32 monitoring slots</strong> active in the 
+system at one time. It does not matter how many UiNodeMonitor instances use these slots, or if they are instantiated in different 
+applications across the system, all the monitoring slots in the system must not exceed 32.</p>
+
+<h2>Implementation details</h2>
+
+<h3>COM event listeners</h3>
+
+<p>Any application which monitors input events using UiNodeMonitor will receive notifications about these events via <em>COM events</em>. 
+This means that you will have to create and attach an event listener, as it was the case with UiSystem.</p>
+
+<h4>COM events in C&#x266f;</h4>
+
+<p>In C&#x266f;, creating and attaching COM event listeners for answering the UiNodeMonitor events are accomplished like this:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiMouseEventHandler</span><span class="p">(</span><span class="n">uiNodeMonitor_OnUiMouseEvent</span><span class="p">);</span>
+<span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiKeyboard</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiKeyboardEventHandler</span><span class="p">(</span><span class="n">uiNodeMonitor_OnUiKeyboardEvent</span><span class="p">);</span>
+</code></pre></div>
+<p>and the event callbacks look like this:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="k">void</span> <span class="nf">uiNodeMonitor_OnUiMouseEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//The UiEventInfo interface is described in the UiNodeMonitor documentation.</span>
+    <span class="p">&lt;...&gt;</span>
+<span class="p">}</span>
+<span class="k">void</span> <span class="nf">uiNodeMonitor_OnUiKeyboardEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//The UiEventInfo interface is described in the UiNodeMonitor documentation.</span>
+    <span class="p">&lt;...&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The event callback is detached by calling:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">-=</span> <span class="n">uiNodeMonitor_OnUiMouseEvent</span><span class="p">;</span>
+<span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiKeyboard</span> <span class="p">-=</span> <span class="n">uiNodeMonitor_OnUiKeyboardEvent</span><span class="p">;</span>
+</code></pre></div>
+<h4>COM events in C++</h4>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="k">static</span> <span class="n">_ATL_FUNC_INFO</span> <span class="n">FiredMouseEventStruct</span> <span class="o">=</span> <span class="p">{</span><span class="n">CC_STDCALL</span><span class="p">,</span> <span class="n">VT_EMPTY</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="n">VT_DISPATCH</span><span class="o">|</span><span class="n">VT_BYREF</span><span class="p">}};</span>
+<span class="k">static</span> <span class="n">_ATL_FUNC_INFO</span> <span class="n">FiredKeyboardEventStruct</span> <span class="o">=</span> <span class="p">{</span><span class="n">CC_STDCALL</span><span class="p">,</span> <span class="n">VT_EMPTY</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="n">VT_DISPATCH</span><span class="o">|</span><span class="n">VT_BYREF</span><span class="p">}};</span>
+
+<span class="k">class</span> <span class="nc">CNodeMonitorHandler</span> <span class="o">:</span> <span class="k">public</span> <span class="n">IDispEventSimpleImpl</span><span class="o">&lt;</span><span class="cm">/*nID =*/</span> <span class="mi">1</span><span class="p">,</span> <span class="n">CNodeMonitorHandler</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+   <span class="n">CNodeMonitorHandler</span><span class="p">()</span>
+   <span class="p">{</span>
+       <span class="c1">//The default behaviour is to let the event reach the target application.</span>
+       <span class="n">m_enEventMode</span> <span class="o">=</span> <span class="n">UI_EVENT_FORWARD</span><span class="p">;</span>
+   <span class="p">}</span>
+
+<span class="nl">public:</span>
+   <span class="n">BEGIN_SINK_MAP</span><span class="p">(</span><span class="n">CNodeMonitorHandler</span><span class="p">)</span>
+      <span class="n">SINK_ENTRY_INFO</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CNodeMonitorHandler</span><span class="o">::</span><span class="n">OnUiMouse</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FiredMouseEventStruct</span><span class="p">)</span>
+      <span class="n">SINK_ENTRY_INFO</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CNodeMonitorHandler</span><span class="o">::</span><span class="n">OnUiKeyboard</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">FiredKeyboardEventStruct</span><span class="p">)</span>
+   <span class="n">END_SINK_MAP</span><span class="p">()</span>
+
+<span class="nl">public:</span>
+    <span class="n">UiEventMode</span> <span class="n">m_enEventMode</span><span class="p">;</span>  
+
+    <span class="kt">void</span> <span class="kr">__stdcall</span> <span class="nf">OnUiMouse</span><span class="p">(</span><span class="n">CComQIPtr</span><span class="o">&lt;</span><span class="n">IUiEventInfo</span><span class="o">&gt;</span> <span class="n">uiEvent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MessageBox</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event fired&quot;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event handler&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="c1">//You can choose to forward (UI_EVENT_FORWARD) or block (UI_EVENT_BLOCK) the mouse event. </span>
+        <span class="n">uiEvent</span><span class="o">-&gt;</span><span class="n">forward</span> <span class="o">=</span> <span class="n">m_enEventMode</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="kr">__stdcall</span> <span class="nf">OnUiKeyboard</span><span class="p">(</span><span class="n">CComQIPtr</span><span class="o">&lt;</span><span class="n">IUiEventInfo</span><span class="o">&gt;</span> <span class="n">uiEvent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">MessageBox</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event fired&quot;</span><span class="p">),</span> <span class="n">_T</span><span class="p">(</span><span class="s">&quot;Event handler&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="c1">//You can choose to forward (UI_EVENT_FORWARD) or block (UI_EVENT_BLOCK) the keyboard event. </span>
+        <span class="n">uiEvent</span><span class="o">-&gt;</span><span class="n">forward</span> <span class="o">=</span> <span class="n">m_enEventMode</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">HRESULT</span> <span class="nf">Advise</span><span class="p">(</span><span class="n">IUnknown</span> <span class="o">*</span><span class="n">punk</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">IDispEventSimpleImpl</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="n">CNodeMonitorHandler</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">__uuidof</span><span class="p">(</span><span class="n">IUiEvents</span><span class="p">)</span><span class="o">&gt;::</span><span class="n">DispEventAdvise</span><span class="p">(</span><span class="n">punk</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>You can use the code template above and modify the <em>OnUiMouse</em> and <em>OnUiKeyboard</em> methods to suit your needs. Considering that the event 
+handles class is named as in the code template above, <em>CNodeMonitorHandler</em>, you can create a COM event listener for UiSystem like this:</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="n">spNodeMon</span><span class="p">.</span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_UiNodeMonitor</span><span class="p">);</span>
+
+<span class="c1">//Create and attach the COM event listener object.</span>
+<span class="n">CNodeMonitorHandler</span>     <span class="n">evNodeMonHandler</span><span class="p">;</span>
+<span class="n">evNodeMonHandler</span><span class="p">.</span><span class="n">DispEventAdvise</span><span class="p">(</span><span class="n">spNodeMon</span><span class="p">);</span>
+
+<span class="c1">//Start monitoring. Notice the returned value which uniquely identifies the monitor which has just been started.</span>
+<span class="n">nMonitorId</span> <span class="o">=</span> <span class="n">spUiSystem</span><span class="p">.</span><span class="n">MonitorClick</span><span class="p">(</span><span class="o">&lt;</span><span class="n">something</span><span class="o">&gt;</span><span class="p">);</span>
+</code></pre></div>
+<p>After you are done monitoring, detaching the COM event is easy:</p>
+<div class="highlight"><pre><code class="cpp language-cpp" data-lang="cpp"><span class="c1">//Detach the event listener.</span>
+<span class="n">evNodeMonHandler</span><span class="p">.</span><span class="n">DispEventUnadvise</span><span class="p">(</span><span class="n">spNodeMon</span><span class="p">);</span>
+
+<span class="c1">//Stop monitoring only after detaching the COM event listener.</span>
+<span class="n">spNodeMon</span><span class="o">-&gt;</span><span class="n">StopMonitor</span><span class="p">(</span><span class="n">nMonitorId</span><span class="p">);</span>
+</code></pre></div>
+<h3>Hints for managed languages</h3>
+
+<p>There are no limitations for UiNodeMonitor instances, just make sure that release the monitors when you don&#39;t need them any more, to prevent the accumulation of slots.</p>
+
+<h2>Case studies</h2>
+
+<h3>Monitoring a mouse click combination on a button in <em>Notepad</em></h3>
+
+<p>Suppose you have the classic Notepad application, which ships with any Windows version. You can launch it easily from the Windows Search 
+bar. If you click the &quot;Format&quot; menu, then &quot;Font&quot;, a &quot;Font&quot; dialog will come up. We want to monitor the &quot;Shift + Left click&quot; combination 
+on the &quot;OK&quot; button of this dialog.</p>
+
+<p>We want to catch the click <em>synchronously</em>, which means that we will process the click before reaching the Notepad dialog and dismissing it.</p>
+
+<p>Here is a piece of C&#x266f; code which is meant to accomplish this task:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="c1">//Import the UiPath library using this line, it must be available as a COM object.</span>
+    <span class="k">using</span> <span class="nn">UiPath</span><span class="p">;</span>
+
+<span class="c1">//The object used to monitor events on specific visual elements.</span>
+    <span class="k">public</span> <span class="n">UiNodeMonitor</span> <span class="n">uiNodeEvents</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiNodeMonitor</span><span class="p">();</span>
+<span class="c1">//This string selector uniquely identifies the &quot;OK&quot; button in the &quot;Font&quot; dialog of Notepad. Notice the &quot;parent-to-child&quot;</span>
+<span class="c1">//structure, similar to file paths in any operating system.</span>
+<span class="c1">//For more information on selectors, check the UiPath documentation.</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">okBtnSelector</span> <span class="p">=</span> <span class="s">&quot;&lt;wnd app=&#39;notepad.exe&#39; cls=&#39;#32770&#39; title=&#39;Font&#39;/&gt;&lt;wnd ctrlid=&#39;1&#39;/&gt;&quot;</span><span class="p">;</span>
+<span class="c1">//We will hold the identifier of the click monitor in this variable.</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">okBtnMonitorIdentifier</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="nf">StartMonitoring</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Register for mouse monitoring</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiMouseEventHandler</span><span class="p">(</span><span class="n">uiNodeMonitor_OnUiMouseEvent</span><span class="p">);</span>
+    <span class="c1">//Set up the monitoring parameters: &quot;Shift + Left click&quot;.</span>
+        <span class="n">UiMouseButton</span> <span class="n">msBtn</span> <span class="p">=</span> <span class="n">UiMouseButton</span><span class="p">.</span><span class="n">UI_BTN_LEFT</span><span class="p">;</span>
+        <span class="n">UiKeyModifier</span> <span class="n">kModif</span> <span class="p">=</span> <span class="n">UiKeyModifier</span><span class="p">.</span><span class="n">UI_KEY_Shift</span><span class="p">;</span>
+        <span class="n">UiEventType</span>   <span class="n">eventType</span> <span class="p">=</span> <span class="n">UiEventType</span><span class="p">.</span><span class="n">UI_EVENT_SYNCHRONOUS</span><span class="p">;</span>
+    <span class="c1">//Only match the click on the OK button, not on its child descendants (it would not make sense anyway, since it</span>
+    <span class="c1">//has none).</span>
+        <span class="kt">bool</span> <span class="n">matchChildren</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">//Start monitoring &quot;Shift + Left click&quot;. The last parameter is &quot;null&quot; because we want to monitor the whole &quot;OK&quot; button,</span>
+    <span class="c1">//not just a region of it.</span>
+        <span class="n">okBtnMonitorIdentifier</span> <span class="p">=</span> <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">MonitorClick</span><span class="p">(</span><span class="n">msBtn</span><span class="p">,</span> <span class="n">kModif</span><span class="p">,</span> <span class="n">eventType</span><span class="p">,</span> <span class="n">okBtnSelector</span><span class="p">,</span> <span class="n">matchChildren</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Here is the callback function which UiPath calls to notify our application about the &quot;Shift + Left click&quot; event.</span>
+<span class="k">void</span> <span class="nf">uiNodeMonitor_OnUiMouseEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//Append the event info to an &quot;imaginary&quot; string variable called &quot;LogText&quot;. </span>
+    <span class="c1">//The idea is to notice the information contained in the &quot;eventInfo&quot; parameter.</span>
+        <span class="n">LogText</span> <span class="p">+=</span> <span class="s">&quot;OnMonitorMouseEvent fired : hwnd: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">targetWindow</span><span class="p">.</span><span class="n">hWnd</span> <span class="p">+</span> 
+                    <span class="s">&quot;, x1: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">left</span> <span class="p">+</span> <span class="s">&quot;, y1: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">top</span> <span class="p">+</span> 
+                    <span class="s">&quot;, x2:&quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">right</span> <span class="p">+</span> <span class="s">&quot;, y2: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">bottom</span> <span class="p">+</span> <span class="s">&quot;\r\n&quot;</span><span class="p">);</span>
+    <span class="c1">//In case you started more than one monitor, you can compare the &quot;okBtnMonitorIdentifier&quot; value returned by </span>
+    <span class="c1">//&quot;uiNodeEvents.MonitorClick&quot; with the monitor identifier reported by the &quot;eventInfo.monitorId&quot; property and make some </span>
+    <span class="c1">//decisions.</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">okBtnMonitorIdentifier</span> <span class="p">==</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">monitorId</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="p">&lt;...&gt;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="nf">StopMonitoring</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Detach the event callback.</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">-=</span> <span class="n">uiNodeMonitor_OnUiMouseEvent</span><span class="p">;</span>
+    <span class="c1">//Stop monitoring the &quot;OK&quot; button by passing the identifier returned by &quot;uiNodeEvents.MonitorClick&quot;...</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">StopMonitor</span><span class="p">(</span><span class="n">okBtnMonitorIdentifier</span><span class="p">);</span>
+    <span class="c1">//...OR, you can end all the monitors started by the &quot;uiNodeEvents&quot; object.</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">StopMonitoring</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3>Monitoring a mouse click inside a <em>Remote Desktop</em> window</h3>
+
+<p>If you are familiar with Remote Desktop terminals, then maybe you thought about automating them too. However, the applications and 
+controls inside such a window cannot be isolated by string selectors. The selector cannot go further into detail beneath the Remote 
+Desktop window, so we will have to use actual screen shots of the controls we want to click on. So, the selector will be used to indicate 
+the &quot;big&quot; Remote Desktop window, and then we will use an image to identify the control we want to monitor. For this example, we will use 
+the same &quot;Font&quot; dialog from Notepad, but this time inside a Remote Desktop window.</p>
+
+<p>First, we will have to prepare the filtering image for the highlighted &quot;OK&quot; button. In order to have this image, you will place the 
+cursor on the &quot;OK&quot; button in the &quot;Font&quot; dialog to highlight it. Then, you will press the &quot;PrtScr&quot; key on your keyboard to place the 
+screen content into the clipboard. To get the resulting image, open Microsoft Paint, which is included in any Windows distribution 
+(or any other image processing software than you like) and press &quot;Ctrl + V&quot; to paste the screen shot of the Remote Desktop window into 
+the image editor. Crop the &quot;OK&quot; button and create a separate image with it, in PNG, JPG or BMP format. Suppose we have that image in 
+<em>&quot;C:\Media\Notepad<em>OK</em>Btn.PNG&quot;</em>.</p>
+
+<p>The final image should look like this (notice the blue accent due to highlighting by the mouse cursor): 
+<img src="/img/blog/notepad_font_ok_btn.png" alt="&quot;Button screen shot&quot;"></p>
+
+<p>The C&#x266f; code which monitors the click on the same &quot;OK&quot; button in Notepad, but this time in the Remote Desktop terminal, is this:</p>
+<div class="highlight"><pre><code class="csharp language-csharp" data-lang="csharp"><span class="c1">//Import the UiPath library using this line, it must be available as a COM object.</span>
+    <span class="k">using</span> <span class="nn">UiPath</span><span class="p">;</span>
+
+<span class="c1">//The object used to monitor events on specific visual elements.</span>
+    <span class="k">public</span> <span class="n">UiNodeMonitor</span> <span class="n">uiNodeEvents</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiNodeMonitor</span><span class="p">();</span>
+<span class="c1">//This string selector uniquely identifies the Remote Desktop terminal window on a computer named &quot;OfficePC&quot;.</span>
+<span class="c1">//It&#39;s pretty long, but if you can see the XML-like structure and the &quot;parent-to-child&quot; path, you&#39;ll get it.</span>
+<span class="c1">//For more information on selectors, check the UiPath documentation.</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">rdcTerminalSelector</span> <span class="p">=</span> <span class="s">&quot;&lt;wnd app=&#39;mstsc.exe&#39; cls=&#39;TscShellContainerClass&#39; title=&#39;OfficePC - Remote Desktop Connection&#39;/&gt;&lt;wnd cls=&#39;UIMainClass&#39; title=&#39;OfficePC - Remote Desktop Connection&#39; aaname=&#39;OfficePC - Remote Desktop Connection&#39;/&gt;&lt;wnd cls=&#39;IHWindowClass&#39; title=&#39;Input Capture Window&#39;/&gt;&quot;</span><span class="p">;</span>
+<span class="c1">//This object will be used to identify the screenshot of the &quot;OK&quot; button.</span>
+    <span class="k">public</span> <span class="n">uiImage</span> <span class="p">=</span> <span class="n">UiFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">NewUiImage</span><span class="p">();</span>
+<span class="c1">//We will hold the identifier of the click monitor in this variable.</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">rdcTerminalMonitorIdentifier</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="nf">StartMonitoring</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Register for mouse monitoring.</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">IUiEvents_OnUiMouseEventHandler</span><span class="p">(</span><span class="n">uiNodeMonitor_OnUiMouseEvent</span><span class="p">);</span>
+    <span class="c1">//Set up the monitoring parameters: &quot;Shift + Left click&quot;.</span>
+        <span class="n">UiMouseButton</span> <span class="n">msBtn</span> <span class="p">=</span> <span class="n">UiMouseButton</span><span class="p">.</span><span class="n">UI_BTN_LEFT</span><span class="p">;</span>
+        <span class="n">UiKeyModifier</span> <span class="n">kModif</span> <span class="p">=</span> <span class="n">UiKeyModifier</span><span class="p">.</span><span class="n">UI_KEY_Shift</span><span class="p">;</span>
+        <span class="n">UiEventType</span>   <span class="n">eventType</span> <span class="p">=</span> <span class="n">UiEventType</span><span class="p">.</span><span class="n">UI_EVENT_SYNCHRONOUS</span><span class="p">;</span>
+    <span class="c1">//Only match the click on the RDC window, not on its child descendants (it would not make sense anyway, since it</span>
+    <span class="c1">//has none).</span>
+        <span class="kt">bool</span> <span class="n">matchChildren</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+    <span class="c1">//Load the filtering image as we saved it earlier on.</span>
+        <span class="kt">string</span> <span class="n">imagePath</span> <span class="p">=</span> <span class="s">&quot;C:\\Media\\Notepad_OK_Btn.PNG&quot;</span><span class="p">;</span>
+        <span class="n">uiImage</span><span class="p">.</span><span class="n">LoadFile</span><span class="p">(</span><span class="n">imagePath</span><span class="p">);</span>
+    <span class="c1">//The accuracy is used to make the matching algorithm more tolerant to rendering anomalies or other small differences </span>
+    <span class="c1">//in the RDC terminal.</span>
+        <span class="kt">float</span> <span class="n">matchAccuracy</span> <span class="p">=</span> <span class="m">0.8</span><span class="p">;</span>
+    <span class="c1">//Start monitoring.</span>
+        <span class="n">rdcTerminalMonitorIdentifier</span> <span class="p">=</span> <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">MonitorClickOnImage</span><span class="p">(</span><span class="n">msBtn</span><span class="p">,</span> <span class="n">kModif</span><span class="p">,</span> <span class="n">eventType</span><span class="p">,</span> <span class="n">rdcTerminalSelector</span><span class="p">,</span> <span class="n">matchChildren</span><span class="p">,</span> <span class="k">null</span>
+            <span class="n">uiImage</span><span class="p">,</span> <span class="n">matchAccuracy</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//Here is the callback function which UiPath calls to notify our application about the &quot;Shift + Left click&quot; event.</span>
+<span class="k">void</span> <span class="nf">uiNodeMonitor_OnUiMouseEvent</span><span class="p">(</span><span class="n">UiEventInfo</span> <span class="n">eventInfo</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//Append the event info to an &quot;imaginary&quot; string variable called &quot;LogText&quot;. </span>
+    <span class="c1">//The idea is to notice the information contained in the &quot;eventInfo&quot; parameter.</span>
+        <span class="n">LogText</span> <span class="p">+=</span> <span class="s">&quot;OnMonitorMouseEvent fired : hwnd: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">targetWindow</span><span class="p">.</span><span class="n">hWnd</span> <span class="p">+</span> 
+                    <span class="s">&quot;, x1: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">left</span> <span class="p">+</span> <span class="s">&quot;, y1: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">top</span> <span class="p">+</span> 
+                    <span class="s">&quot;, x2:&quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">right</span> <span class="p">+</span> <span class="s">&quot;, y2: &quot;</span> <span class="p">+</span> <span class="n">eventInfo</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">bottom</span> <span class="p">+</span> <span class="s">&quot;\r\n&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="nf">StopMonitoring</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//Detach the event callback.</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">OnUiMouse</span> <span class="p">-=</span> <span class="n">uiNodeMonitor_OnUiMouseEvent</span><span class="p">;</span>
+    <span class="c1">//End all the monitors.</span>
+        <span class="n">uiNodeEvents</span><span class="p">.</span><span class="n">StopMonitoring</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div> 					
+		</div>			
+	</div>			
+</div>		
+
+<footer class="footer">
+  <div class="container">
+	<p class="pull-right">  |  <a href="#">Back to top</a>  |   </p>        
+	<p>Page last generated on September 19, 2013</p>
+  </div>
+</footer>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>    
+   	<script src="/js/custom.js" type="text/javascript"></script>	
+
+	<script type="text/javascript">
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'screenscraper'; // required: replace example with your forum shortname
+
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function () {
+			var s = document.createElement('script'); s.async = true;
+			s.type = 'text/javascript';
+			s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+			(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+	</script>
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-65056-8']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+  </body>
+</html>

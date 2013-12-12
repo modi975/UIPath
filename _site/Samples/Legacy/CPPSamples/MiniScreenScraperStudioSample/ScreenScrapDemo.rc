@@ -1,0 +1,320 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\ScreenScrapDemo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""Version.rc""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_LOGO                ICON                    "res\\logo.ico"
+IDR_MAINFRAME           ICON                    "res\\ScreenScrapDemo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 259, 71
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ScreenScrapeDemo"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,21,20
+    LTEXT           "Screen Scrape Demo",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Version 1.0",IDC_STATIC_VERSION,40,25,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2007",IDC_STATIC_COPYRIGHT,40,42,212,22
+    DEFPUSHBUTTON   "OK",IDOK,202,7,50,16,WS_GROUP
+END
+
+IDD_SCREENSCRAPDEMO_DIALOG DIALOGEX 0, 0, 282, 174
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Screen scraping demo"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         139,IDC_STATIC,"Static",SS_BITMAP,0,0,333,30
+    LTEXT           "Learn how TextCaptureX can be used by your application to extract the clear text displayed by other applications on the screen.",IDC_STATIC,19,33,245,21
+    GROUPBOX        "Choose the scenario that you want to implement.",IDC_STATIC,17,56,245,82
+    CONTROL         "Extract text from a region on the screen",IDC_RADIO1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,43,69,163,11
+    CONTROL         "Extract text from a window or control",IDC_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,43,82,163,11
+    CONTROL         "Extract text from active window",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,43,95,163,11
+    PUSHBUTTON      "Start selected scenario",IDOK,80,113,122,16,WS_GROUP
+    PUSHBUTTON      "Open Samples",IDC_OPEN_SAMPLES,18,148,55,16
+    PUSHBUTTON      "Licensing",IDC_LICENSING,81,148,55,16
+    PUSHBUTTON      "Home",IDC_HOME,144,148,55,16
+    PUSHBUTTON      "Help",IDC_BTN_HELP,207,148,55,16
+END
+
+IDD_REGION DIALOGEX 0, 0, 296, 278
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Extract text from a region of the screen"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Select Region",IDC_SELECT,7,10,54,16
+    LTEXT           "Press the button to start selecting with the mouse the region of the screen from where you want to extract text .",IDC_STATIC,72,9,216,18
+    LTEXT           "TIP:  After you press Select Region button this window is minimized and you will be able to select a region on the screen.\nClick and hold the mouse button as you drag to select the region.",IDC_STATIC,9,34,279,26
+    LTEXT           "Selection",IDC_STATIC_SELECTION,9,66,33,11
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,75,72,210,1
+    LTEXT           "Window name",IDC_STATIC,9,82,48,11
+    EDITTEXT        IDC_EDIT_WND_NAME,77,81,133,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Handle",IDC_STATIC,219,82,23,12
+    EDITTEXT        IDC_EDIT_WND_HANDLE,245,81,40,13,ES_AUTOHSCROLL
+    LTEXT           "Region",IDC_STATIC,9,102,25,13
+    LTEXT           "X",IDC_STATIC,69,102,8,13
+    EDITTEXT        IDC_EDIT_X,77,101,27,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Y",IDC_STATIC,119,103,8,11
+    EDITTEXT        IDC_EDIT_Y,129,101,25,13,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Width",IDC_STATIC,163,103,20,13
+    EDITTEXT        IDC_EDIT_WIDTH,185,101,25,13,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Height",IDC_STATIC,219,103,20,13
+    EDITTEXT        IDC_EDIT_HEIGHT,245,100,25,13,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Extracted text",IDC_STATIC,9,123,54,13
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,75,127,210,1
+    LTEXT           "Font",IDC_STATIC,9,137,20,10
+    EDITTEXT        IDC_EDIT_FONT,77,135,58,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Size",IDC_STATIC,146,137,16,11
+    EDITTEXT        IDC_EDIT_FONT_SIZE,171,135,25,13,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Preserve layout",IDC_CHECK_USE_FORMATED_TEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,209,136,74,10
+    EDITTEXT        IDC_EDIT_RESULT,10,152,275,72,ES_MULTILINE | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Static",IDC_STATIC_DURATION,11,231,273,12
+    LTEXT           "You can manually change the handle or the region coordinates and extract text.",IDC_STATIC,11,242,273,12
+    PUSHBUTTON      "Copy to clipboard",IDC_COPY_CLIPBOARD,9,257,71,16
+    PUSHBUTTON      "Extract text from the region",IDC_EXTRACT,89,257,110,16
+    COMBOBOX        IDC_COMBO_SCENARIO,210,258,79,58,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_TCXNEW_DIALOG_ACTIVE_WINDOW DIALOGEX 0, 0, 292, 279
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Extract text from active window"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Extract",IDC_EXTRACT,8,10,54,16
+    LTEXT           "Press the button to extract the text from active window.",IDC_STATIC,74,13,216,13
+    CONTROL         "Visible Text",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,74,31,49,12
+    CONTROL         "Entire Text (useful for scrolling windows)",IDC_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,137,31,145,12
+    LTEXT           "TIP:  After you press Extract button this window is minimized and text will be extracted from the windows that becomes active.",IDC_STATIC,9,50,276,20
+    LTEXT           "Selection",IDC_STATIC_SELECTION,8,74,33,11
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,59,79,224,1
+    LTEXT           "Window name",IDC_STATIC,8,90,48,11
+    EDITTEXT        IDC_EDIT_WND_NAME,76,88,133,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Handle",IDC_STATIC,218,89,23,12
+    EDITTEXT        IDC_EDIT_WND_HANDLE,243,88,40,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Captured text",IDC_STATIC,8,108,54,13
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,61,112,222,1
+    LTEXT           "Font",IDC_STATIC,8,123,20,10
+    EDITTEXT        IDC_EDIT_FONT,76,121,58,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Size",IDC_STATIC,149,123,16,11
+    EDITTEXT        IDC_EDIT_FONT_SIZE,172,121,25,13,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Preserve layout",IDC_CHECK_USE_FORMATED_TEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,209,123,74,10
+    EDITTEXT        IDC_EDIT_RESULT,8,143,275,96,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Static",IDC_STATIC_DURATION,10,245,270,12
+    PUSHBUTTON      "Copy to clipboard",IDC_COPY_CLIPBOARD,9,258,71,16
+    COMBOBOX        IDC_COMBO_SCENARIO,206,258,79,68,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_TCXNEW_DIALOG_WINDOW DIALOGEX 0, 0, 292, 303
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Extract text from windows or control"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Select",IDC_SELECT,8,9,54,16
+    LTEXT           "Press the button to start selecting with the mouse the window or control from where you want to extract text .",IDC_STATIC,72,9,216,18
+    CONTROL         "Visible Text",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,72,31,49,12
+    CONTROL         "Entire Text (useful for scrolling windows)",IDC_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,137,31,145,12
+    LTEXT           "TIP:  After you press Select Window button this window minimizes and you will be able to select a window on the screen.\nMove the mouse pointer over the window you choose and click inside it.",IDC_STATIC,8,49,274,26
+    LTEXT           "Selection",IDC_STATIC_SELECTION,8,84,33,11
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,64,89,219,1
+    LTEXT           "Window name",IDC_STATIC,8,100,48,11
+    EDITTEXT        IDC_EDIT_WND_NAME,76,98,133,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Handle",IDC_STATIC,218,99,23,12
+    EDITTEXT        IDC_EDIT_WND_HANDLE,243,98,40,13,ES_AUTOHSCROLL
+    LTEXT           "Captured text",IDC_STATIC,8,118,54,13
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,64,122,219,1
+    LTEXT           "Font",IDC_STATIC,8,133,20,10
+    EDITTEXT        IDC_EDIT_FONT,76,131,58,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Size",IDC_STATIC,143,133,16,11
+    EDITTEXT        IDC_EDIT_FONT_SIZE,166,131,25,13,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Preserve layout",IDC_CHECK_USE_FORMATED_TEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,209,133,74,10
+    EDITTEXT        IDC_EDIT_RESULT,8,153,275,96,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Static",IDC_STATIC_DURATION,9,254,273,12
+    LTEXT           "You can manually change the handle and re-extract text.",IDC_STATIC,9,266,273,12
+    PUSHBUTTON      "Copy to clipboard",IDC_COPY_CLIPBOARD,7,281,71,16
+    PUSHBUTTON      "Extract text from the window",IDC_EXTRACT,87,281,110,16
+    COMBOBOX        IDC_COMBO_SCENARIO,206,282,79,62,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_SCREENSCRAPDEMO_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 29
+        RIGHTMARGIN, 277
+        VERTGUIDE, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 167
+    END
+
+    IDD_REGION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 289
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 271
+    END
+
+    IDD_TCXNEW_DIALOG_ACTIVE_WINDOW, DIALOG
+    BEGIN
+        LEFTMARGIN, 29
+        RIGHTMARGIN, 287
+        VERTGUIDE, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 274
+    END
+
+    IDD_TCXNEW_DIALOG_WINDOW, DIALOG
+    BEGIN
+        LEFTMARGIN, 29
+        RIGHTMARGIN, 287
+        VERTGUIDE, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 296
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_LOGO                BITMAP                  "res\\logo.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About ScreenScrape..."
+    IDS_REGISTER_FAILED     "Registration failed with error %d.\n\nDescription: %s."
+    IDS_REGISTER_OK         "Thank you for registering text capture library."
+    IDS_CAPTURE_ERROR       "Capture internal error."
+    IDS_ERR_CREATE_CAPTURE_OBJ "Error creating TextCaptureX object."
+    IDS_DURATION            "The capture took %d milliseconds"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STR_VERSION         "Version: %d.%d.%d.%d"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\ScreenScrapDemo.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+#include "Version.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

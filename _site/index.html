@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
+	<meta name="keywords" content="UiPath Studio, ui automation, screen scraping, web scraping, data scraping, text capture, workflow automation, web automation, report mining">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="style.css" type="text/css">
+<title>UiPath Documentation</title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39012418-2']);
+  _gaq.push(['_setDomainName', 'uipath.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<body>
+	<script>
+function DeleteText(){
+	var inputObject = document.getElementById("input-query");
+	if (inputObject.value === "enter the search term"){
+		inputObject.value = "";
+	};
+
+}
+
+
+function SetText(){
+	var inputObject = document.getElementById("input-query");
+	if( inputObject.value === "")
+	{
+		inputObject.value = "enter the search term";
+	};
+}
+</script>
+	<div id="header_container">
+	<div class="header">
+	
+<ul>
+<li><a href="http://www.uipath.com/">Product Site</a></li>
+<li><a href="/posts.html">Learning Center</a></li>
+<li class="doc"><a href="https://github.com/Deskover/UiPath/wiki">Documentation Wiki</a></li>
+</ul>
+<div class="logo_text">
+	<a href="http://www.uipath.com/">
+<img src="img/logo.png" alt="logo">
+</a>
+<span>Developers</span>
+</div>
+
+</div>
+</div>
+
+<div class="content">
+
+	<h1>Design workflows, build with API</h1>
+	<h2>UiPath Documentation</h2>
+
+	<div class="content_1">
+		<form action="demo_form.asp">
+		 <input type="text" name="usrname" value="enter the search term" id="input-query" onfocus="DeleteText()" onblur="SetText()">
+
+		</form>
+
+		<div class="button_2" id="btn-q-knoledge">
+		 	<p><a href="#">Search Knowledge Base</a></p>
+
+		</div>
+
+
+		<div class="button_1" id="btn-q-doc">
+		 	<p><a href="#">Search Documentation</a></p>
+
+		</div>
+
+		<script>
+		document.getElementById ("btn-q-doc").addEventListener ("click", function () {
+			window.open ("https://google.com/search?q=" + document.getElementById ("input-query").value + " site:github.com/Deskover/UiPath/wiki", "_blank");
+		}, false);
+
+		document.getElementById ("btn-q-knoledge").addEventListener ("click", function () {
+			window.open ("http://support.deskover.com/categories/3440-UiPath-former-Screen-Scraper-Studio-/search?query=" + document.getElementById ("input-query").value, "_blank");
+		}, false);
+
+		document.getElementById ("input-query").addEventListener ("keypress", function (e) {
+			if (e.keyCode === 13 /* the <Enter> key */) {
+				window.open ("https://google.com/search?q=" + this.value + " site:github.com/Deskover/UiPath/wiki", "_self");
+				e.preventDefault ();
+			}
+		}, false);
+		</script>
+
+	<div class="create">
+
+		<h1 >Documentation</h1>
+
+		<ul class="create_1">
+			<li>
+				<a href="https://github.com/Deskover/UiPath/wiki">Getting started with UiPath</a></br>
+				 <span>Explore the documentation</span>
+			</li>
+			
+			<li><a href="http://www.youtube.com/uipath">Video tutorials</a><br>
+				<span>If it is your first time with UiPath start here</span>
+			</li>
+			
+			<li><a href=" https://github.com/Deskover/UiPath/wiki/Core-API-reference">API reference</a><br>
+				<span>Your ultimate guide to using API</span>
+			</li>
+			
+			<li><a href="https://github.com/Deskover/UiPath/tree/master/Samples">Browse samples</a><br>
+				<span>What's better than a sample to get started?</span>
+			</li>
+			
+		</ul>
+
+
+		<a href="https://twitter.com/uipath" class="twitter-follow-button" data-show-count="false">Follow @uipath</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		</script>
+		<div class="linkedin">
+			<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
+			<script type="IN/CompanyProfile" data-id="1523656" data-format="hover" data-text="Deskover"></script>
+		</div>
+	</div>
+  <div class="recent">
+	 <h1>Get free support</h1>
+	 <ul class="recent_1">
+	 	<li><a href="http://uipath.com/webinar">Request 1:1 webinar</a><br>
+	 		<span>From ground to zenflow in 30 minutes</span>
+	 	</li>
+	 	
+	 	<li><a href="http://uipath.com/workflow">Request 1 free automation </a><br>
+	 		<span>Have an expert build a workflow per your specs</span>
+	 	</li>
+	  
+	 	<li><a href="http://support.deskover.com/anonymous_requests/new">Open a support ticket</a><br>
+	 		<span>We are hard at work but love to hear from you</span>
+	 	</li>
+
+	 	<li><a href="http://support.deskover.com/categories/3440-screenscraper">Discuss</a></br>
+	 		<span>Get in touch with UiPath team and other developers</span>
+	 	</li>
+	 	
+	 </ul>
+  </div>
+</div>
+</body>
+
+
+
+
