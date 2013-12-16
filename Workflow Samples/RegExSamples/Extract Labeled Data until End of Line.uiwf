@@ -1,0 +1,117 @@
+﻿<Activity mc:Ignorable="sads sap" x:Class="qwew" this:qwew.Default_TimeoutMS="[30000]" this:qwew.Default_ContinueOnError="[False]" this:qwew.Default_DelayMS="[300]"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic"
+ xmlns:mv1="clr-namespace:Microsoft.VisualBasic;assembly=System"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=System.Core"
+ xmlns:s3="clr-namespace:System;assembly=System.ServiceModel"
+ xmlns:s4="clr-namespace:System;assembly=System.DirectoryServices.Protocols"
+ xmlns:s5="clr-namespace:System;assembly=System.DirectoryServices"
+ xmlns:s6="clr-namespace:System;assembly=System.Web"
+ xmlns:s7="clr-namespace:System;assembly=System.Web.Services"
+ xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:sd1="clr-namespace:System.Diagnostics;assembly=System"
+ xmlns:si="clr-namespace:System.IO;assembly=mscorlib"
+ xmlns:sl="clr-namespace:System.Linq;assembly=System.Core"
+ xmlns:sma="clr-namespace:System.Management.Automation;assembly=System.Management.Automation"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System"
+ xmlns:sx="clr-namespace:System.Xml;assembly=System.Xml"
+ xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq"
+ xmlns:this="clr-namespace:"
+ xmlns:ua="clr-namespace:UiPath.Activities;assembly=UiPath.Activities"
+ xmlns:ul="clr-namespace:UiPath.Library;assembly=UiPath.Library"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Default_TimeoutMS" Type="InArgument(x:Int32)" />
+    <x:Property Name="Default_ContinueOnError" Type="InArgument(x:Boolean)" />
+    <x:Property Name="Default_DelayMS" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>617,1339</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Sequence DisplayName="Extract Labeled Data until End of Line" sap:VirtualizedContainerService.HintSize="577,1299" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="matchValueDictionary" />
+      <Variable x:TypeArguments="s:String[]" Name="fixedLabels" />
+      <Variable x:TypeArguments="x:String" Name="inputString" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="555,60">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:String[]">[fixedLabels]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:String[]">[{"label1", "label2", "label3"}]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="555,64">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[inputString]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">["label1   composed value 1" + Environment.NewLine +
+"label2   composed value 2" + Environment.NewLine +
+"label3   composed value 3"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="555,60">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[matchValueDictionary]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[new Dictionary(Of String, Object)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ua:ForEach x:TypeArguments="x:String" DisplayName="For each label" sap:VirtualizedContainerService.HintSize="555,540" Values="[fixedLabels]">
+      <ActivityAction x:TypeArguments="x:String">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:String" Name="label" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="525,432">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="matchValue" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ua:Matches DisplayName="Matches - Extract label value until end of line" sap:VirtualizedContainerService.HintSize="503,22" Input="[inputString]" Pattern="[&quot;(?&lt;=\b&quot; + label + &quot;(\s*))(.*)$&quot;]" RegexOption="IgnoreCase, Multiline, Compiled" Result="[matchValue]" />
+          <If Condition="[matchValue.Count&gt;0]" sap:VirtualizedContainerService.HintSize="503,246">
+            <If.Then>
+              <maes:AddToDictionary x:TypeArguments="x:String, x:Object" Dictionary="[matchValueDictionary]" DisplayName="AddToDictionary&lt;label, value&gt;" sap:VirtualizedContainerService.HintSize="378,138" Key="[label]" Value="[matchValue(0).Value.Trim]" />
+            </If.Then>
+          </If>
+        </Sequence>
+      </ActivityAction>
+    </ua:ForEach>
+    <ua:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" DisplayName="For each &lt;label, value&gt; entry in dictionary" sap:VirtualizedContainerService.HintSize="555,291" Values="[matchValueDictionary]">
+      <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:Object)">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" Name="keyValue" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="336,183">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ua:WriteLine DesignerSelector="{x:Null}" ElementPosition="{x:Null}" ImageBase64="{x:Null}" InformativeScreenshot="{x:Null}" ParentImageBase64="{x:Null}" ContinueOnError="[Default_ContinueOnError]" DisplayName="Write line" sap:VirtualizedContainerService.HintSize="314,59" ShowScreenshot="False" Text="[keyValue.Key +&quot; : &quot; + keyValue.Value.ToString()]" />
+        </Sequence>
+      </ActivityAction>
+    </ua:ForEach>
+  </Sequence>
+</Activity>

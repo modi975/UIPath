@@ -1,0 +1,15 @@
+﻿<Window x:Class="WorkflowRemoteExecution.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" x:Name="RemoteExecution">
+    <StackPanel Margin="15">
+        <Label Margin="0,0,0,5">Please make sure to open UiLauncher.exe with</Label>
+        <TextBox x:Name="GuidTextBox" Margin="0,0,0,5"/>
+        <Label Margin="0,0,0,5">parameter before executing your workflow</Label>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <TextBox x:Name="WorkflowPathTextBox" Text="{Binding Path=WorkflowPath, ElementName=RemoteExecution}" Width="250" Height="23" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+            <Button Content="..." Width="20" Height="23" Click="WorkflowPath_Click"/>
+        </StackPanel>
+        <Button Content="Execute workflow" Width="150" Height="23" HorizontalAlignment="Left" Click="ExecuteWorkflow_Click" />
+    </StackPanel>
+</Window>
