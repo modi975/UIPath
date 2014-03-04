@@ -1,0 +1,62 @@
+﻿<Activity mc:Ignorable="sads sap" x:Class="inject" this:inject.Default_TimeoutMS="[30000]" this:inject.Default_ContinueOnError="[False]" this:inject.Default_DelayMS="[300]"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=System.Core"
+ xmlns:s3="clr-namespace:System;assembly=System.ComponentModel.Composition"
+ xmlns:s4="clr-namespace:System;assembly=System.ServiceModel"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:sd1="clr-namespace:System.Diagnostics;assembly=System"
+ xmlns:si="clr-namespace:System.IO;assembly=mscorlib"
+ xmlns:sl="clr-namespace:System.Linq;assembly=System.Core"
+ xmlns:sma="clr-namespace:System.Management.Automation;assembly=System.Management.Automation"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:sx="clr-namespace:System.Xml;assembly=System.Xml"
+ xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq"
+ xmlns:this="clr-namespace:"
+ xmlns:ua="clr-namespace:UiPath.Activities;assembly=UiPath.Activities"
+ xmlns:ul="clr-namespace:UiPath.Library;assembly=UiPath.Library"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Default_TimeoutMS" Type="InArgument(x:Int32)" />
+    <x:Property Name="Default_ContinueOnError" Type="InArgument(x:Boolean)" />
+    <x:Property Name="Default_DelayMS" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>476,866</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Sequence sap:VirtualizedContainerService.HintSize="436,826">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ul:Browser" Name="browserOpenPage1" />
+      <Variable x:TypeArguments="ul:UiElement" Name="uiOpenPage2" />
+      <Variable x:TypeArguments="x:String" Name="stringInjectJsScript3" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ua:Comment sap:VirtualizedContainerService.HintSize="414,93" Text="// This workflow shows how to execute Javascript code inside a web page and to get some result back." />
+    <ua:OpenPage DesignerSelector="{x:Null}" ElementPosition="{x:Null}" ImageBase64="{x:Null}" InformativeScreenshot="{x:Null}" ParentImageBase64="{x:Null}" BrowserType="BROWSER_IE" ContinueOnError="[Default_ContinueOnError]" DisplayName="Open" sap:VirtualizedContainerService.HintSize="414,569" ShowScreenshot="False" UiBrowser="[browserOpenPage1]" UiElement="[uiOpenPage2]" Url="[&quot;http://google.com/&quot;]" WaitForReady="COMPLETE">
+      <ua:OpenPage.Body>
+        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,500">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ua:Comment sap:VirtualizedContainerService.HintSize="314,74" Text="// Change the location of the web page to an url passed as a parameter to injected script." />
+          <ua:InjectJsScript ClippingRegion="{x:Null}" DesignerSelector="{x:Null}" ElementPosition="{x:Null}" ExistingUiElement="{x:Null}" ImageBase64="{x:Null}" InformativeScreenshot="{x:Null}" ParentImageBase64="{x:Null}" Selector="{x:Null}" ContinueOnError="[Default_ContinueOnError]" DisplayName="Inject js script" sap:VirtualizedContainerService.HintSize="314,68" InputParameter="http://uipath.com/" ScriptCode="function (e, p) { window.location=p; return 'message from page'; }" ScriptOutput="[stringInjectJsScript3]" ShowScreenshot="False" TimeoutMS="[Default_TimeoutMS]" WaitForReady="INTERACTIVE" />
+          <ua:Comment sap:VirtualizedContainerService.HintSize="314,55" Text="// Write the result of the injected script." />
+          <ua:WriteLine DesignerSelector="{x:Null}" ElementPosition="{x:Null}" ImageBase64="{x:Null}" InformativeScreenshot="{x:Null}" ParentImageBase64="{x:Null}" ContinueOnError="[Default_ContinueOnError]" DisplayName="Write line" sap:VirtualizedContainerService.HintSize="314,59" ShowScreenshot="False" Text="[stringInjectJsScript3]" />
+        </Sequence>
+      </ua:OpenPage.Body>
+    </ua:OpenPage>
+  </Sequence>
+</Activity>
