@@ -12,8 +12,6 @@
  xmlns:s3="clr-namespace:System;assembly=System.ServiceModel"
  xmlns:s4="clr-namespace:System;assembly=System.DirectoryServices.Protocols"
  xmlns:s5="clr-namespace:System;assembly=System.DirectoryServices"
- xmlns:s6="clr-namespace:System;assembly=System.Web"
- xmlns:s7="clr-namespace:System;assembly=System.Web.Services"
  xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities"
  xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
