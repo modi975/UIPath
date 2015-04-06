@@ -260,16 +260,29 @@ namespace Scrape
             if (GetFont_Checkbox.Checked)
             {
                 //set font info
-                textBoxOutput.AppendText("Font Name: " + uiScrapeResult.font.Name + " Font Size:" + uiScrapeResult.font.Size + "\r\n\r\n");
+                string message   = uiScrapeResult.font == null
+                    ? "No fonts detected"
+                    : "Font Name: " + uiScrapeResult.font.Name + " Font Size:" + uiScrapeResult.font.Size;
+
+                textBoxOutput.AppendText(message + "\r\n\r\n");
             }
 
             if (ExtractInfo_Checkbox.Checked)
             {
                 //get information about each word
-                foreach (UiTextInfo word in uiScrapeResult.textInfo)
+                if (uiScrapeResult.textInfo == null)
                 {
-                    //append info about word in output
-                    textBoxOutput.AppendText("left: " + word.rectangle.left + " top: " + word.rectangle.top + " right: " + word.rectangle.right + " bottom: " + word.rectangle.bottom + " text = " + word.text + "\r\n");
+                    textBoxOutput.AppendText("No text info detected" + "\r\n");
+                }
+                else
+                {
+                    foreach (UiTextInfo word in uiScrapeResult.textInfo)
+                    {
+                        //append info about word in output
+                        textBoxOutput.AppendText("left: " + word.rectangle.left + " top: " + word.rectangle.top +
+                                                 " right: " + word.rectangle.right + " bottom: " + word.rectangle.bottom +
+                                                 " text = " + word.text + "\r\n");
+                    }
                 }
             }
             else
