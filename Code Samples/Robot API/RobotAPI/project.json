@@ -1,0 +1,8 @@
+{
+  "Description": "Workflow Project",
+  "Version": "1.0.0.0",
+  "MainWorkflow": "Main.xaml",
+  "Id": "RobotAPI",
+  "Dependencies": {},
+  "ConfigurationOptions": {}
+}
